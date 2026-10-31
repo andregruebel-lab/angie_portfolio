@@ -77,12 +77,12 @@ a:hover{color:#9a4a2c}
       </sc-for>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2vw,32px) clamp(12px,1.6vw,24px);align-items:start">
+  <div style="{{ galleryStyle }}">
     <sc-for list="{{ photos }}" as="p" hint-placeholder-count="8">
-      <figure style="margin:0;grid-column:{{ p.col }};margin-top:{{ p.offset }}">
-        <div style="position:relative;width:100%;aspect-ratio:{{ p.ratio }};background:#dcd6cc;overflow:hidden">
+      <figure onClick="{{ p.open }}" style="{{ p.figStyle }}">
+        <div style="{{ p.boxStyle }}">
           <sc-if value="{{ p.has }}" hint-placeholder-val="{{ false }}">
-            <img src="{{ p.src }}" alt="{{ p.title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+            <img src="{{ p.src }}" alt="{{ p.title }}" loading="{{ p.loading }}" decoding="async" style="{{ p.imgStyle }}">
           </sc-if>
         </div>
         <sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}">
@@ -140,21 +140,29 @@ a:hover{color:#9a4a2c}
     <span style="color:#a8a29a">© {{ year }} {{ site.name }}</span>
   </div>
 </footer>
+
+<sc-if value="{{ lb.show }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ lb.close }}" role="dialog" aria-modal="true" aria-label="{{ lb.title }}" style="position:fixed;inset:0;z-index:100;background:rgba(25,24,22,0.985);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:56px clamp(12px,7vw,110px) 24px;box-sizing:border-box;cursor:zoom-out">
+    <button onClick="{{ lb.close }}" aria-label="{{ lb.closeLabel }}" style="position:absolute;top:14px;right:18px;width:44px;height:44px;border-radius:999px;border:1px solid #efebe455;background:rgba(25,24,22,0.6);color:#efebe4;font:inherit;font-size:18px;cursor:pointer">✕</button>
+    <sc-if value="{{ lb.multi }}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{ lb.prev }}" aria-label="{{ lb.prevLabel }}" style="position:absolute;top:50%;left:14px;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:1px solid #efebe455;background:rgba(25,24,22,0.6);color:#efebe4;font:inherit;font-size:18px;cursor:pointer">←</button>
+      <button onClick="{{ lb.next }}" aria-label="{{ lb.nextLabel }}" style="position:absolute;top:50%;right:14px;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:1px solid #efebe455;background:rgba(25,24,22,0.6);color:#efebe4;font:inherit;font-size:18px;cursor:pointer">→</button>
+    </sc-if>
+    <img src="{{ lb.src }}" alt="{{ lb.title }}" onClick="{{ lb.stop }}" style="max-width:100%;max-height:calc(100vh - 140px);object-fit:contain;display:block;cursor:default">
+    <div onClick="{{ lb.stop }}" style="color:#efebe4;text-transform:uppercase;text-align:center;cursor:default">{{ lb.title }} <span style="color:#a8a29a">· {{ lb.meta }}</span></div>
+  </div>
+</sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Editorial&quot;,&quot;Uniform&quot;],&quot;default&quot;:&quot;Editorial&quot;,&quot;tsType&quot;:&quot;'Editorial'|'Uniform'&quot;},&quot;showCaptions&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   static LANGS = ['de', 'en', 'ru'];
-  static LAYOUT = [
-    { ratio: '4/5', col: '1 / span 5', offset: '0px' },
-    { ratio: '3/2', col: '7 / span 6', offset: '120px' },
-    { ratio: '2/3', col: '2 / span 4', offset: '0px' },
-    { ratio: '4/5', col: '7 / span 5', offset: '-60px' },
-    { ratio: '16/9', col: '1 / span 8', offset: '0px' },
-    { ratio: '3/4', col: '9 / span 4', offset: '80px' },
-    { ratio: '3/2', col: '3 / span 6', offset: '0px' },
-    { ratio: '1/1', col: '9 / span 4', offset: '40px' },
-  ];
+  // Bedien-Texte der Vergrößerung (Schließen, Blättern) je Sprache.
+  static UI = {
+    de: { close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto' },
+    en: { close: 'Close', prev: 'Previous photo', next: 'Next photo' },
+    ru: { close: 'Закрыть', prev: 'Предыдущее фото', next: 'Следующее фото' },
+  };
   // Inhalte liegen in einer Datei je Abschnitt (content/*.json) und werden hier zu einem Objekt zusammengesetzt.
   static CONTENT = ['general', 'start', 'arbeiten', 'serien', 'ueber', 'kontakt'];
   static LISTS = ['categories', 'photos', 'series'];
@@ -171,13 +179,44 @@ class Component extends DCLogic {
     const on = (site && site.languages) || [];
     return Component.LANGS.filter(l => l === 'de' || on.includes(l));
   }
-  state = { filter: 'all', lang: this.initialLang(), site: null, cats: [], photos: [], series: [] };
+  state = { filter: 'all', lang: this.initialLang(), site: null, cats: [], photos: [], series: [], open: -1 };
   initialLang() {
     let l = null;
     try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('portfolio-lang'); } catch (e) {}
     return Component.LANGS.includes(l) ? l : 'de';
   }
+  // Tastatur (Esc, Pfeile) und Wischen für die Vergrößerung; reagieren nur, wenn sie geöffnet ist.
+  onKey = e => {
+    if (this.state.open < 0) return;
+    if (e.key === 'Escape') this.setState({ open: -1 });
+    else if (e.key === 'ArrowLeft') this.stepLightbox(-1);
+    else if (e.key === 'ArrowRight') this.stepLightbox(1);
+  };
+  onTouchStart = e => { this.touchX = e.touches && e.touches[0] ? e.touches[0].clientX : null; };
+  onTouchEnd = e => {
+    if (this.state.open < 0 || this.touchX == null || !e.changedTouches || !e.changedTouches[0]) return;
+    const dx = e.changedTouches[0].clientX - this.touchX; this.touchX = null;
+    if (Math.abs(dx) > 50) this.stepLightbox(dx < 0 ? 1 : -1);
+  };
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKey);
+    document.removeEventListener('touchstart', this.onTouchStart);
+    document.removeEventListener('touchend', this.onTouchEnd);
+    document.body.style.overflow = '';
+  }
+  // Fotos der aktuellen Auswahl, die ein Bild haben (nur diese kann man vergrößern und durchblättern).
+  visiblePhotos() {
+    const { photos, filter } = this.state;
+    return photos.map((p, i) => ({ p, i })).filter(({ p }) => (filter === 'all' || p.category === filter) && p.image);
+  }
+  stepLightbox(d) {
+    const n = this.visiblePhotos().length;
+    if (n > 0) this.setState({ open: (this.state.open + d + n) % n });
+  }
   async componentDidMount() {
+    document.addEventListener('keydown', this.onKey);
+    document.addEventListener('touchstart', this.onTouchStart, { passive: true });
+    document.addEventListener('touchend', this.onTouchEnd, { passive: true });
     const get = f => fetch('content/' + f + '.json', { cache: 'no-cache' }).then(r => r.json());
     try {
       const parts = await Promise.all(Component.CONTENT.map(get));
@@ -187,7 +226,7 @@ class Component extends DCLogic {
       this.setState({ site, lang, cats: byName.arbeiten.categories || [], photos: byName.arbeiten.photos || [], series: byName.serien.series || [] });
     } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
   }
-  componentDidUpdate() { this.applyMeta(); this.playHeroVideo(); }
+  componentDidUpdate() { this.applyMeta(); this.playHeroVideo(); document.body.style.overflow = this.state.open >= 0 ? 'hidden' : ''; }
   // Das Framework übernimmt "muted" und "loop" nicht als Attribut. Ohne stumm blockieren Browser den Autoplay,
   // ohne loop bliebe das Video am Ende stehen. Deshalb hier als Eigenschaft setzen und starten.
   playHeroVideo() {
@@ -215,12 +254,16 @@ class Component extends DCLogic {
     this.setState({ lang: code });
   }
   renderVals() {
-    const { filter, lang, site, cats, photos, series } = this.state;
+    const { filter, lang, site, cats, photos, series, open } = this.state;
     const t = (site && site[lang]) || {};
     const uniform = (this.props.layout ?? 'Editorial') === 'Uniform';
-    const editorial = filter === 'all' && !uniform;
+    // "Alle": Spalten, jedes Foto in seinem eigenen Format. Einzelne Kategorien (oder Uniform): gleichmäßiges Raster, 4/5 zugeschnitten.
+    const masonry = filter === 'all' && !uniform;
+    const ui = Component.UI[lang] || Component.UI.de;
     const pill = on => ({ bg: on ? '#191816' : 'transparent', fg: on ? '#efebe4' : '#191816' });
     const list = photos.map((p, i) => ({ p, i })).filter(({ p }) => filter === 'all' || p.category === filter);
+    const withImg = list.filter(({ p }) => p.image);
+    const cur = open >= 0 ? withImg[open] : null;
     return {
       t, lang,
       site: site || {},
@@ -234,16 +277,28 @@ class Component extends DCLogic {
       filters: [{ id: 'all', label: t.all }, ...cats.map(c => ({ id: c.id, label: c[lang] }))].map(c => ({
         label: c.label, ...pill(c.id === filter), select: () => this.setState({ filter: c.id }),
       })),
-      photos: list.map(({ p, i }) => {
-        const L = Component.LAYOUT[i % Component.LAYOUT.length];
-        return {
-          has: !!p.image, src: p.image, title: p['title_' + lang], year: p.year,
-          num: String(i + 1).padStart(2, '0'),
-          col: editorial ? L.col : 'span 4',
-          offset: editorial ? L.offset : '0px',
-          ratio: editorial ? L.ratio : '4/5',
-        };
-      }),
+      galleryStyle: masonry
+        ? 'columns:3 340px;column-gap:clamp(12px,1.6vw,24px)'
+        : 'display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:clamp(16px,2vw,32px) clamp(12px,1.6vw,24px);align-items:start',
+      photos: list.map(({ p, i }) => ({
+        has: !!p.image, src: p.image, title: p['title_' + lang], year: p.year,
+        num: String(i + 1).padStart(2, '0'),
+        loading: masonry ? 'eager' : 'lazy',
+        figStyle: (masonry ? 'margin:0 0 clamp(20px,2.4vw,32px);break-inside:avoid;' : 'margin:0;') + (p.image ? 'cursor:zoom-in' : ''),
+        boxStyle: 'position:relative;width:100%;background:#dcd6cc;overflow:hidden' + (masonry && p.image ? '' : ';aspect-ratio:4/5'),
+        imgStyle: masonry ? 'display:block;width:100%;height:auto' : 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block',
+        open: p.image ? () => this.setState({ open: withImg.findIndex(x => x.i === i) }) : () => {},
+      })),
+      lb: {
+        show: !!cur, multi: withImg.length > 1,
+        src: cur ? cur.p.image : '', title: cur ? cur.p['title_' + lang] : '',
+        meta: cur ? String(cur.i + 1).padStart(2, '0') + (cur.p.year ? ' · ' + cur.p.year : '') : '',
+        closeLabel: ui.close, prevLabel: ui.prev, nextLabel: ui.next,
+        close: () => this.setState({ open: -1 }),
+        prev: e => { if (e && e.stopPropagation) e.stopPropagation(); this.stepLightbox(-1); },
+        next: e => { if (e && e.stopPropagation) e.stopPropagation(); this.stepLightbox(1); },
+        stop: e => { if (e && e.stopPropagation) e.stopPropagation(); },
+      },
       series: series.map((s, i) => ({
         num: String(i + 1).padStart(2, '0'),
         name: s['name_' + lang],
