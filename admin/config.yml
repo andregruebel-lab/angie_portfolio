@@ -1,0 +1,186 @@
+# Decap CMS — Portfolio
+backend:
+  name: github
+  repo: andregruebel-lab/angie_portfolio.git   # anpassen
+  branch: main
+  base_url: https://api.netlify.com   # GitHub-Login über Netlify OAuth
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+locale: "de"
+collections:
+  - name: "inhalte"
+    label: "Inhalte"
+    files:
+      - label: "Website & Texte"
+        name: "site"
+        file: "content/site.json"
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "E-Mail", name: "email", widget: "string"}
+          - {label: "Instagram-Link", name: "instagram", widget: "string"}
+          - {label: "Are.na-Link", name: "arena", widget: "string"}
+          - {label: "Print-Shop-Link", name: "shop_url", widget: "string"}
+          - {label: "Titelbild", name: "hero_image", widget: "image", required: false}
+          - {label: "Titelbild Bildunterschrift", name: "hero_caption", widget: "string"}
+          - {label: "Titelbild Jahr", name: "hero_year", widget: "string"}
+          - {label: "Porträt", name: "portrait_image", widget: "image", required: false}
+          - label: "Texte Deutsch"
+            name: "de"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "work", name: "work", widget: "string"}
+              - {label: "series", name: "series", widget: "string"}
+              - {label: "about", name: "about", widget: "string"}
+              - {label: "contact", name: "contact", widget: "string"}
+              - {label: "h1a", name: "h1a", widget: "string"}
+              - {label: "h1b", name: "h1b", widget: "string"}
+              - {label: "h1c", name: "h1c", widget: "string"}
+              - {label: "intro", name: "intro", widget: "text"}
+              - {label: "est", name: "est", widget: "string"}
+              - {label: "format", name: "format", widget: "string"}
+              - {label: "selected", name: "selected", widget: "string"}
+              - {label: "seriesIndex", name: "seriesIndex", widget: "string"}
+              - {label: "yearFrames", name: "yearFrames", widget: "string"}
+              - {label: "aboutLead", name: "aboutLead", widget: "text"}
+              - {label: "aboutBody", name: "aboutBody", widget: "text"}
+              - {label: "services", name: "services", widget: "string"}
+              - {label: "s1", name: "s1", widget: "string"}
+              - {label: "s2", name: "s2", widget: "string"}
+              - {label: "s3", name: "s3", widget: "string"}
+              - {label: "basedIn", name: "basedIn", widget: "string"}
+              - {label: "city", name: "city", widget: "string"}
+              - {label: "travels", name: "travels", widget: "string"}
+              - {label: "enquiries", name: "enquiries", widget: "string"}
+              - {label: "shop", name: "shop", widget: "string"}
+              - {label: "all", name: "all", widget: "string"}
+              - {label: "back", name: "back", widget: "string"}
+              - {label: "next", name: "next", widget: "string"}
+              - {label: "frames", name: "frames", widget: "string"}
+              - {label: "seriesSingular", name: "seriesSingular", widget: "string"}
+              - {label: "seo_title", name: "seo_title", widget: "string"}
+              - {label: "seo_description", name: "seo_description", widget: "text"}
+          - label: "Texte English"
+            name: "en"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "work", name: "work", widget: "string"}
+              - {label: "series", name: "series", widget: "string"}
+              - {label: "about", name: "about", widget: "string"}
+              - {label: "contact", name: "contact", widget: "string"}
+              - {label: "h1a", name: "h1a", widget: "string"}
+              - {label: "h1b", name: "h1b", widget: "string"}
+              - {label: "h1c", name: "h1c", widget: "string"}
+              - {label: "intro", name: "intro", widget: "text"}
+              - {label: "est", name: "est", widget: "string"}
+              - {label: "format", name: "format", widget: "string"}
+              - {label: "selected", name: "selected", widget: "string"}
+              - {label: "seriesIndex", name: "seriesIndex", widget: "string"}
+              - {label: "yearFrames", name: "yearFrames", widget: "string"}
+              - {label: "aboutLead", name: "aboutLead", widget: "text"}
+              - {label: "aboutBody", name: "aboutBody", widget: "text"}
+              - {label: "services", name: "services", widget: "string"}
+              - {label: "s1", name: "s1", widget: "string"}
+              - {label: "s2", name: "s2", widget: "string"}
+              - {label: "s3", name: "s3", widget: "string"}
+              - {label: "basedIn", name: "basedIn", widget: "string"}
+              - {label: "city", name: "city", widget: "string"}
+              - {label: "travels", name: "travels", widget: "string"}
+              - {label: "enquiries", name: "enquiries", widget: "string"}
+              - {label: "shop", name: "shop", widget: "string"}
+              - {label: "all", name: "all", widget: "string"}
+              - {label: "back", name: "back", widget: "string"}
+              - {label: "next", name: "next", widget: "string"}
+              - {label: "frames", name: "frames", widget: "string"}
+              - {label: "seriesSingular", name: "seriesSingular", widget: "string"}
+              - {label: "seo_title", name: "seo_title", widget: "string"}
+              - {label: "seo_description", name: "seo_description", widget: "text"}
+          - label: "Texte Русский"
+            name: "ru"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "work", name: "work", widget: "string"}
+              - {label: "series", name: "series", widget: "string"}
+              - {label: "about", name: "about", widget: "string"}
+              - {label: "contact", name: "contact", widget: "string"}
+              - {label: "h1a", name: "h1a", widget: "string"}
+              - {label: "h1b", name: "h1b", widget: "string"}
+              - {label: "h1c", name: "h1c", widget: "string"}
+              - {label: "intro", name: "intro", widget: "text"}
+              - {label: "est", name: "est", widget: "string"}
+              - {label: "format", name: "format", widget: "string"}
+              - {label: "selected", name: "selected", widget: "string"}
+              - {label: "seriesIndex", name: "seriesIndex", widget: "string"}
+              - {label: "yearFrames", name: "yearFrames", widget: "string"}
+              - {label: "aboutLead", name: "aboutLead", widget: "text"}
+              - {label: "aboutBody", name: "aboutBody", widget: "text"}
+              - {label: "services", name: "services", widget: "string"}
+              - {label: "s1", name: "s1", widget: "string"}
+              - {label: "s2", name: "s2", widget: "string"}
+              - {label: "s3", name: "s3", widget: "string"}
+              - {label: "basedIn", name: "basedIn", widget: "string"}
+              - {label: "city", name: "city", widget: "string"}
+              - {label: "travels", name: "travels", widget: "string"}
+              - {label: "enquiries", name: "enquiries", widget: "string"}
+              - {label: "shop", name: "shop", widget: "string"}
+              - {label: "all", name: "all", widget: "string"}
+              - {label: "back", name: "back", widget: "string"}
+              - {label: "next", name: "next", widget: "string"}
+              - {label: "frames", name: "frames", widget: "string"}
+              - {label: "seriesSingular", name: "seriesSingular", widget: "string"}
+              - {label: "seo_title", name: "seo_title", widget: "string"}
+              - {label: "seo_description", name: "seo_description", widget: "text"}
+      - label: "Kategorien"
+        name: "categories"
+        file: "content/categories.json"
+        fields:
+          - label: "Kategorien"
+            name: "categories"
+            widget: list
+            summary: "{{fields.de}}"
+            fields:
+              - {label: "ID (kurz, ohne Leerzeichen)", name: "id", widget: "string"}
+              - {label: "Deutsch", name: "de", widget: "string"}
+              - {label: "English", name: "en", widget: "string"}
+              - {label: "Русский", name: "ru", widget: "string"}
+      - label: "Fotos"
+        name: "photos"
+        file: "content/photos.json"
+        fields:
+          - label: "Fotos"
+            name: "photos"
+            widget: list
+            summary: "{{fields.title_de}} ({{fields.year}})"
+            fields:
+              - {label: "Bild", name: "image", widget: "image", required: false}
+              - {label: "Titel (DE)", name: "title_de", widget: "string"}
+              - {label: "Titel (EN)", name: "title_en", widget: "string"}
+              - {label: "Titel (RU)", name: "title_ru", widget: "string"}
+              - {label: "Kategorie-ID", name: "category", widget: "relation", collection: "inhalte", file: "categories", search_fields: ["categories.*.de"], display_fields: ["categories.*.de"], value_field: "categories.*.id"}
+              - {label: "Jahr", name: "year", widget: "string"}
+      - label: "Serien"
+        name: "series"
+        file: "content/series.json"
+        fields:
+          - label: "Serien"
+            name: "series"
+            widget: list
+            summary: "{{fields.name_de}}"
+            fields:
+              - {label: "Slug (URL, ohne Leerzeichen)", name: "slug", widget: "string"}
+              - {label: "Jahre", name: "years", widget: "string"}
+              - {label: "Name (DE)", name: "name_de", widget: "string"}
+              - {label: "Name (EN)", name: "name_en", widget: "string"}
+              - {label: "Name (RU)", name: "name_ru", widget: "string"}
+              - {label: "Beschreibung (DE)", name: "description_de", widget: "text"}
+              - {label: "Beschreibung (EN)", name: "description_en", widget: "text"}
+              - {label: "Beschreibung (RU)", name: "description_ru", widget: "text"}
+              - label: "Bilder"
+                name: "images"
+                widget: list
+                summary: "{{fields.caption}}"
+                fields:
+                  - {label: "Bild", name: "image", widget: "image", required: false}
+                  - {label: "Bildunterschrift", name: "caption", widget: "string"}

@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": "doc",
+      "de": "Dokumentar",
+      "en": "Documentary",
+      "ru": "Документальное"
+    },
+    {
+      "id": "por",
+      "de": "Porträt",
+      "en": "Portrait",
+      "ru": "Портрет"
+    },
+    {
+      "id": "land",
+      "de": "Landschaft",
+      "en": "Landscape",
+      "ru": "Пейзаж"
+    },
+    {
+      "id": "arch",
+      "de": "Architektur",
+      "en": "Architecture",
+      "ru": "Архитектура"
+    }
+  ]
+}
