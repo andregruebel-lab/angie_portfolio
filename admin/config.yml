@@ -12,174 +12,190 @@ public_folder: "/images/uploads"
 locale: "de"
 collections:
   - name: "inhalte"
-    label: "Inhalte"
+    label: "Seiteninhalte"
     files:
-      - label: "Website & Texte"
-        name: "site"
-        file: "content/site.json"
+      - label: "1 · Allgemein & Menü (Kopfzeile, Sprachen, Google)"
+        name: "general"
+        file: "content/general.json"
         fields:
-          - {label: "Name", name: "name", widget: "string"}
-          - {label: "E-Mail", name: "email", widget: "string"}
-          - {label: "Instagram-Link", name: "instagram", widget: "string"}
-          - {label: "Are.na-Link", name: "arena", widget: "string"}
-          - {label: "Print-Shop-Link", name: "shop_url", widget: "string"}
-          - {label: "Titelbild", name: "hero_image", widget: "image", required: false}
-          - {label: "Titelbild Bildunterschrift", name: "hero_caption", widget: "string"}
-          - {label: "Titelbild Jahr", name: "hero_year", widget: "string"}
-          - {label: "Porträt", name: "portrait_image", widget: "image", required: false}
+          - label: "Aktive Sprachen"
+            name: "languages"
+            widget: select
+            multiple: true
+            required: false
+            hint: "Deutsch ist immer aktiv. Hier weitere Sprachen freischalten. Erst dann erscheint der Sprachumschalter auf der Seite. Vorher die Texte im jeweiligen Block ausfüllen."
+            options:
+              - {label: "English", value: "en"}
+              - {label: "Русский", value: "ru"}
+          - {label: "Name (Logo oben links, Fußzeile)", name: "name", widget: string, hint: "Erscheint oben links und unten im Copyright."}
           - label: "Texte Deutsch"
             name: "de"
             widget: object
-            collapsed: true
+            collapsed: false
             fields:
-              - {label: "work", name: "work", widget: "string"}
-              - {label: "series", name: "series", widget: "string"}
-              - {label: "about", name: "about", widget: "string"}
-              - {label: "contact", name: "contact", widget: "string"}
-              - {label: "h1a", name: "h1a", widget: "string"}
-              - {label: "h1b", name: "h1b", widget: "string"}
-              - {label: "h1c", name: "h1c", widget: "string"}
-              - {label: "intro", name: "intro", widget: "text"}
-              - {label: "est", name: "est", widget: "string"}
-              - {label: "format", name: "format", widget: "string"}
-              - {label: "selected", name: "selected", widget: "string"}
-              - {label: "seriesIndex", name: "seriesIndex", widget: "string"}
-              - {label: "yearFrames", name: "yearFrames", widget: "string"}
-              - {label: "aboutLead", name: "aboutLead", widget: "text"}
-              - {label: "aboutBody", name: "aboutBody", widget: "text"}
-              - {label: "services", name: "services", widget: "string"}
-              - {label: "s1", name: "s1", widget: "string"}
-              - {label: "s2", name: "s2", widget: "string"}
-              - {label: "s3", name: "s3", widget: "string"}
-              - {label: "basedIn", name: "basedIn", widget: "string"}
-              - {label: "city", name: "city", widget: "string"}
-              - {label: "travels", name: "travels", widget: "string"}
-              - {label: "enquiries", name: "enquiries", widget: "string"}
-              - {label: "shop", name: "shop", widget: "string"}
-              - {label: "all", name: "all", widget: "string"}
-              - {label: "back", name: "back", widget: "string"}
-              - {label: "next", name: "next", widget: "string"}
-              - {label: "frames", name: "frames", widget: "string"}
-              - {label: "seriesSingular", name: "seriesSingular", widget: "string"}
-              - {label: "seo_title", name: "seo_title", widget: "string"}
-              - {label: "seo_description", name: "seo_description", widget: "text"}
-          - label: "Texte English"
+              - {label: "Menü: Arbeiten", name: "work", widget: string, hint: "Menüpunkt oben, springt zum Abschnitt Arbeiten."}
+              - {label: "Menü: Serien", name: "series", widget: string, hint: "Menüpunkt oben."}
+              - {label: "Menü: Über mich", name: "about", widget: string, hint: "Menüpunkt oben und Überschrift im Abschnitt Über mich."}
+              - {label: "Menü: Kontakt", name: "contact", widget: string, hint: "Menüpunkt oben."}
+              - {label: "Filter „Alle“", name: "all", widget: string, hint: "Erster Filterknopf über den Fotos."}
+              - {label: "Titel im Browser-Tab und bei Google", name: "seo_title", widget: string}
+              - {label: "Beschreibung bei Google", name: "seo_description", widget: text}
+          - label: "Texte English (nur sichtbar, wenn Sprache aktiv)"
             name: "en"
             widget: object
             collapsed: true
             fields:
-              - {label: "work", name: "work", widget: "string"}
-              - {label: "series", name: "series", widget: "string"}
-              - {label: "about", name: "about", widget: "string"}
-              - {label: "contact", name: "contact", widget: "string"}
-              - {label: "h1a", name: "h1a", widget: "string"}
-              - {label: "h1b", name: "h1b", widget: "string"}
-              - {label: "h1c", name: "h1c", widget: "string"}
-              - {label: "intro", name: "intro", widget: "text"}
-              - {label: "est", name: "est", widget: "string"}
-              - {label: "format", name: "format", widget: "string"}
-              - {label: "selected", name: "selected", widget: "string"}
-              - {label: "seriesIndex", name: "seriesIndex", widget: "string"}
-              - {label: "yearFrames", name: "yearFrames", widget: "string"}
-              - {label: "aboutLead", name: "aboutLead", widget: "text"}
-              - {label: "aboutBody", name: "aboutBody", widget: "text"}
-              - {label: "services", name: "services", widget: "string"}
-              - {label: "s1", name: "s1", widget: "string"}
-              - {label: "s2", name: "s2", widget: "string"}
-              - {label: "s3", name: "s3", widget: "string"}
-              - {label: "basedIn", name: "basedIn", widget: "string"}
-              - {label: "city", name: "city", widget: "string"}
-              - {label: "travels", name: "travels", widget: "string"}
-              - {label: "enquiries", name: "enquiries", widget: "string"}
-              - {label: "shop", name: "shop", widget: "string"}
-              - {label: "all", name: "all", widget: "string"}
-              - {label: "back", name: "back", widget: "string"}
-              - {label: "next", name: "next", widget: "string"}
-              - {label: "frames", name: "frames", widget: "string"}
-              - {label: "seriesSingular", name: "seriesSingular", widget: "string"}
-              - {label: "seo_title", name: "seo_title", widget: "string"}
-              - {label: "seo_description", name: "seo_description", widget: "text"}
-          - label: "Texte Русский"
+              - {label: "Menü: Arbeiten", name: "work", widget: string, hint: "Menüpunkt oben, springt zum Abschnitt Arbeiten."}
+              - {label: "Menü: Serien", name: "series", widget: string, hint: "Menüpunkt oben."}
+              - {label: "Menü: Über mich", name: "about", widget: string, hint: "Menüpunkt oben und Überschrift im Abschnitt Über mich."}
+              - {label: "Menü: Kontakt", name: "contact", widget: string, hint: "Menüpunkt oben."}
+              - {label: "Filter „Alle“", name: "all", widget: string, hint: "Erster Filterknopf über den Fotos."}
+              - {label: "Titel im Browser-Tab und bei Google", name: "seo_title", widget: string}
+              - {label: "Beschreibung bei Google", name: "seo_description", widget: text}
+          - label: "Тексты Русский (nur sichtbar, wenn Sprache aktiv)"
             name: "ru"
             widget: object
             collapsed: true
             fields:
-              - {label: "work", name: "work", widget: "string"}
-              - {label: "series", name: "series", widget: "string"}
-              - {label: "about", name: "about", widget: "string"}
-              - {label: "contact", name: "contact", widget: "string"}
-              - {label: "h1a", name: "h1a", widget: "string"}
-              - {label: "h1b", name: "h1b", widget: "string"}
-              - {label: "h1c", name: "h1c", widget: "string"}
-              - {label: "intro", name: "intro", widget: "text"}
-              - {label: "est", name: "est", widget: "string"}
-              - {label: "format", name: "format", widget: "string"}
-              - {label: "selected", name: "selected", widget: "string"}
-              - {label: "seriesIndex", name: "seriesIndex", widget: "string"}
-              - {label: "yearFrames", name: "yearFrames", widget: "string"}
-              - {label: "aboutLead", name: "aboutLead", widget: "text"}
-              - {label: "aboutBody", name: "aboutBody", widget: "text"}
-              - {label: "services", name: "services", widget: "string"}
-              - {label: "s1", name: "s1", widget: "string"}
-              - {label: "s2", name: "s2", widget: "string"}
-              - {label: "s3", name: "s3", widget: "string"}
-              - {label: "basedIn", name: "basedIn", widget: "string"}
-              - {label: "city", name: "city", widget: "string"}
-              - {label: "travels", name: "travels", widget: "string"}
-              - {label: "enquiries", name: "enquiries", widget: "string"}
-              - {label: "shop", name: "shop", widget: "string"}
-              - {label: "all", name: "all", widget: "string"}
-              - {label: "back", name: "back", widget: "string"}
-              - {label: "next", name: "next", widget: "string"}
-              - {label: "frames", name: "frames", widget: "string"}
-              - {label: "seriesSingular", name: "seriesSingular", widget: "string"}
-              - {label: "seo_title", name: "seo_title", widget: "string"}
-              - {label: "seo_description", name: "seo_description", widget: "text"}
-      - label: "Kategorien"
-        name: "categories"
-        file: "content/categories.json"
+              - {label: "Menü: Arbeiten", name: "work", widget: string, hint: "Menüpunkt oben, springt zum Abschnitt Arbeiten."}
+              - {label: "Menü: Serien", name: "series", widget: string, hint: "Menüpunkt oben."}
+              - {label: "Menü: Über mich", name: "about", widget: string, hint: "Menüpunkt oben und Überschrift im Abschnitt Über mich."}
+              - {label: "Menü: Kontakt", name: "contact", widget: string, hint: "Menüpunkt oben."}
+              - {label: "Filter „Alle“", name: "all", widget: string, hint: "Erster Filterknopf über den Fotos."}
+              - {label: "Titel im Browser-Tab und bei Google", name: "seo_title", widget: string}
+              - {label: "Beschreibung bei Google", name: "seo_description", widget: text}
+      - label: "2 · Start (Hauptteil mit Titelbild)"
+        name: "start"
+        file: "content/start.json"
         fields:
-          - label: "Kategorien"
+          - {label: "Titelbild", name: "hero_image", widget: image, required: false, hint: "Großes Bild unter der Überschrift."}
+          - {label: "Bildunterschrift (unter dem Titelbild, links)", name: "hero_caption", widget: string}
+          - {label: "Jahr (unter dem Titelbild, rechts)", name: "hero_year", widget: string}
+          - label: "Texte Deutsch"
+            name: "de"
+            widget: object
+            collapsed: false
+            fields:
+              - {label: "Überschrift, Teil 1", name: "h1a", widget: string, hint: "Große Überschrift oben. Drei Teile: Teil 2 erscheint kursiv und farbig."}
+              - {label: "Überschrift, Teil 2 (kursiv, farbig)", name: "h1b", widget: string}
+              - {label: "Überschrift, Teil 3", name: "h1c", widget: string}
+              - {label: "Einleitungstext unter der Überschrift", name: "intro", widget: text}
+              - {label: "Text rechts, Zeile 1 (z. B. „Seit 2014“)", name: "est", widget: string}
+              - {label: "Text rechts, Zeile 2 (z. B. „35 mm / Mittelformat“)", name: "format", widget: string}
+          - label: "Texte English (nur sichtbar, wenn Sprache aktiv)"
+            name: "en"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Überschrift, Teil 1", name: "h1a", widget: string, hint: "Große Überschrift oben. Drei Teile: Teil 2 erscheint kursiv und farbig."}
+              - {label: "Überschrift, Teil 2 (kursiv, farbig)", name: "h1b", widget: string}
+              - {label: "Überschrift, Teil 3", name: "h1c", widget: string}
+              - {label: "Einleitungstext unter der Überschrift", name: "intro", widget: text}
+              - {label: "Text rechts, Zeile 1 (z. B. „Seit 2014“)", name: "est", widget: string}
+              - {label: "Text rechts, Zeile 2 (z. B. „35 mm / Mittelformat“)", name: "format", widget: string}
+          - label: "Тексты Русский (nur sichtbar, wenn Sprache aktiv)"
+            name: "ru"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Überschrift, Teil 1", name: "h1a", widget: string, hint: "Große Überschrift oben. Drei Teile: Teil 2 erscheint kursiv und farbig."}
+              - {label: "Überschrift, Teil 2 (kursiv, farbig)", name: "h1b", widget: string}
+              - {label: "Überschrift, Teil 3", name: "h1c", widget: string}
+              - {label: "Einleitungstext unter der Überschrift", name: "intro", widget: text}
+              - {label: "Text rechts, Zeile 1 (z. B. „Seit 2014“)", name: "est", widget: string}
+              - {label: "Text rechts, Zeile 2 (z. B. „35 mm / Mittelformat“)", name: "format", widget: string}
+      - label: "3 · Arbeiten (Fotogalerie)"
+        name: "arbeiten"
+        file: "content/arbeiten.json"
+        fields:
+          - label: "Texte Deutsch"
+            name: "de"
+            widget: object
+            collapsed: false
+            fields:
+              - {label: "Abschnittstitel (z. B. „Ausgewählte Arbeiten“)", name: "selected", widget: string}
+          - label: "Texte English (nur sichtbar, wenn Sprache aktiv)"
+            name: "en"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Abschnittstitel (z. B. „Ausgewählte Arbeiten“)", name: "selected", widget: string}
+          - label: "Тексты Русский (nur sichtbar, wenn Sprache aktiv)"
+            name: "ru"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Abschnittstitel (z. B. „Ausgewählte Arbeiten“)", name: "selected", widget: string}
+          - label: "Kategorien (Filterknöpfe über den Fotos)"
             name: "categories"
             widget: list
             summary: "{{fields.de}}"
             fields:
-              - {label: "ID (kurz, ohne Leerzeichen)", name: "id", widget: "string"}
-              - {label: "Deutsch", name: "de", widget: "string"}
-              - {label: "English", name: "en", widget: "string"}
-              - {label: "Русский", name: "ru", widget: "string"}
-      - label: "Fotos"
-        name: "photos"
-        file: "content/photos.json"
-        fields:
+              - {label: "ID (kurz, ohne Leerzeichen)", name: "id", widget: string}
+              - {label: "Deutsch", name: "de", widget: string}
+              - {label: "English", name: "en", widget: string}
+              - {label: "Русский", name: "ru", widget: string}
           - label: "Fotos"
             name: "photos"
             widget: list
             summary: "{{fields.title_de}} ({{fields.year}})"
             fields:
-              - {label: "Bild", name: "image", widget: "image", required: false}
-              - {label: "Titel (DE)", name: "title_de", widget: "string"}
-              - {label: "Titel (EN)", name: "title_en", widget: "string"}
-              - {label: "Titel (RU)", name: "title_ru", widget: "string"}
-              - {label: "Kategorie-ID", name: "category", widget: "relation", collection: "inhalte", file: "categories", search_fields: ["categories.*.de"], display_fields: ["categories.*.de"], value_field: "categories.*.id"}
-              - {label: "Jahr", name: "year", widget: "string"}
-      - label: "Serien"
-        name: "series"
-        file: "content/series.json"
+              - {label: "Bild", name: "image", widget: image, required: false}
+              - {label: "Titel (DE)", name: "title_de", widget: string}
+              - {label: "Titel (EN)", name: "title_en", widget: string}
+              - {label: "Titel (RU)", name: "title_ru", widget: string}
+              - {label: "Kategorie", name: "category", widget: "relation", collection: "inhalte", file: "arbeiten", search_fields: ["categories.*.de"], display_fields: ["categories.*.de"], value_field: "categories.*.id"}
+              - {label: "Jahr", name: "year", widget: string}
+      - label: "4 · Serien (Verzeichnis und Einzelseiten)"
+        name: "serien"
+        file: "content/serien.json"
         fields:
+          - label: "Texte Deutsch"
+            name: "de"
+            widget: object
+            collapsed: false
+            fields:
+              - {label: "Titel des Serienverzeichnisses", name: "seriesIndex", widget: string, hint: "Kopfzeile der Serienliste auf der Startseite."}
+              - {label: "Spaltenüberschrift rechts („Jahr / Bilder“)", name: "yearFrames", widget: string}
+              - {label: "Link auf der Serienseite („Alle Serien“)", name: "back", widget: string}
+              - {label: "Link zur nächsten Serie („Nächste Serie“)", name: "next", widget: string}
+              - {label: "Wort „Bilder“", name: "frames", widget: string, hint: "Steht hinter der Bilderzahl."}
+              - {label: "Wort „Serie“", name: "seriesSingular", widget: string, hint: "Steht vor der Seriennummer."}
+          - label: "Texte English (nur sichtbar, wenn Sprache aktiv)"
+            name: "en"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Titel des Serienverzeichnisses", name: "seriesIndex", widget: string, hint: "Kopfzeile der Serienliste auf der Startseite."}
+              - {label: "Spaltenüberschrift rechts („Jahr / Bilder“)", name: "yearFrames", widget: string}
+              - {label: "Link auf der Serienseite („Alle Serien“)", name: "back", widget: string}
+              - {label: "Link zur nächsten Serie („Nächste Serie“)", name: "next", widget: string}
+              - {label: "Wort „Bilder“", name: "frames", widget: string, hint: "Steht hinter der Bilderzahl."}
+              - {label: "Wort „Serie“", name: "seriesSingular", widget: string, hint: "Steht vor der Seriennummer."}
+          - label: "Тексты Русский (nur sichtbar, wenn Sprache aktiv)"
+            name: "ru"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Titel des Serienverzeichnisses", name: "seriesIndex", widget: string, hint: "Kopfzeile der Serienliste auf der Startseite."}
+              - {label: "Spaltenüberschrift rechts („Jahr / Bilder“)", name: "yearFrames", widget: string}
+              - {label: "Link auf der Serienseite („Alle Serien“)", name: "back", widget: string}
+              - {label: "Link zur nächsten Serie („Nächste Serie“)", name: "next", widget: string}
+              - {label: "Wort „Bilder“", name: "frames", widget: string, hint: "Steht hinter der Bilderzahl."}
+              - {label: "Wort „Serie“", name: "seriesSingular", widget: string, hint: "Steht vor der Seriennummer."}
           - label: "Serien"
             name: "series"
             widget: list
             summary: "{{fields.name_de}}"
             fields:
-              - {label: "Slug (URL, ohne Leerzeichen)", name: "slug", widget: "string"}
-              - {label: "Jahre", name: "years", widget: "string"}
-              - {label: "Name (DE)", name: "name_de", widget: "string"}
-              - {label: "Name (EN)", name: "name_en", widget: "string"}
-              - {label: "Name (RU)", name: "name_ru", widget: "string"}
-              - {label: "Beschreibung (DE)", name: "description_de", widget: "text"}
-              - {label: "Beschreibung (EN)", name: "description_en", widget: "text"}
-              - {label: "Beschreibung (RU)", name: "description_ru", widget: "text"}
+              - {label: "Slug (URL, ohne Leerzeichen)", name: "slug", widget: string}
+              - {label: "Jahre", name: "years", widget: string}
+              - {label: "Name (DE)", name: "name_de", widget: string}
+              - {label: "Name (EN)", name: "name_en", widget: string}
+              - {label: "Name (RU)", name: "name_ru", widget: string}
+              - {label: "Beschreibung (DE)", name: "description_de", widget: text}
+              - {label: "Beschreibung (EN)", name: "description_en", widget: text}
+              - {label: "Beschreibung (RU)", name: "description_ru", widget: text}
               - label: "Bilder"
                 name: "images"
                 widget: list
@@ -187,3 +203,79 @@ collections:
                 fields:
                   - {label: "Bild", name: "image", widget: "image", required: false}
                   - {label: "Bildunterschrift", name: "caption", widget: "string"}
+      - label: "5 · Über mich"
+        name: "ueber"
+        file: "content/ueber.json"
+        fields:
+          - {label: "Porträtfoto", name: "portrait_image", widget: image, required: false}
+          - label: "Texte Deutsch"
+            name: "de"
+            widget: object
+            collapsed: false
+            fields:
+              - {label: "Einleitungssatz (groß)", name: "aboutLead", widget: text}
+              - {label: "Text", name: "aboutBody", widget: text}
+              - {label: "Überschrift „Leistungen“", name: "services", widget: string}
+              - {label: "Leistung 1", name: "s1", widget: string}
+              - {label: "Leistung 2", name: "s2", widget: string}
+              - {label: "Leistung 3", name: "s3", widget: string}
+              - {label: "Überschrift „Ansässig in“", name: "basedIn", widget: string}
+              - {label: "Stadt", name: "city", widget: string}
+              - {label: "Reisen („Weltweit unterwegs“)", name: "travels", widget: string}
+          - label: "Texte English (nur sichtbar, wenn Sprache aktiv)"
+            name: "en"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Einleitungssatz (groß)", name: "aboutLead", widget: text}
+              - {label: "Text", name: "aboutBody", widget: text}
+              - {label: "Überschrift „Leistungen“", name: "services", widget: string}
+              - {label: "Leistung 1", name: "s1", widget: string}
+              - {label: "Leistung 2", name: "s2", widget: string}
+              - {label: "Leistung 3", name: "s3", widget: string}
+              - {label: "Überschrift „Ansässig in“", name: "basedIn", widget: string}
+              - {label: "Stadt", name: "city", widget: string}
+              - {label: "Reisen („Weltweit unterwegs“)", name: "travels", widget: string}
+          - label: "Тексты Русский (nur sichtbar, wenn Sprache aktiv)"
+            name: "ru"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Einleitungssatz (groß)", name: "aboutLead", widget: text}
+              - {label: "Text", name: "aboutBody", widget: text}
+              - {label: "Überschrift „Leistungen“", name: "services", widget: string}
+              - {label: "Leistung 1", name: "s1", widget: string}
+              - {label: "Leistung 2", name: "s2", widget: string}
+              - {label: "Leistung 3", name: "s3", widget: string}
+              - {label: "Überschrift „Ansässig in“", name: "basedIn", widget: string}
+              - {label: "Stadt", name: "city", widget: string}
+              - {label: "Reisen („Weltweit unterwegs“)", name: "travels", widget: string}
+      - label: "6 · Kontakt (Fußbereich)"
+        name: "kontakt"
+        file: "content/kontakt.json"
+        fields:
+          - {label: "E-Mail-Adresse", name: "email", widget: string, hint: "Große Adresse im Fußbereich."}
+          - {label: "Instagram-Link", name: "instagram", widget: string}
+          - {label: "Are.na-Link", name: "arena", widget: string}
+          - {label: "Print-Shop-Link", name: "shop_url", widget: string}
+          - label: "Texte Deutsch"
+            name: "de"
+            widget: object
+            collapsed: false
+            fields:
+              - {label: "Überschrift über der E-Mail („Aufträge & Anfragen“)", name: "enquiries", widget: string}
+              - {label: "Beschriftung des Shop-Links („Print-Shop“)", name: "shop", widget: string}
+          - label: "Texte English (nur sichtbar, wenn Sprache aktiv)"
+            name: "en"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Überschrift über der E-Mail („Aufträge & Anfragen“)", name: "enquiries", widget: string}
+              - {label: "Beschriftung des Shop-Links („Print-Shop“)", name: "shop", widget: string}
+          - label: "Тексты Русский (nur sichtbar, wenn Sprache aktiv)"
+            name: "ru"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Überschrift über der E-Mail („Aufträge & Anfragen“)", name: "enquiries", widget: string}
+              - {label: "Beschriftung des Shop-Links („Print-Shop“)", name: "shop", widget: string}

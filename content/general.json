@@ -1,0 +1,31 @@
+{
+  "name": "Angie mein Schatz",
+  "languages": [],
+  "de": {
+    "work": "Arbeiten",
+    "series": "Serien",
+    "about": "Über mich",
+    "contact": "Kontakt",
+    "all": "Alle",
+    "seo_title": "Mara Ellison — Fotografin, Lissabon",
+    "seo_description": "Dokumentar-, Porträt- und Architekturfotografie aus Lissabon. Portfolio, Serien und Anfragen."
+  },
+  "en": {
+    "work": "Work",
+    "series": "Series",
+    "about": "About",
+    "contact": "Contact",
+    "all": "All",
+    "seo_title": "Mara Ellison — Photographer, Lisbon",
+    "seo_description": "Documentary, portrait and architecture photography from Lisbon. Portfolio, series and enquiries."
+  },
+  "ru": {
+    "work": "Работы",
+    "series": "Серии",
+    "about": "Обо мне",
+    "contact": "Контакты",
+    "all": "Все",
+    "seo_title": "Мара Эллисон — фотограф, Лиссабон",
+    "seo_description": "Документальная, портретная и архитектурная фотография из Лиссабона. Портфолио, серии и заказы."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "hero_image": "/images/uploads/whatsapp-image-2026-10-31-at-14.27.04-2-.jpeg",
+  "hero_caption": "Tide Line, Nazaré",
+  "hero_year": "2025",
+  "de": {
+    "h1a": "Licht,",
+    "h1b": "still",
+    "h1c": "gehalten.",
+    "intro": "Dokumentar- und Porträtfotografin zwischen Lissabon und der Atlantikküste. Verfügbar für redaktionelle Arbeiten und Auftragsprojekte.",
+    "est": "Seit 2014",
+    "format": "35 mm / Mittelformat"
+  },
+  "en": {
+    "h1a": "Light,",
+    "h1b": "held",
+    "h1c": "still.",
+    "intro": "Documentary and portrait photographer working between Lisbon and the Atlantic coast. Available for editorial and commissioned work.",
+    "est": "Est. 2014",
+    "format": "35mm / Medium format"
+  },
+  "ru": {
+    "h1a": "Свет,",
+    "h1b": "пойманный",
+    "h1c": "в тишине.",
+    "intro": "Документальный и портретный фотограф, работаю между Лиссабоном и атлантическим побережьем. Открыта для редакционных и коммерческих заказов.",
+    "est": "С 2014 года",
+    "format": "35 мм / Средний формат"
+  }
+}

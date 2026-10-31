@@ -27,11 +27,13 @@ a:hover{color:#9a4a2c}
   <a href="{{ homeHref }}" style="font-family:'Instrument Serif','Cormorant',serif;font-size:24px;letter-spacing:0">{{ site.name }}</a>
   <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:12px 28px">
     <a href="{{ indexHref }}" style="text-transform:uppercase;white-space:nowrap">← {{ t.back }}</a>
+    <sc-if value="{{ multiLang }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;gap:2px;border:1px solid #191816;border-radius:999px;padding:2px;flex:none">
       <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
         <button onClick="{{ l.select }}" style="font:inherit;text-transform:uppercase;letter-spacing:0.04em;padding:3px 9px;border:0;border-radius:999px;cursor:pointer;background:{{ l.bg }};color:{{ l.fg }}">{{ l.code }}</button>
       </sc-for>
     </div>
+    </sc-if>
   </div>
 </header>
 
@@ -80,6 +82,22 @@ a:hover{color:#9a4a2c}
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   static LANGS = ['de', 'en', 'ru'];
+  // Inhalte liegen in einer Datei je Abschnitt (content/*.json) und werden hier zu einem Objekt zusammengesetzt.
+  static CONTENT = ['general', 'start', 'arbeiten', 'serien', 'ueber', 'kontakt'];
+  static LISTS = ['categories', 'photos', 'series'];
+  static mergeSite(parts) {
+    const site = {};
+    for (const part of parts) for (const [k, v] of Object.entries(part)) {
+      if (Component.LANGS.includes(k)) site[k] = Object.assign(site[k] || {}, v);
+      else if (!Component.LISTS.includes(k)) site[k] = v;
+    }
+    return site;
+  }
+  // Aktive Sprachen: Deutsch immer, weitere nur wenn im CMS unter "Allgemein & Menü" freigeschaltet.
+  activeLangs(site) {
+    const on = (site && site.languages) || [];
+    return Component.LANGS.filter(l => l === 'de' || on.includes(l));
+  }
   state = { lang: this.initialLang(), slug: this.initialSlug(), site: null, series: [] };
   initialLang() {
     let l = null;
@@ -90,8 +108,11 @@ class Component extends DCLogic {
   async componentDidMount() {
     const get = f => fetch('content/' + f + '.json', { cache: 'no-cache' }).then(r => r.json());
     try {
-      const [site, s] = await Promise.all([get('site'), get('series')]);
-      this.setState({ site, series: s.series || [] });
+      const parts = await Promise.all(Component.CONTENT.map(get));
+      const byName = Object.fromEntries(Component.CONTENT.map((n, i) => [n, parts[i]]));
+      const site = Component.mergeSite(parts);
+      const lang = this.activeLangs(site).includes(this.state.lang) ? this.state.lang : 'de';
+      this.setState({ site, lang, series: byName.serien.series || [] });
     } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
   }
   componentDidUpdate() {
@@ -131,7 +152,8 @@ class Component extends DCLogic {
       mailto: site ? 'mailto:' + site.email : '#',
       homeHref: 'Portfolio.dc.html?lang=' + lang,
       indexHref: 'Portfolio.dc.html?lang=' + lang + '#series',
-      langs: Component.LANGS.map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
+      multiLang: this.activeLangs(site).length > 1,
+      langs: this.activeLangs(site).map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
       s: cur ? {
         num: String(idx + 1).padStart(2, '0'), years: cur.years,
         name: cur['name_' + lang], description: cur['description_' + lang], count: imgs.length,

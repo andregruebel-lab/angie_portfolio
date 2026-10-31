@@ -33,11 +33,13 @@ a:hover{color:#9a4a2c}
       <a href="#about">{{ t.about }}</a>
       <a href="#contact">{{ t.contact }}</a>
     </nav>
+    <sc-if value="{{ multiLang }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;gap:2px;border:1px solid #191816;border-radius:999px;padding:2px;flex:none">
       <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
         <button onClick="{{ l.select }}" style="font:inherit;text-transform:uppercase;letter-spacing:0.04em;padding:3px 9px;border:0;border-radius:999px;cursor:pointer;background:{{ l.bg }};color:{{ l.fg }}">{{ l.code }}</button>
       </sc-for>
     </div>
+    </sc-if>
   </div>
 </header>
 
@@ -150,6 +152,22 @@ class Component extends DCLogic {
     { ratio: '3/2', col: '3 / span 6', offset: '0px' },
     { ratio: '1/1', col: '9 / span 4', offset: '40px' },
   ];
+  // Inhalte liegen in einer Datei je Abschnitt (content/*.json) und werden hier zu einem Objekt zusammengesetzt.
+  static CONTENT = ['general', 'start', 'arbeiten', 'serien', 'ueber', 'kontakt'];
+  static LISTS = ['categories', 'photos', 'series'];
+  static mergeSite(parts) {
+    const site = {};
+    for (const part of parts) for (const [k, v] of Object.entries(part)) {
+      if (Component.LANGS.includes(k)) site[k] = Object.assign(site[k] || {}, v);
+      else if (!Component.LISTS.includes(k)) site[k] = v;
+    }
+    return site;
+  }
+  // Aktive Sprachen: Deutsch immer, weitere nur wenn im CMS unter "Allgemein & Menü" freigeschaltet.
+  activeLangs(site) {
+    const on = (site && site.languages) || [];
+    return Component.LANGS.filter(l => l === 'de' || on.includes(l));
+  }
   state = { filter: 'all', lang: this.initialLang(), site: null, cats: [], photos: [], series: [] };
   initialLang() {
     let l = null;
@@ -159,8 +177,11 @@ class Component extends DCLogic {
   async componentDidMount() {
     const get = f => fetch('content/' + f + '.json', { cache: 'no-cache' }).then(r => r.json());
     try {
-      const [site, c, p, s] = await Promise.all(['site', 'categories', 'photos', 'series'].map(get));
-      this.setState({ site, cats: c.categories || [], photos: p.photos || [], series: s.series || [] });
+      const parts = await Promise.all(Component.CONTENT.map(get));
+      const byName = Object.fromEntries(Component.CONTENT.map((n, i) => [n, parts[i]]));
+      const site = Component.mergeSite(parts);
+      const lang = this.activeLangs(site).includes(this.state.lang) ? this.state.lang : 'de';
+      this.setState({ site, lang, cats: byName.arbeiten.categories || [], photos: byName.arbeiten.photos || [], series: byName.serien.series || [] });
     } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
   }
   componentDidUpdate() { this.applyMeta(); }
@@ -197,7 +218,8 @@ class Component extends DCLogic {
       hero: { has: !!(site && site.hero_image), src: site && site.hero_image, alt: site ? site.hero_caption : '' },
       portrait: { has: !!(site && site.portrait_image), src: site && site.portrait_image },
       showCaptions: this.props.showCaptions ?? true,
-      langs: Component.LANGS.map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
+      multiLang: this.activeLangs(site).length > 1,
+      langs: this.activeLangs(site).map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
       filters: [{ id: 'all', label: t.all }, ...cats.map(c => ({ id: c.id, label: c[lang] }))].map(c => ({
         label: c.label, ...pill(c.id === filter), select: () => this.setState({ filter: c.id }),
       })),

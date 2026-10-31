@@ -1,0 +1,36 @@
+{
+  "portrait_image": "",
+  "de": {
+    "aboutLead": "Ich fotografiere Menschen und die Orte, die sie prägen — langsam, meist auf Film, oft über viele Besuche hinweg.",
+    "aboutBody": "Zu meinen Kunden zählen unabhängige Magazine, Kulturinstitutionen und Architekturbüros. Meine Arbeiten wurden in Lissabon, Porto und Rotterdam ausgestellt und in zwei Monografien veröffentlicht.",
+    "services": "Leistungen",
+    "s1": "Editorial",
+    "s2": "Porträt",
+    "s3": "Architektur",
+    "basedIn": "Ansässig in",
+    "city": "Lissabon, PT",
+    "travels": "Weltweit unterwegs"
+  },
+  "en": {
+    "aboutLead": "I photograph people and the places that shape them — slowly, mostly on film, usually over many return visits.",
+    "aboutBody": "Recent clients include independent magazines, cultural institutions and architecture studios. My work has been exhibited in Lisbon, Porto and Rotterdam, and published in two monographs.",
+    "services": "Services",
+    "s1": "Editorial",
+    "s2": "Portrait",
+    "s3": "Architecture",
+    "basedIn": "Based in",
+    "city": "Lisbon, PT",
+    "travels": "Travels worldwide"
+  },
+  "ru": {
+    "aboutLead": "Я фотографирую людей и места, которые их формируют — неспешно, чаще всего на плёнку, возвращаясь снова и снова.",
+    "aboutBody": "Среди клиентов — независимые журналы, культурные институции и архитектурные бюро. Мои работы выставлялись в Лиссабоне, Порту и Роттердаме и изданы в двух монографиях.",
+    "services": "Услуги",
+    "s1": "Редакционная съёмка",
+    "s2": "Портрет",
+    "s3": "Архитектура",
+    "basedIn": "Базируюсь в",
+    "city": "Лиссабон, PT",
+    "travels": "Работаю по всему миру"
+  }
+}

@@ -1,4 +1,28 @@
 {
+  "de": {
+    "seriesIndex": "Serienverzeichnis",
+    "yearFrames": "Jahr / Bilder",
+    "back": "Alle Serien",
+    "next": "Nächste Serie",
+    "frames": "Bilder",
+    "seriesSingular": "Serie"
+  },
+  "en": {
+    "seriesIndex": "Series index",
+    "yearFrames": "Year / Frames",
+    "back": "All series",
+    "next": "Next series",
+    "frames": "Frames",
+    "seriesSingular": "Series"
+  },
+  "ru": {
+    "seriesIndex": "Указатель серий",
+    "yearFrames": "Год / Кадры",
+    "back": "Все серии",
+    "next": "Следующая серия",
+    "frames": "кадров",
+    "seriesSingular": "Серия"
+  },
   "series": [
     {
       "slug": "the-long-tide",

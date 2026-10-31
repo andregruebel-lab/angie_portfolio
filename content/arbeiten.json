@@ -1,4 +1,39 @@
 {
+  "de": {
+    "selected": "Ausgewählte Arbeiten"
+  },
+  "en": {
+    "selected": "Selected work"
+  },
+  "ru": {
+    "selected": "Избранные работы"
+  },
+  "categories": [
+    {
+      "id": "doc",
+      "de": "Dokumentar",
+      "en": "Documentary",
+      "ru": "Документальное"
+    },
+    {
+      "id": "por",
+      "de": "Porträt",
+      "en": "Portrait",
+      "ru": "Портрет"
+    },
+    {
+      "id": "land",
+      "de": "Landschaft",
+      "en": "Landscape",
+      "ru": "Пейзаж"
+    },
+    {
+      "id": "arch",
+      "de": "Architektur",
+      "en": "Architecture",
+      "ru": "Архитектура"
+    }
+  ],
   "photos": [
     {
       "image": "/images/uploads/whatsapp-image-2026-10-31-at-14.27.04-2-.jpeg",
