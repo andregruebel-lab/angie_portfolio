@@ -12,25 +12,25 @@
     "s2": "Fashion & Wardrobe Styling"
   },
   "en": {
-    "s3": "Architecture",
-    "aboutLead": "I photograph people and the places that shape them — slowly, mostly on film, usually over many return visits.",
-    "city": "Lisbon, PT",
-    "aboutBody": "Recent clients include independent magazines, cultural institutions and architecture studios. My work has been exhibited in Lisbon, Porto and Rotterdam, and published in two monographs.",
+    "s3": "Conceptual styling & location scouting",
+    "aboutLead": "I photograph people and the places that shape them — slowly, also on film, often over many visits.",
+    "city": "Ettlingen, DE",
+    "aboutBody": "In doing so, I stage my clients in a perfect interplay of clothing and environment, creating expressive, thematic portraits. This holistic approach shapes my visual signature and gives every project a distinctive look.",
     "basedIn": "Based in",
     "travels": "Travels worldwide",
-    "services": "Services",
-    "s1": "Editorial",
-    "s2": "Portrait"
+    "services": "I offer:",
+    "s1": "Conceptual portrait photography",
+    "s2": "Fashion & wardrobe styling"
   },
   "ru": {
-    "s3": "Архитектура",
-    "aboutLead": "Я фотографирую людей и места, которые их формируют — неспешно, чаще всего на плёнку, возвращаясь снова и снова.",
-    "city": "Лиссабон, PT",
-    "aboutBody": "Среди клиентов — независимые журналы, культурные институции и архитектурные бюро. Мои работы выставлялись в Лиссабоне, Порту и Роттердаме и изданы в двух монографиях.",
+    "s3": "Концептуальный стайлинг и поиск локаций",
+    "aboutLead": "Я фотографирую людей и места, которые их формируют — неспешно, в том числе на плёнку, возвращаясь снова и снова.",
+    "city": "Эттлинген, DE",
+    "aboutBody": "При этом я выстраиваю образ клиенток в идеальном сочетании одежды и окружения, так рождаются выразительные тематические портреты. Такой целостный подход формирует мой визуальный почерк и придаёт каждому проекту неповторимый облик.",
     "basedIn": "Базируюсь в",
     "travels": "Работаю по всему миру",
-    "services": "Услуги",
-    "s1": "Редакционная съёмка",
-    "s2": "Портрет"
+    "services": "Я предлагаю:",
+    "s1": "Концептуальная портретная фотография",
+    "s2": "Fashion-стайлинг и работа с гардеробом"
   }
 }
