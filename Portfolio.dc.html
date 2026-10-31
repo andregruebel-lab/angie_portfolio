@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Mara Ellison — Fotografin, Lissabon</title>
+<meta name="description" content="Dokumentar-, Porträt- und Architekturfotografie aus Lissabon. Portfolio, Serien und Anfragen.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mara Ellison — Fotografin, Lissabon">
+<meta property="og:description" content="Dokumentar-, Porträt- und Architekturfotografie aus Lissabon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Cormorant:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#efebe4;color:#191816;-webkit-font-smoothing:antialiased}
+a{color:#191816;text-decoration:none}
+a:hover{color:#9a4a2c}
+::selection{background:#191816;color:#efebe4}
+</style>
+</helmet>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.02em;background:#efebe4;color:#191816;min-height:100vh">
+
+<header style="position:sticky;top:0;z-index:10;background:#efebe4;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px clamp(20px,4vw,56px);border-bottom:1px solid #19181622;flex-wrap:wrap">
+  <a href="#top" style="font-family:'Instrument Serif','Cormorant',serif;font-size:24px;letter-spacing:0">{{ site.name }}</a>
+  <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:12px 28px">
+    <nav style="display:flex;align-items:center;flex-wrap:wrap;gap:12px 28px;text-transform:uppercase;white-space:nowrap">
+      <a href="#work">{{ t.work }}</a>
+      <a href="#series">{{ t.series }}</a>
+      <a href="#about">{{ t.about }}</a>
+      <a href="#contact">{{ t.contact }}</a>
+    </nav>
+    <div style="display:flex;gap:2px;border:1px solid #191816;border-radius:999px;padding:2px;flex:none">
+      <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+        <button onClick="{{ l.select }}" style="font:inherit;text-transform:uppercase;letter-spacing:0.04em;padding:3px 9px;border:0;border-radius:999px;cursor:pointer;background:{{ l.bg }};color:{{ l.fg }}">{{ l.code }}</button>
+      </sc-for>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="top" style="padding:clamp(40px,8vw,120px) clamp(20px,4vw,56px) 48px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end">
+  <h1 style="grid-column:1 / span 12;margin:0;font-family:'Instrument Serif','Cormorant',serif;font-weight:400;font-size:clamp(56px,11vw,184px);line-height:0.98;letter-spacing:-0.02em;text-wrap:balance">{{ t.h1a }} <em style="color:#9a4a2c">{{ t.h1b }}</em> {{ t.h1c }}</h1>
+  <p style="grid-column:1 / span 5;margin:24px 0 0;max-width:38ch;line-height:1.6;text-transform:uppercase;text-wrap:pretty">{{ t.intro }}</p>
+  <div style="grid-column:8 / span 5;display:flex;justify-content:flex-end;gap:32px;text-transform:uppercase">
+    <span>{{ t.est }}</span>
+    <span>{{ t.format }}</span>
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,4vw,56px)">
+  <div style="position:relative;width:100%;aspect-ratio:21/9;background:#dcd6cc;overflow:hidden">
+    <sc-if value="{{ hero.has }}" hint-placeholder-val="{{ false }}">
+      <img src="{{ hero.src }}" alt="{{ hero.alt }}" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+    </sc-if>
+  </div>
+  <div style="display:flex;justify-content:space-between;padding-top:12px;text-transform:uppercase;color:#5c5852">
+    <span>{{ site.hero_caption }}</span>
+    <span>{{ site.hero_year }}</span>
+  </div>
+</section>
+
+<section id="work" style="padding:clamp(64px,10vw,140px) clamp(20px,4vw,56px) 0">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;border-bottom:1px solid #191816;padding-bottom:16px;margin-bottom:40px">
+    <h2 style="margin:0;font-family:'Instrument Serif','Cormorant',serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1">{{ t.selected }}</h2>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+        <button onClick="{{ f.select }}" style="font:inherit;text-transform:uppercase;letter-spacing:0.04em;padding:8px 14px;border:1px solid #191816;border-radius:999px;cursor:pointer;background:{{ f.bg }};color:{{ f.fg }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2vw,32px) clamp(12px,1.6vw,24px);align-items:start">
+    <sc-for list="{{ photos }}" as="p" hint-placeholder-count="8">
+      <figure style="margin:0;grid-column:{{ p.col }};margin-top:{{ p.offset }}">
+        <div style="position:relative;width:100%;aspect-ratio:{{ p.ratio }};background:#dcd6cc;overflow:hidden">
+          <sc-if value="{{ p.has }}" hint-placeholder-val="{{ false }}">
+            <img src="{{ p.src }}" alt="{{ p.title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          </sc-if>
+        </div>
+        <sc-if value="{{ showCaptions }}" hint-placeholder-val="{{ true }}">
+          <figcaption style="display:flex;justify-content:space-between;gap:12px;padding-top:10px;text-transform:uppercase">
+            <span>{{ p.num }} — {{ p.title }}</span>
+            <span style="color:#5c5852">{{ p.year }}</span>
+          </figcaption>
+        </sc-if>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section id="series" style="padding:clamp(80px,12vw,160px) clamp(20px,4vw,56px) 0">
+  <div style="display:flex;justify-content:space-between;text-transform:uppercase;border-bottom:1px solid #191816;padding-bottom:12px">
+    <h2 style="margin:0;font:inherit">{{ t.seriesIndex }}</h2>
+    <span>{{ t.yearFrames }}</span>
+  </div>
+  <sc-for list="{{ series }}" as="s" hint-placeholder-count="5">
+    <a href="{{ s.href }}" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid #19181633" style-hover="color:#9a4a2c;padding-left:12px">
+      <span>{{ s.num }}</span>
+      <span style="font-family:'Instrument Serif','Cormorant',serif;font-size:clamp(28px,4vw,52px);line-height:1;letter-spacing:-0.01em">{{ s.name }}</span>
+      <span style="text-transform:uppercase">{{ s.meta }}</span>
+    </a>
+  </sc-for>
+</section>
+
+<section id="about" style="padding:clamp(80px,12vw,160px) clamp(20px,4vw,56px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(32px,5vw,80px);align-items:start">
+  <div style="position:relative;width:100%;aspect-ratio:4/5;max-width:520px;background:#dcd6cc;overflow:hidden">
+    <sc-if value="{{ portrait.has }}" hint-placeholder-val="{{ false }}">
+      <img src="{{ portrait.src }}" alt="{{ site.name }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+    </sc-if>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:32px">
+    <h2 style="margin:0;font:inherit;text-transform:uppercase">{{ t.about }}</h2>
+    <p style="margin:0;font-family:'Instrument Serif','Cormorant',serif;font-size:clamp(28px,3.2vw,44px);line-height:1.15;text-wrap:pretty">{{ t.aboutLead }}</p>
+    <p style="margin:0;max-width:52ch;line-height:1.7;font-size:13px;color:#3d3a36;text-wrap:pretty">{{ t.aboutBody }}</p>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;border-top:1px solid #191816;padding-top:20px;text-transform:uppercase;line-height:1.8">
+      <div><div style="color:#5c5852">{{ t.services }}</div>{{ t.s1 }}<br>{{ t.s2 }}<br>{{ t.s3 }}</div>
+      <div><div style="color:#5c5852">{{ t.basedIn }}</div>{{ t.city }}<br>{{ t.travels }}</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact" style="margin-top:clamp(80px,12vw,160px);background:#191816;color:#efebe4;padding:clamp(56px,8vw,112px) clamp(20px,4vw,56px) 28px">
+  <span style="text-transform:uppercase;color:#a8a29a">{{ t.enquiries }}</span>
+  <a href="{{ mailto }}" style="display:block;margin:20px 0 clamp(56px,8vw,112px);font-family:'Instrument Serif','Cormorant',serif;font-size:clamp(40px,8vw,128px);line-height:1;letter-spacing:-0.02em;color:#efebe4;overflow-wrap:anywhere" style-hover="color:#d98a66">{{ site.email }}</a>
+  <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;text-transform:uppercase;border-top:1px solid #efebe433;padding-top:20px">
+    <div style="display:flex;gap:28px;flex-wrap:wrap">
+      <a href="{{ site.instagram }}" style="color:#efebe4">Instagram</a>
+      <a href="{{ site.arena }}" style="color:#efebe4">Are.na</a>
+      <a href="{{ site.shop_url }}" style="color:#efebe4">{{ t.shop }}</a>
+    </div>
+    <span style="color:#a8a29a">© {{ year }} {{ site.name }}</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Editorial&quot;,&quot;Uniform&quot;],&quot;default&quot;:&quot;Editorial&quot;,&quot;tsType&quot;:&quot;'Editorial'|'Uniform'&quot;},&quot;showCaptions&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  static LANGS = ['de', 'en', 'ru'];
+  static LAYOUT = [
+    { ratio: '4/5', col: '1 / span 5', offset: '0px' },
+    { ratio: '3/2', col: '7 / span 6', offset: '120px' },
+    { ratio: '2/3', col: '2 / span 4', offset: '0px' },
+    { ratio: '4/5', col: '7 / span 5', offset: '-60px' },
+    { ratio: '16/9', col: '1 / span 8', offset: '0px' },
+    { ratio: '3/4', col: '9 / span 4', offset: '80px' },
+    { ratio: '3/2', col: '3 / span 6', offset: '0px' },
+    { ratio: '1/1', col: '9 / span 4', offset: '40px' },
+  ];
+  state = { filter: 'all', lang: this.initialLang(), site: null, cats: [], photos: [], series: [] };
+  initialLang() {
+    let l = null;
+    try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('portfolio-lang'); } catch (e) {}
+    return Component.LANGS.includes(l) ? l : 'de';
+  }
+  async componentDidMount() {
+    const get = f => fetch('content/' + f + '.json', { cache: 'no-cache' }).then(r => r.json());
+    try {
+      const [site, c, p, s] = await Promise.all(['site', 'categories', 'photos', 'series'].map(get));
+      this.setState({ site, cats: c.categories || [], photos: p.photos || [], series: s.series || [] });
+    } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
+  }
+  componentDidUpdate() { this.applyMeta(); }
+  applyMeta() {
+    const { site, lang } = this.state;
+    if (!site || !site[lang]) return;
+    const t = site[lang];
+    document.documentElement.lang = lang;
+    document.title = t.seo_title;
+    const set = (sel, v) => { const m = document.querySelector(sel); if (m) m.setAttribute('content', v); };
+    set('meta[name="description"]', t.seo_description);
+    set('meta[property="og:title"]', t.seo_title);
+    set('meta[property="og:description"]', t.seo_description);
+  }
+  setLang(code) {
+    try {
+      localStorage.setItem('portfolio-lang', code);
+      const u = new URL(location.href); u.searchParams.set('lang', code); history.replaceState(null, '', u);
+    } catch (e) {}
+    this.setState({ lang: code });
+  }
+  renderVals() {
+    const { filter, lang, site, cats, photos, series } = this.state;
+    const t = (site && site[lang]) || {};
+    const uniform = (this.props.layout ?? 'Editorial') === 'Uniform';
+    const editorial = filter === 'all' && !uniform;
+    const pill = on => ({ bg: on ? '#191816' : 'transparent', fg: on ? '#efebe4' : '#191816' });
+    const list = photos.map((p, i) => ({ p, i })).filter(({ p }) => filter === 'all' || p.category === filter);
+    return {
+      t, lang,
+      site: site || {},
+      year: new Date().getFullYear(),
+      mailto: site ? 'mailto:' + site.email : '#',
+      hero: { has: !!(site && site.hero_image), src: site && site.hero_image, alt: site ? site.hero_caption : '' },
+      portrait: { has: !!(site && site.portrait_image), src: site && site.portrait_image },
+      showCaptions: this.props.showCaptions ?? true,
+      langs: Component.LANGS.map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
+      filters: [{ id: 'all', label: t.all }, ...cats.map(c => ({ id: c.id, label: c[lang] }))].map(c => ({
+        label: c.label, ...pill(c.id === filter), select: () => this.setState({ filter: c.id }),
+      })),
+      photos: list.map(({ p, i }) => {
+        const L = Component.LAYOUT[i % Component.LAYOUT.length];
+        return {
+          has: !!p.image, src: p.image, title: p['title_' + lang], year: p.year,
+          num: String(i + 1).padStart(2, '0'),
+          col: editorial ? L.col : 'span 4',
+          offset: editorial ? L.offset : '0px',
+          ratio: editorial ? L.ratio : '4/5',
+        };
+      }),
+      series: series.map((s, i) => ({
+        num: String(i + 1).padStart(2, '0'),
+        name: s['name_' + lang],
+        meta: s.years + ' / ' + (s.images || []).length,
+        href: 'Series.dc.html?s=' + encodeURIComponent(s.slug) + '&lang=' + lang,
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+{
+  "series": [
+    {
+      "slug": "the-long-tide",
+      "years": "2023–25",
+      "name_de": "Die lange Flut",
+      "name_en": "The Long Tide",
+      "name_ru": "Долгий прилив",
+      "description_de": "Ein Jahr mit den Gezeiten von Nazaré.",
+      "description_en": "A year with the tides of Nazaré.",
+      "description_ru": "Год с приливами Назаре.",
+      "images": [
+        {
+          "image": "",
+          "caption": "The Long Tide 01"
+        },
+        {
+          "image": "",
+          "caption": "The Long Tide 02"
+        },
+        {
+          "image": "",
+          "caption": "The Long Tide 03"
+        },
+        {
+          "image": "",
+          "caption": "The Long Tide 04"
+        },
+        {
+          "image": "",
+          "caption": "The Long Tide 05"
+        },
+        {
+          "image": "",
+          "caption": "The Long Tide 06"
+        }
+      ]
+    },
+    {
+      "slug": "kitchens-of-alfama",
+      "years": "2024",
+      "name_de": "Küchen der Alfama",
+      "name_en": "Kitchens of Alfama",
+      "name_ru": "Кухни Алфамы",
+      "description_de": "Häusliche Porträts aus Lissabons ältestem Viertel.",
+      "description_en": "Domestic portraits from Lisbon’s oldest quarter.",
+      "description_ru": "Домашние портреты из старейшего квартала Лиссабона.",
+      "images": [
+        {
+          "image": "",
+          "caption": "Kitchens of Alfama 01"
+        },
+        {
+          "image": "",
+          "caption": "Kitchens of Alfama 02"
+        },
+        {
+          "image": "",
+          "caption": "Kitchens of Alfama 03"
+        },
+        {
+          "image": "",
+          "caption": "Kitchens of Alfama 04"
+        },
+        {
+          "image": "",
+          "caption": "Kitchens of Alfama 05"
+        },
+        {
+          "image": "",
+          "caption": "Kitchens of Alfama 06"
+        }
+      ]
+    },
+    {
+      "slug": "brutal-sun",
+      "years": "2022–24",
+      "name_de": "Brutale Sonne",
+      "name_en": "Brutal Sun",
+      "name_ru": "Жестокое солнце",
+      "description_de": "Betonarchitektur im harten Mittagslicht.",
+      "description_en": "Concrete architecture in hard midday light.",
+      "description_ru": "Бетонная архитектура в жёстком полуденном свете.",
+      "images": [
+        {
+          "image": "",
+          "caption": "Brutal Sun 01"
+        },
+        {
+          "image": "",
+          "caption": "Brutal Sun 02"
+        },
+        {
+          "image": "",
+          "caption": "Brutal Sun 03"
+        },
+        {
+          "image": "",
+          "caption": "Brutal Sun 04"
+        },
+        {
+          "image": "",
+          "caption": "Brutal Sun 05"
+        },
+        {
+          "image": "",
+          "caption": "Brutal Sun 06"
+        }
+      ]
+    },
+    {
+      "slug": "salt",
+      "years": "2023",
+      "name_de": "Salz",
+      "name_en": "Salt",
+      "name_ru": "Соль",
+      "description_de": "Die Salinen der Algarve.",
+      "description_en": "The salt pans of the Algarve.",
+      "description_ru": "Солеварни Алгарве.",
+      "images": [
+        {
+          "image": "",
+          "caption": "Salt 01"
+        },
+        {
+          "image": "",
+          "caption": "Salt 02"
+        },
+        {
+          "image": "",
+          "caption": "Salt 03"
+        },
+        {
+          "image": "",
+          "caption": "Salt 04"
+        },
+        {
+          "image": "",
+          "caption": "Salt 05"
+        },
+        {
+          "image": "",
+          "caption": "Salt 06"
+        }
+      ]
+    },
+    {
+      "slug": "night-ferries",
+      "years": "2021",
+      "name_de": "Nachtfähren",
+      "name_en": "Night Ferries",
+      "name_ru": "Ночные паромы",
+      "description_de": "Pendler auf dem Tejo nach Einbruch der Dunkelheit.",
+      "description_en": "Commuters on the Tagus after dark.",
+      "description_ru": "Пассажиры на Тежу после заката.",
+      "images": [
+        {
+          "image": "",
+          "caption": "Night Ferries 01"
+        },
+        {
+          "image": "",
+          "caption": "Night Ferries 02"
+        },
+        {
+          "image": "",
+          "caption": "Night Ferries 03"
+        },
+        {
+          "image": "",
+          "caption": "Night Ferries 04"
+        },
+        {
+          "image": "",
+          "caption": "Night Ferries 05"
+        },
+        {
+          "image": "",
+          "caption": "Night Ferries 06"
+        }
+      ]
+    }
+  ]
+}

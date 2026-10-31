@@ -1,0 +1,68 @@
+{
+  "photos": [
+    {
+      "image": "",
+      "title_de": "Fischer im Morgengrauen",
+      "title_en": "Fishermen at dawn",
+      "title_ru": "Рыбаки на рассвете",
+      "category": "doc",
+      "year": "2025"
+    },
+    {
+      "image": "",
+      "title_de": "Inês, Küche",
+      "title_en": "Inês, kitchen",
+      "title_ru": "Инеш, кухня",
+      "category": "por",
+      "year": "2024"
+    },
+    {
+      "image": "",
+      "title_de": "Betontreppe",
+      "title_en": "Concrete stair",
+      "title_ru": "Бетонная лестница",
+      "category": "arch",
+      "year": "2024"
+    },
+    {
+      "image": "",
+      "title_de": "Salzebenen",
+      "title_en": "Salt flats",
+      "title_ru": "Солончаки",
+      "category": "land",
+      "year": "2023"
+    },
+    {
+      "image": "",
+      "title_de": "Markt, Samstag",
+      "title_en": "Market, Saturday",
+      "title_ru": "Рынок, суббота",
+      "category": "doc",
+      "year": "2025"
+    },
+    {
+      "image": "",
+      "title_de": "Rui mit Hund",
+      "title_en": "Rui with dog",
+      "title_ru": "Руй с собакой",
+      "category": "por",
+      "year": "2023"
+    },
+    {
+      "image": "",
+      "title_de": "Küstenstraße",
+      "title_en": "Coast road",
+      "title_ru": "Прибрежная дорога",
+      "category": "land",
+      "year": "2022"
+    },
+    {
+      "image": "",
+      "title_de": "Pavillon, Mittag",
+      "title_en": "Pavilion, noon",
+      "title_ru": "Павильон, полдень",
+      "category": "arch",
+      "year": "2025"
+    }
+  ]
+}

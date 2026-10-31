@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Serie — Mara Ellison</title>
+<meta name="description" content="Fotoserie von Mara Ellison.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Serie — Mara Ellison">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Cormorant:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#efebe4;color:#191816;-webkit-font-smoothing:antialiased}
+a{color:#191816;text-decoration:none}
+a:hover{color:#9a4a2c}
+::selection{background:#191816;color:#efebe4}
+</style>
+</helmet>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.02em;background:#efebe4;color:#191816;min-height:100vh;display:flex;flex-direction:column">
+
+<header style="position:sticky;top:0;z-index:10;background:#efebe4;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px clamp(20px,4vw,56px);border-bottom:1px solid #19181622;flex-wrap:wrap">
+  <a href="{{ homeHref }}" style="font-family:'Instrument Serif','Cormorant',serif;font-size:24px;letter-spacing:0">{{ site.name }}</a>
+  <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:12px 28px">
+    <a href="{{ indexHref }}" style="text-transform:uppercase;white-space:nowrap">← {{ t.back }}</a>
+    <div style="display:flex;gap:2px;border:1px solid #191816;border-radius:999px;padding:2px;flex:none">
+      <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+        <button onClick="{{ l.select }}" style="font:inherit;text-transform:uppercase;letter-spacing:0.04em;padding:3px 9px;border:0;border-radius:999px;cursor:pointer;background:{{ l.bg }};color:{{ l.fg }}">{{ l.code }}</button>
+      </sc-for>
+    </div>
+  </div>
+</header>
+
+<main style="flex:1">
+<section style="padding:clamp(40px,8vw,120px) clamp(20px,4vw,56px) clamp(40px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px 48px;align-items:end">
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <span style="text-transform:uppercase">{{ t.seriesSingular }} {{ s.num }} — {{ s.years }}</span>
+    <h1 style="margin:0;font-family:'Instrument Serif','Cormorant',serif;font-weight:400;font-size:clamp(56px,9vw,152px);line-height:0.98;letter-spacing:-0.02em;text-wrap:balance">{{ s.name }}</h1>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:46ch">
+    <p style="margin:0;font-family:'Instrument Serif','Cormorant',serif;font-size:clamp(22px,2.4vw,32px);line-height:1.2;text-wrap:pretty">{{ s.description }}</p>
+    <span style="text-transform:uppercase;color:#5c5852">{{ s.count }} {{ t.frames }}</span>
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:clamp(24px,3vw,48px) clamp(12px,1.6vw,24px);align-items:start">
+  <sc-for list="{{ images }}" as="img" hint-placeholder-count="6">
+    <figure style="margin:0">
+      <div style="position:relative;width:100%;aspect-ratio:4/5;background:#dcd6cc;overflow:hidden">
+        <sc-if value="{{ img.has }}" hint-placeholder-val="{{ false }}">
+          <img src="{{ img.src }}" alt="{{ img.caption }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        </sc-if>
+      </div>
+      <figcaption style="display:flex;justify-content:space-between;gap:12px;padding-top:10px;text-transform:uppercase">
+        <span>{{ img.num }}</span>
+        <span style="color:#5c5852">{{ img.caption }}</span>
+      </figcaption>
+    </figure>
+  </sc-for>
+</section>
+
+<sc-if value="{{ next.has }}" hint-placeholder-val="{{ true }}">
+  <a href="{{ next.href }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin:clamp(80px,10vw,140px) clamp(20px,4vw,56px) 0;padding:28px 0;border-top:1px solid #191816;border-bottom:1px solid #191816" style-hover="color:#9a4a2c">
+    <span style="text-transform:uppercase">{{ t.next }}</span>
+    <span style="font-family:'Instrument Serif','Cormorant',serif;font-size:clamp(32px,5vw,72px);line-height:1">{{ next.name }} →</span>
+  </a>
+</sc-if>
+</main>
+
+<footer style="margin-top:clamp(80px,10vw,140px);background:#191816;color:#efebe4;padding:28px clamp(20px,4vw,56px);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;text-transform:uppercase">
+  <a href="{{ mailto }}" style="color:#efebe4" style-hover="color:#d98a66">{{ site.email }}</a>
+  <span style="color:#a8a29a">© {{ year }} {{ site.name }}</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  static LANGS = ['de', 'en', 'ru'];
+  state = { lang: this.initialLang(), slug: this.initialSlug(), site: null, series: [] };
+  initialLang() {
+    let l = null;
+    try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('portfolio-lang'); } catch (e) {}
+    return Component.LANGS.includes(l) ? l : 'de';
+  }
+  initialSlug() { try { return new URLSearchParams(location.search).get('s'); } catch (e) { return null; } }
+  async componentDidMount() {
+    const get = f => fetch('content/' + f + '.json', { cache: 'no-cache' }).then(r => r.json());
+    try {
+      const [site, s] = await Promise.all([get('site'), get('series')]);
+      this.setState({ site, series: s.series || [] });
+    } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
+  }
+  componentDidUpdate() {
+    const { site, lang } = this.state;
+    const cur = this.current();
+    if (!site || !cur) return;
+    const title = cur['name_' + lang] + ' — ' + site.name;
+    const desc = cur['description_' + lang] || '';
+    document.documentElement.lang = lang;
+    document.title = title;
+    const set = (sel, v) => { const m = document.querySelector(sel); if (m) m.setAttribute('content', v); };
+    set('meta[name="description"]', desc);
+    set('meta[property="og:title"]', title);
+  }
+  current() {
+    const { series, slug } = this.state;
+    return series.find(s => s.slug === slug) || series[0];
+  }
+  setLang(code) {
+    try {
+      localStorage.setItem('portfolio-lang', code);
+      const u = new URL(location.href); u.searchParams.set('lang', code); history.replaceState(null, '', u);
+    } catch (e) {}
+    this.setState({ lang: code });
+  }
+  renderVals() {
+    const { lang, site, series } = this.state;
+    const t = (site && site[lang]) || {};
+    const cur = this.current();
+    const idx = cur ? series.indexOf(cur) : -1;
+    const nxt = idx >= 0 && series.length > 1 ? series[(idx + 1) % series.length] : null;
+    const pill = on => ({ bg: on ? '#191816' : 'transparent', fg: on ? '#efebe4' : '#191816' });
+    const imgs = (cur && cur.images) || [];
+    return {
+      t, site: site || {},
+      year: new Date().getFullYear(),
+      mailto: site ? 'mailto:' + site.email : '#',
+      homeHref: 'Portfolio.dc.html?lang=' + lang,
+      indexHref: 'Portfolio.dc.html?lang=' + lang + '#series',
+      langs: Component.LANGS.map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
+      s: cur ? {
+        num: String(idx + 1).padStart(2, '0'), years: cur.years,
+        name: cur['name_' + lang], description: cur['description_' + lang], count: imgs.length,
+      } : {},
+      images: imgs.map((im, i) => ({ has: !!im.image, src: im.image, caption: im.caption, num: String(i + 1).padStart(2, '0') })),
+      next: nxt ? { has: true, name: nxt['name_' + lang], href: 'Series.dc.html?s=' + encodeURIComponent(nxt.slug) + '&lang=' + lang } : { has: false },
+    };
+  }
+}
+</script>
+</body>
+</html>
