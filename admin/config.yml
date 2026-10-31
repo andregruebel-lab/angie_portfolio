@@ -70,7 +70,6 @@ collections:
         fields:
           - {label: "Titelbild (Vorschaubild)", name: "hero_image", widget: image, required: false, hint: "Großes Bild oben. Läuft ein Titelvideo, ist es das Vorschaubild, bis das Video geladen ist."}
           - {label: "Titelvideo (optional)", name: "hero_video", widget: file, required: false, hint: "MP4, am besten unter 10 MB und ohne Ton. Ersetzt das Titelbild, sobald es geladen ist. Leer lassen für nur Bild."}
-          - {label: "Bildunterschrift (unter dem Titelbild, links)", name: "hero_caption", widget: string}
           - {label: "Jahr (unter dem Titelbild, rechts)", name: "hero_year", widget: string}
           - label: "Texte Deutsch"
             name: "de"
@@ -83,6 +82,7 @@ collections:
               - {label: "Einleitungstext unter der Überschrift", name: "intro", widget: text}
               - {label: "Text rechts, Zeile 1 (z. B. „Seit 2014“)", name: "est", widget: string}
               - {label: "Text rechts, Zeile 2 (z. B. „35 mm / Mittelformat“)", name: "format", widget: string}
+              - {label: "Bildunterschrift unter dem Titelbild/-video (links)", name: "hero_caption", widget: string}
           - label: "Texte English (nur sichtbar, wenn Sprache aktiv)"
             name: "en"
             widget: object
@@ -94,6 +94,7 @@ collections:
               - {label: "Einleitungstext unter der Überschrift", name: "intro", widget: text}
               - {label: "Text rechts, Zeile 1 (z. B. „Seit 2014“)", name: "est", widget: string}
               - {label: "Text rechts, Zeile 2 (z. B. „35 mm / Mittelformat“)", name: "format", widget: string}
+              - {label: "Bildunterschrift unter dem Titelbild/-video (links)", name: "hero_caption", widget: string}
           - label: "Тексты Русский (nur sichtbar, wenn Sprache aktiv)"
             name: "ru"
             widget: object
@@ -105,6 +106,7 @@ collections:
               - {label: "Einleitungstext unter der Überschrift", name: "intro", widget: text}
               - {label: "Text rechts, Zeile 1 (z. B. „Seit 2014“)", name: "est", widget: string}
               - {label: "Text rechts, Zeile 2 (z. B. „35 mm / Mittelformat“)", name: "format", widget: string}
+              - {label: "Bildunterschrift unter dem Titelbild/-video (links)", name: "hero_caption", widget: string}
       - label: "3 · Arbeiten (Fotogalerie)"
         name: "arbeiten"
         file: "content/arbeiten.json"

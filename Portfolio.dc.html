@@ -20,6 +20,11 @@ body{margin:0;background:#efebe4;color:#191816;-webkit-font-smoothing:antialiase
 a{color:#191816;text-decoration:none}
 a:hover{color:#9a4a2c}
 ::selection{background:#191816;color:#efebe4}
+/* Schmale Bildschirme: Einleitungstext und "Seit ..."-Zeile über die volle Breite statt in 5 von 12 Spalten gedrängt */
+@media (max-width:720px){
+  .hero-intro{grid-column:1 / -1 !important;max-width:none !important}
+  .hero-meta{grid-column:1 / -1 !important;justify-content:flex-start !important;flex-wrap:wrap}
+}
 </style>
 </helmet>
 <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.02em;background:#efebe4;color:#191816;min-height:100vh">
@@ -46,8 +51,8 @@ a:hover{color:#9a4a2c}
 <main>
 <section id="top" style="padding:clamp(40px,8vw,120px) clamp(20px,4vw,56px) 48px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end">
   <h1 style="grid-column:1 / span 12;margin:0;font-family:'Instrument Serif','Cormorant',serif;font-weight:400;font-size:clamp(56px,11vw,184px);line-height:0.98;letter-spacing:-0.02em;text-wrap:balance">{{ t.h1a }} <em style="color:#9a4a2c">{{ t.h1b }}</em> {{ t.h1c }}</h1>
-  <p style="grid-column:1 / span 5;margin:24px 0 0;max-width:38ch;line-height:1.6;text-transform:uppercase;text-wrap:pretty">{{ t.intro }}</p>
-  <div style="grid-column:8 / span 5;display:flex;justify-content:flex-end;gap:32px;text-transform:uppercase">
+  <p class="hero-intro" style="grid-column:1 / span 5;margin:24px 0 0;max-width:38ch;line-height:1.6;text-transform:uppercase;text-wrap:pretty">{{ t.intro }}</p>
+  <div class="hero-meta" style="grid-column:8 / span 5;display:flex;justify-content:flex-end;gap:32px;text-transform:uppercase">
     <span>{{ t.est }}</span>
     <span>{{ t.format }}</span>
   </div>
@@ -63,7 +68,7 @@ a:hover{color:#9a4a2c}
     </sc-if>
   </div>
   <div style="display:flex;justify-content:space-between;padding-top:12px;text-transform:uppercase;color:#5c5852">
-    <span>{{ site.hero_caption }}</span>
+    <span>{{ t.hero_caption }}</span>
     <span>{{ site.hero_year }}</span>
   </div>
 </section>
@@ -269,7 +274,7 @@ class Component extends DCLogic {
       site: site || {},
       year: new Date().getFullYear(),
       mailto: site ? 'mailto:' + site.email : '#',
-      hero: { has: !!(site && site.hero_image), src: site && site.hero_image, alt: site ? site.hero_caption : '', hasVideo: !!(site && site.hero_video), video: site && site.hero_video },
+      hero: { has: !!(site && site.hero_image), src: site && site.hero_image, alt: t.hero_caption || (site ? site.hero_caption : '') || '', hasVideo: !!(site && site.hero_video), video: site && site.hero_video },
       portrait: { has: !!(site && site.portrait_image), src: site && site.portrait_image },
       showCaptions: this.props.showCaptions ?? true,
       multiLang: this.activeLangs(site).length > 1,

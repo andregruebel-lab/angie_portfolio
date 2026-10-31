@@ -1,7 +1,6 @@
 {
   "hero_image": "/images/uploads/titelvideo-poster.jpg",
   "hero_video": "/images/uploads/titelvideo.mp4",
-  "hero_caption": "St. Michele, Flut",
   "hero_year": "2025",
   "de": {
     "h1a": "Licht,",
@@ -9,7 +8,8 @@
     "h1c": "gehalten.",
     "intro": "Szenen- und Porträtfotografin zwischen Deutschland und der Atlantikküste. Verfügbar für kreative Arbeiten und Auftragsprojekte.",
     "est": "Seit 2020",
-    "format": "35 mm / Mittelformat"
+    "format": "35 mm / Mittelformat",
+    "hero_caption": "St. Michele, Flut"
   },
   "en": {
     "h1a": "Light,",
@@ -17,7 +17,8 @@
     "h1c": "still.",
     "intro": "Scene and portrait photographer working between Germany and the Atlantic coast. Available for creative work and commissioned projects.",
     "est": "Est. 2020",
-    "format": "35mm / Medium format"
+    "format": "35mm / Medium format",
+    "hero_caption": "St. Michele, high tide"
   },
   "ru": {
     "h1a": "Свет,",
@@ -25,6 +26,7 @@
     "h1c": "в тишине.",
     "intro": "Фотограф постановочных сцен и портретов, работаю между Германией и атлантическим побережьем. Открыта для творческих работ и заказных проектов.",
     "est": "С 2020 года",
-    "format": "35 мм / Средний формат"
+    "format": "35 мм / Средний формат",
+    "hero_caption": "St. Michele, прилив"
   }
 }
