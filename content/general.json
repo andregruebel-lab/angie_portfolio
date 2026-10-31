@@ -1,6 +1,9 @@
 {
   "name": "Anhelina Pylypiuk",
-  "languages": [],
+  "languages": [
+    "en",
+    "ru"
+  ],
   "de": {
     "work": "Arbeiten",
     "series": "Serien",
