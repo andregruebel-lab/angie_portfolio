@@ -1,8 +1,8 @@
 # Decap CMS — Portfolio
 backend:
   name: github
-  repo: andregruebel-lab/angie_portfolio.git   # anpassen
-  branch: main
+  repo: andregruebel-lab/angie_portfolio
+  branch: claude/local-cms-test   # nur zum Testen; vor dem Merge nach main wieder auf main stellen
   base_url: https://api.netlify.com   # GitHub-Login über Netlify OAuth
 # Nur für lokales Testen: aktiv, wenn die Seite über localhost geöffnet wird und `npx decap-server` läuft.
 # Auf der Live-Seite (Netlify) wird dieser Schalter ignoriert.
