@@ -4,6 +4,9 @@ backend:
   repo: andregruebel-lab/angie_portfolio.git   # anpassen
   branch: main
   base_url: https://api.netlify.com   # GitHub-Login über Netlify OAuth
+# Nur für lokales Testen: aktiv, wenn die Seite über localhost geöffnet wird und `npx decap-server` läuft.
+# Auf der Live-Seite (Netlify) wird dieser Schalter ignoriert.
+local_backend: true
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 locale: "de"
