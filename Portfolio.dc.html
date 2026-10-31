@@ -24,6 +24,8 @@ a:hover{color:#9a4a2c}
 @media (max-width:720px){
   .hero-intro{grid-column:1 / -1 !important;max-width:none !important}
   .hero-meta{grid-column:1 / -1 !important;justify-content:flex-start !important;flex-wrap:wrap}
+  /* "Über mich": Leistungen und Wohnort untereinander statt in zwei schmalen Spalten */
+  .about-meta{grid-template-columns:1fr !important}
 }
 </style>
 </helmet>
@@ -125,7 +127,7 @@ a:hover{color:#9a4a2c}
     <h2 style="margin:0;font:inherit;text-transform:uppercase">{{ t.about }}</h2>
     <p style="margin:0;font-family:'Instrument Serif','Cormorant',serif;font-size:clamp(28px,3.2vw,44px);line-height:1.15;text-wrap:pretty">{{ t.aboutLead }}</p>
     <p style="margin:0;max-width:52ch;line-height:1.7;font-size:13px;color:#3d3a36;text-wrap:pretty">{{ t.aboutBody }}</p>
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;border-top:1px solid #191816;padding-top:20px;text-transform:uppercase;line-height:1.8">
+    <div class="about-meta" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;border-top:1px solid #191816;padding-top:20px;text-transform:uppercase;line-height:1.8">
       <div><div style="color:#5c5852">{{ t.services }}</div>{{ t.s1 }}<br>{{ t.s2 }}<br>{{ t.s3 }}</div>
       <div><div style="color:#5c5852">{{ t.basedIn }}</div>{{ t.city }}<br>{{ t.travels }}</div>
     </div>
