@@ -10,12 +10,6 @@
   },
   "categories": [
     {
-      "id": "doc",
-      "de": "Dokumentar",
-      "en": "Documentary",
-      "ru": "Документальное"
-    },
-    {
       "id": "por",
       "de": "Porträt",
       "en": "Portrait",
@@ -28,76 +22,84 @@
       "ru": "Пейзаж"
     },
     {
-      "id": "arch",
-      "de": "Architektur",
-      "en": "Architecture",
-      "ru": "Архитектура"
+      "id": "szene",
+      "de": "Szenen",
+      "en": "Scenes",
+      "ru": "Сцены"
     }
   ],
   "photos": [
     {
-      "image": "/images/uploads/whatsapp-image-2026-10-31-at-14.27.04-2-.jpeg",
-      "title_de": "Fischer im Morgengrauen",
-      "title_en": "Fishermen at dawn",
-      "title_ru": "Рыбаки на рассвете",
-      "category": "doc",
-      "year": "2025"
-    },
-    {
-      "image": "",
-      "title_de": "Inês, Küche",
-      "title_en": "Inês, kitchen",
-      "title_ru": "Инеш, кухня",
+      "image": "/images/uploads/portraet-zwischen-blumen.jpg",
+      "title_de": "Zwischen Blumen",
+      "title_en": "Among the Flowers",
+      "title_ru": "Среди цветов",
       "category": "por",
       "year": "2024"
     },
     {
-      "image": "",
-      "title_de": "Betontreppe",
-      "title_en": "Concrete stair",
-      "title_ru": "Бетонная лестница",
-      "category": "arch",
+      "image": "/images/uploads/landschaft-abendlicht-weg.jpg",
+      "title_de": "Abendlicht auf dem Weg",
+      "title_en": "Evening Light on the Path",
+      "title_ru": "Вечерний свет на дороге",
+      "category": "land",
+      "year": "2025"
+    },
+    {
+      "image": "/images/uploads/landschaft-kerzenlicht-ruine.jpg",
+      "title_de": "Kerzenlicht in der Ruine",
+      "title_en": "Candlelight in the Ruin",
+      "title_ru": "Свет свечи в руинах",
+      "category": "land",
+      "year": "2025"
+    },
+    {
+      "image": "/images/uploads/portraet-alter-mann.jpg",
+      "title_de": "Der Alte im Lampenlicht",
+      "title_en": "The Old Man in Lamplight",
+      "title_ru": "Старик в свете лампы",
+      "category": "por",
+      "year": "2025"
+    },
+    {
+      "image": "/images/uploads/portraet-schuechternes-laecheln.jpg",
+      "title_de": "Schüchternes Lächeln",
+      "title_en": "Shy Smile",
+      "title_ru": "Робкая улыбка",
+      "category": "por",
       "year": "2024"
     },
     {
-      "image": "",
-      "title_de": "Salzebenen",
-      "title_en": "Salt flats",
-      "title_ru": "Солончаки",
-      "category": "land",
-      "year": "2023"
-    },
-    {
-      "image": "",
-      "title_de": "Markt, Samstag",
-      "title_en": "Market, Saturday",
-      "title_ru": "Рынок, суббота",
-      "category": "doc",
+      "image": "/images/uploads/szene-ballkleid.jpg",
+      "title_de": "Ballkleid",
+      "title_en": "Ball Gown",
+      "title_ru": "Бальное платье",
+      "category": "szene",
       "year": "2025"
     },
     {
-      "image": "",
-      "title_de": "Rui mit Hund",
-      "title_en": "Rui with dog",
-      "title_ru": "Руй с собакой",
-      "category": "por",
-      "year": "2023"
-    },
-    {
-      "image": "",
-      "title_de": "Küstenstraße",
-      "title_en": "Coast road",
-      "title_ru": "Прибрежная дорога",
+      "image": "/images/uploads/landschaft-statue-2.jpg",
+      "title_de": "An der Statue II",
+      "title_en": "At the Statue II",
+      "title_ru": "У статуи II",
       "category": "land",
-      "year": "2022"
+      "year": "2026"
     },
     {
-      "image": "",
-      "title_de": "Pavillon, Mittag",
-      "title_en": "Pavilion, noon",
-      "title_ru": "Павильон, полдень",
-      "category": "arch",
-      "year": "2025"
+      "image": "/images/uploads/landschaft-statue-1.jpg",
+      "title_de": "An der Statue I",
+      "title_en": "At the Statue I",
+      "title_ru": "У статуи I",
+      "category": "land",
+      "year": "2026"
+    },
+    {
+      "image": "/images/uploads/szene-duschhaube.jpg",
+      "title_de": "Duschhaube",
+      "title_en": "Shower Cap",
+      "title_ru": "Шапочка для душа",
+      "category": "szene",
+      "year": "2026"
     }
   ]
 }

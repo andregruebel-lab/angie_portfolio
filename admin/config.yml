@@ -68,7 +68,8 @@ collections:
         name: "start"
         file: "content/start.json"
         fields:
-          - {label: "Titelbild", name: "hero_image", widget: image, required: false, hint: "Großes Bild unter der Überschrift."}
+          - {label: "Titelbild (Vorschaubild)", name: "hero_image", widget: image, required: false, hint: "Großes Bild oben. Läuft ein Titelvideo, ist es das Vorschaubild, bis das Video geladen ist."}
+          - {label: "Titelvideo (optional)", name: "hero_video", widget: file, required: false, hint: "MP4, am besten unter 10 MB und ohne Ton. Ersetzt das Titelbild, sobald es geladen ist. Leer lassen für nur Bild."}
           - {label: "Bildunterschrift (unter dem Titelbild, links)", name: "hero_caption", widget: string}
           - {label: "Jahr (unter dem Titelbild, rechts)", name: "hero_year", widget: string}
           - label: "Texte Deutsch"
@@ -145,7 +146,7 @@ collections:
               - {label: "Titel (EN)", name: "title_en", widget: string}
               - {label: "Titel (RU)", name: "title_ru", widget: string}
               - {label: "Kategorie", name: "category", widget: "relation", collection: "inhalte", file: "arbeiten", search_fields: ["categories.*.de"], display_fields: ["categories.*.de"], value_field: "categories.*.id"}
-              - {label: "Jahr", name: "year", widget: string}
+              - {label: "Jahr (optional)", name: "year", widget: string, required: false}
       - label: "4 · Serien (Verzeichnis und Einzelseiten)"
         name: "serien"
         file: "content/serien.json"

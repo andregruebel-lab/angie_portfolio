@@ -58,6 +58,9 @@ a:hover{color:#9a4a2c}
     <sc-if value="{{ hero.has }}" hint-placeholder-val="{{ false }}">
       <img src="{{ hero.src }}" alt="{{ hero.alt }}" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
     </sc-if>
+    <sc-if value="{{ hero.hasVideo }}" hint-placeholder-val="{{ false }}">
+      <video src="{{ hero.video }}" poster="{{ hero.src }}" autoplay muted loop playsinline preload="auto" aria-label="{{ hero.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+    </sc-if>
   </div>
   <div style="display:flex;justify-content:space-between;padding-top:12px;text-transform:uppercase;color:#5c5852">
     <span>{{ site.hero_caption }}</span>
@@ -184,7 +187,15 @@ class Component extends DCLogic {
       this.setState({ site, lang, cats: byName.arbeiten.categories || [], photos: byName.arbeiten.photos || [], series: byName.serien.series || [] });
     } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
   }
-  componentDidUpdate() { this.applyMeta(); }
+  componentDidUpdate() { this.applyMeta(); this.playHeroVideo(); }
+  // Das Framework übernimmt "muted" und "loop" nicht als Attribut. Ohne stumm blockieren Browser den Autoplay,
+  // ohne loop bliebe das Video am Ende stehen. Deshalb hier als Eigenschaft setzen und starten.
+  playHeroVideo() {
+    const v = document.querySelector('video');
+    if (!v) return;
+    v.muted = true; v.loop = true; v.playsInline = true;
+    if (v.paused) { const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); }
+  }
   applyMeta() {
     const { site, lang } = this.state;
     if (!site || !site[lang]) return;
@@ -215,7 +226,7 @@ class Component extends DCLogic {
       site: site || {},
       year: new Date().getFullYear(),
       mailto: site ? 'mailto:' + site.email : '#',
-      hero: { has: !!(site && site.hero_image), src: site && site.hero_image, alt: site ? site.hero_caption : '' },
+      hero: { has: !!(site && site.hero_image), src: site && site.hero_image, alt: site ? site.hero_caption : '', hasVideo: !!(site && site.hero_video), video: site && site.hero_video },
       portrait: { has: !!(site && site.portrait_image), src: site && site.portrait_image },
       showCaptions: this.props.showCaptions ?? true,
       multiLang: this.activeLangs(site).length > 1,
