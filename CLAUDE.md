@@ -28,14 +28,14 @@ Lies zuerst diese Datei, danach `TODO.md`. Die Seite ist ein **öffentliches Fot
 - Offene Aufgaben und Entscheidungen stehen in `TODO.md`. Neue Punkte dort eintragen, erledigte abhaken.
 
 ## Regeln für Sprachen und Texte
-**Wem die Texte gehören:** Die deutschen Texte sind die der Fotografin und die Leitfassung. Englisch und Russisch sind Übersetzungen davon.
-1. **Deutsch ändern nur auf Anweisung.** Fällt ein Tippfehler oder eine Lücke auf, melden und Vorschlag machen, nicht ungefragt korrigieren.
+**Welche Sprache ist die Leitfassung?** Das steht nicht fest. Ein Text kann zuerst auf Deutsch, Russisch oder Englisch geschrieben sein, die drei Sprachen sind gleichberechtigt. **Vor einer Übersetzung klären (fragen), welche Fassung maßgeblich ist**, und von dieser ausgehen.
+1. **Bestehende Texte (in jeder Sprache) nur auf Anweisung ändern.** Fällt ein Tippfehler oder eine Lücke auf, melden und einen Vorschlag machen, nicht ungefragt korrigieren.
 2. **Jeder sichtbare Text in drei Sprachen** (de, en, ru). Texte stehen in `content/*.json`, nicht fest im Quellcode (Ausnahme: kurze Bedien-Texte im Skript, zum Beispiel Vergrößerung und Fußzeile, und der Seitenkopf von `index.html`). Neue Textfelder immer in `config.yml`, in der JSON-Datei (alle drei Sprachen) und in der Seite anlegen.
 3. **Vorschlag zuerst:** Wortlaut als Tabelle Deutsch / Englisch / Russisch vorlegen und die Bestätigung abwarten, erst dann ändern. Eigene Textideen nicht veröffentlichen.
 4. **Englisch:** britische Schreibweise („enquiries“), Satzanfang groß, Listenzeilen mit kleinem Anfang nach dem ersten Wort („Styling, make-up & location scouting“). **Russisch:** weibliche Form für die Fotografin („Открыта“), Ich-Form, Satzanfang groß. Der **Name bleibt in allen Sprachen in lateinischer Schrift**: Anhelina Pylypiuk.
-5. **Zeichen:** „&“ in Listenzeilen statt „und“, Gedankenstrich „—“ mit Leerzeichen in Titeln, Auslassung bei Leerzeilen im Fließtext vermeiden.
-6. **Russisch** ist ungeprüft, bis eine Muttersprachlerin es gelesen hat. Fachwörter („мудборды“) und neue Sätze deshalb kennzeichnen.
-7. **Rechtstexte** (Impressum, Datenschutz): nur als gekennzeichneter **Entwurf**, ohne Rechtsberatung, Platzhalter in eckigen Klammern. Nur auf Deutsch gepflegt, Englisch und Russisch fallen auf Deutsch zurück.
+5. **Zeichen:** „&“ in Listenzeilen statt „und“, Gedankenstrich „—“ mit Leerzeichen in Titeln.
+6. **Geprüft oder ungeprüft:** Welche Sprachfassung von einer Muttersprachlerin oder einem Muttersprachler gelesen wurde, steht in `TODO.md`. Bis dahin Übersetzungen (heute besonders das Russische mit Fachwörtern wie „мудборды“) als ungeprüft kennzeichnen.
+7. **Rechtstexte** (Impressum, Datenschutz): nur als gekennzeichneter **Entwurf**, ohne Rechtsberatung, Platzhalter in eckigen Klammern. Derzeit nur auf Deutsch gepflegt, Englisch und Russisch fallen auf Deutsch zurück.
 
 **Beschlossene Begriffe (nicht ohne Rückfrage ändern):**
 | Deutsch | Englisch | Russisch |
