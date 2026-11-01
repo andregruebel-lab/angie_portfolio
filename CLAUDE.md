@@ -26,3 +26,32 @@ Lies zuerst diese Datei, danach `TODO.md`. Die Seite ist ein **öffentliches Fot
 ## Vorgehen
 - Nach jeder Änderung: Seite lokal ansehen (zum Beispiel `python3 -m http.server`), mit Handy-Breite (390 px) und in allen drei Sprachen. Die Seite lädt React und Babel von `unpkg.com` und Schriften von Google (noch nicht auf eigene Dateien umgestellt, siehe `TODO.md`).
 - Offene Aufgaben und Entscheidungen stehen in `TODO.md`. Neue Punkte dort eintragen, erledigte abhaken.
+
+## Regeln für Sprachen und Texte
+**Wem die Texte gehören:** Die deutschen Texte sind die der Fotografin und die Leitfassung. Englisch und Russisch sind Übersetzungen davon.
+1. **Deutsch ändern nur auf Anweisung.** Fällt ein Tippfehler oder eine Lücke auf, melden und Vorschlag machen, nicht ungefragt korrigieren.
+2. **Jeder sichtbare Text in drei Sprachen** (de, en, ru). Texte stehen in `content/*.json`, nicht fest im Quellcode (Ausnahme: kurze Bedien-Texte im Skript, zum Beispiel Vergrößerung und Fußzeile, und der Seitenkopf von `index.html`). Neue Textfelder immer in `config.yml`, in der JSON-Datei (alle drei Sprachen) und in der Seite anlegen.
+3. **Vorschlag zuerst:** Wortlaut als Tabelle Deutsch / Englisch / Russisch vorlegen und die Bestätigung abwarten, erst dann ändern. Eigene Textideen nicht veröffentlichen.
+4. **Englisch:** britische Schreibweise („enquiries“), Satzanfang groß, Listenzeilen mit kleinem Anfang nach dem ersten Wort („Styling, make-up & location scouting“). **Russisch:** weibliche Form für die Fotografin („Открыта“), Ich-Form, Satzanfang groß. Der **Name bleibt in allen Sprachen in lateinischer Schrift**: Anhelina Pylypiuk.
+5. **Zeichen:** „&“ in Listenzeilen statt „und“, Gedankenstrich „—“ mit Leerzeichen in Titeln, Auslassung bei Leerzeilen im Fließtext vermeiden.
+6. **Russisch** ist ungeprüft, bis eine Muttersprachlerin es gelesen hat. Fachwörter („мудборды“) und neue Sätze deshalb kennzeichnen.
+7. **Rechtstexte** (Impressum, Datenschutz): nur als gekennzeichneter **Entwurf**, ohne Rechtsberatung, Platzhalter in eckigen Klammern. Nur auf Deutsch gepflegt, Englisch und Russisch fallen auf Deutsch zurück.
+
+**Beschlossene Begriffe (nicht ohne Rückfrage ändern):**
+| Deutsch | Englisch | Russisch |
+|---|---|---|
+| Szenen- und Porträtfotografin | Scene and portrait photographer | Фотограф тематических съёмок и портретов |
+| Ich biete an: | I offer: | Я предлагаю: |
+| Konzeptionelle Porträtfotografie | Conceptual portrait photography | Концептуальная портретная фотография |
+| Themenentwicklung & Moodboards | Concept & theme development | Разработка концепции и мудборды |
+| Styling, Make-up & Location-Scouting | Styling, make-up & location scouting | Стайлинг, макияж и подбор локаций |
+| Aufträge & Anfragen | Bookings & enquiries | Заказы и запросы (Alternative offen: „Бронирование и запросы“) |
+| Porträt / Landschaft / Szenen | Portrait / Landscape / Scenes | Портрет / Пейзаж / Сцены |
+
+**Vermeiden:** „gestellt“ und „постановочный“ (klingt wie „inszeniert, nicht echt“), „I stage my clients“ (stattdessen „I bring clothing and environment together around my clients …“), „Commissions“ (zu nah an „Provision“).
+
+## Gestaltung (damit Änderungen im Stil bleiben)
+- Farben: Hintergrund `#efebe4`, Text `#191816`, Akzent (kursive Überschrift, Hover) `#9a4a2c`, gedämpfter Text `#5c5852`, Bildplatzhalter `#dcd6cc`. Fußbereich dunkel `#191816` mit Text `#efebe4`, gedämpft `#a8a29a`, Hover `#d98a66`.
+- Schriften: **Instrument Serif** (Überschriften, E-Mail im Fußbereich), **IBM Plex Mono** (Fließtext, Menü, Beschriftungen, 12 bis 13 px, Menü und Beschriftungen in Großbuchstaben), Ersatzschrift Cormorant.
+- Seitenrand `clamp(20px, 4vw, 56px)`, Filterknöpfe und Sprachumschalter als Pillen mit 1 px Rahmen. Die Überschrift ist auf dem Handy 20 % der Breite groß.
+- Kein Aufhellen oder Verspielen: ruhig, viel Weißraum, Fotos im Mittelpunkt.
