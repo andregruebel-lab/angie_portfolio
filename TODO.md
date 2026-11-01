@@ -80,7 +80,10 @@ Der Code und alle Fotos liegen bisher **nur auf GitHub**. Ein Fehler dort (verse
 - [ ] Are.na- und Print-Shop-Link: Sie erscheinen im Fußbereich nur, wenn im CMS („6 · Kontakt“) eine echte Adresse (http/https) steht. Heute stehen dort Platzhalter (`#`), deshalb sind sie ausgeblendet.
 - [ ] **Platzhalter der Vorlage ersetzen:** Die fünf Serien („Die lange Flut“ usw.) ohne Bilder, Porträtfoto, Jahreszahlen bei den Fotos (aktuell Platzhalter 2024 bis 2026), Bildunterschrift und Jahr unter dem Titelvideo.
 - [ ] Russischen Text von einer Muttersprachlerin / einem Muttersprachler prüfen lassen.
-- [ ] Deutscher Text „Über mich“: „setzte“ → „setze“, und wohl „in Szene“ ergänzen. Titel: doppeltes Leerzeichen entfernen.
+- [x] Deutscher Text „Über mich“: „setze … in Szene“ korrigiert (Commit folgt in der Historie). Offen: Titel „Anhelina Pylypiuk  — Fotografin“ hat ein doppeltes Leerzeichen (im CMS unter „1 · Allgemein & Menü“ ändern).
+- [ ] Englischer Text „Über mich“: „I stage my clients“ klingt nach „inszenieren“ und soll anders formuliert werden (Entscheidung offen, siehe Chat: zum Beispiel „I bring clothing and environment together around my clients“).
+- [ ] **Am Schluss prüfen:** Zeilenumbrüche auf sehr schmalen Handys, zum Beispiel „Location-Scouting“ am Bindestrich bei 320 Pixeln Breite, und dass die E-Mail im Fußbereich auf dem eigenen Handy in einer Zeile steht. Das ist bewusst zurückgestellt.
+- [ ] Leistungen unter „Über mich“: Darstellung mit Trennzeichen (Punkt oder senkrechter Strich) statt drei Zeilen untereinander, Entscheidung offen.
 - [ ] Titelvideo in höherer Auflösung (jetzt 832 × 464).
 - [ ] Optional: Menü auf dem Handy linksbündig, Fotos der Galerie auch per Tastatur öffnen.
 
