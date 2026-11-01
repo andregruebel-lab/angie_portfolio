@@ -6,7 +6,12 @@ Stand: 01.11.2026. Diese Datei wird **nicht** auf der Webseite veröffentlicht (
 Fotos aus dem Handy enthalten versteckte Daten (Standort, Gerät, Zeitpunkt) und sind sehr groß. Beides muss weg, bevor die Seite öffentlich ist.
 - [x] **Porträtfoto bei „Über mich“ erledigt.** Vorher: 8,3 MB, 3072 × 4080 Pixel, mit GPS-Standort (Raum Bologna), Gerät (Pixel 8 Pro), Aufnahmezeit und einem Dateinamen mit Datum. Jetzt: `portrait-ueber-mich.jpg`, 1100 × 1461 Pixel, etwa 330 KB, ohne Metadaten. Die anderen Fotos und das Video habe ich geprüft: keine Standortdaten.
 - [ ] **Alte Fassung mit Standort:** Sie bleibt im Verlauf auf GitHub, solange das Repo öffentlich ist (siehe 0b). Auch danach können Mitarbeiter des Repos sie sehen. Ganz entfernen ginge nur mit Umschreiben des Verlaufs (aufwendig, nicht empfohlen).
-- [ ] **Jedes künftige Foto vor dem Hochladen anonymisieren und verkleinern:** Lange Seite höchstens etwa 1600 Pixel, unter 400 KB, Metadaten (Standort, Gerät) entfernen, neutraler Dateiname ohne Datum. Das CMS macht das nicht selbst. Möglichkeiten: beim Export im Foto-Programm „Metadaten entfernen“ wählen, oder mir die Datei nach dem Hochladen zur Bereinigung geben (kann ich jederzeit), oder später automatisch bei jedem Hochladen prüfen lassen (GitHub Action, aufwendiger).
+- [x] **Fotos werden im CMS jetzt automatisch bereinigt, bevor sie hochgeladen werden** (`pflege/bilder-bereinigen.js`). Jedes Foto (JPEG, PNG, WebP) wird im Browser auf höchstens 1600 Pixel an der langen Seite verkleinert, als JPEG neu gespeichert (dabei fallen Standort, Gerät und Aufnahmezeit weg) und bekommt einen neutralen Dateinamen, wenn der Name nach Handy oder Datum aussieht. Getestet mit einem Foto mit GPS-Daten (3 MB, 3000 × 2000, gedreht): Ergebnis 220 KB, 1067 × 1600, keine Metadaten, Drehung richtig. Grenzen:
+  - **Videos werden nicht bereinigt.** Standortdaten vor dem Hochladen entfernen (Export mit „Metadaten entfernen“ oder `ffmpeg -map_metadata -1`).
+  - **iPhone-Fotos im Format HEIC** kann Chrome nicht lesen: Das Foto wird dann **nicht hochgeladen** (mit roter Meldung). In Safari geht es, oder als JPEG exportieren.
+  - **Nur im CMS wirksam.** Wer Dateien direkt bei GitHub hochlädt (im Browser oder per Git), umgeht die Bereinigung. Dann bitte vorher selbst bereinigen oder mir geben.
+  - Vorhandene Bilder wurden nicht erneut verarbeitet (sie sind geprüft: keine Standortdaten).
+  - Transparente PNGs bekommen einen weißen Hintergrund.
 - [ ] Nicht verwendetes Foto `whatsapp-image-2026-10-31-at-14.27.04-11-.jpeg` (Porträt vor Seerosen, Datum im Dateinamen): aufnehmen (dann vorher umbenennen) oder löschen.
 - [ ] Fotos in mehreren Größen und als WebP anbieten (siehe 1c).
 
@@ -150,5 +155,6 @@ Der Code und alle Fotos liegen bisher **nur auf GitHub**. Ein Fehler dort (verse
 - **Anmeldung:** Cloudflare-Worker `sveltia-cms-auth` (Kopie des öffentlichen Programms `sveltia/sveltia-cms-auth`, `src/index.js` unverändert), Repo `sveltia-cms-auth`. Einstellungen im Cloudflare-Dashboard: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (Secret), `ALLOWED_DOMAINS` (steht auch in `wrangler.toml`).
 - **GitHub-OAuth-App:** Callback-URL = `<Adresse des Login-Dienstes>/callback`.
 - **Account-Subdomain bei Cloudflare:** `agwebsites` (also `angie-portfolio.agwebsites.workers.dev`).
+- **Bildbereinigung im CMS:** `pflege/bilder-bereinigen.js` (verkleinern, Metadaten entfernen), geladen in `pflege/index.html` vor Decap.
 - **Sprachen:** Deutsch immer, Englisch/Russisch im CMS unter „1 · Allgemein & Menü“ freischaltbar.
 - **Credits:** Auf Cloudflare gibt es keine Credit-Zählung wie bei Netlify (Netlify kostete 15 Credits je Veröffentlichung).

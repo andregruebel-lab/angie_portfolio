@@ -8,6 +8,8 @@
 </head>
 <body>
 <!-- Decap muss im body stehen, sonst gibt es beim Start einen Fehler (document.body ist noch null) -->
+<!-- Bereinigt Fotos vor dem Hochladen (verkleinern, Standort- und Gerätedaten entfernen). Muss vor Decap geladen werden. -->
+<script src="bilder-bereinigen.js"></script>
 <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
