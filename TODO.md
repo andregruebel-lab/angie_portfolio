@@ -8,6 +8,10 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
 - [ ] GitHub → Settings → Applications → Installed GitHub Apps → **Cloudflare Workers and Pages** → Configure → beide Repos unter „Repository access“ eintragen.
 - [ ] In Cloudflare prüfen, dass der Build noch läuft (neuer Commit oder „Retry build“). Dann `…/pflege` öffnen, anmelden, eine Änderung probieren.
 - [ ] Bei GitHub „Keep my email addresses private“ einschalten (Settings → Emails).
+- [ ] **Unterpunkt: `/pflege` mit Cloudflare Access schützen.** Danach kommt über die Webseite niemand mehr an die CMS-Seite und an `pflege/config.yml`, und damit findet auch niemand mehr den Repo-Namen und von dort den Weg zum Repo. Das ersetzt das Privatstellen nicht (das Repo bliebe sonst für jeden lesbar, der den Link auf anderem Weg kennt), ergänzt es aber: privat schützt den Inhalt, Access verbirgt zusätzlich den Namen.
+  - Cloudflare → Zero Trust → Access → Anwendung für `deinedomain/pflege*` anlegen (Menünamen können abweichen). Erlaubt nur deine E-Mail-Adresse oder dein GitHub-Konto.
+  - Noch zu klären: ob der Schutz zusammen mit dem GitHub-Anmelde-Fenster des CMS reibungslos läuft (nicht getestet), und ob Access für dich dann eine zweite Anmeldung bedeutet.
+  - Die Adresse des Login-Dienstes (`sveltia-cms-auth…workers.dev`) und `/callback` dürfen **nicht** durch Access geschützt werden, sonst scheitert die Anmeldung.
 - Das Repo `trading_agent` ist davon unabhängig: Jedes Repo hat seine eigene Einstellung (Public/Private).
 - **Wichtig:** Ein Schutz des Pfades `/pflege` (Cloudflare Access) ersetzt das Privatstellen **nicht**. Er verhindert nur, dass jemand über `pflege/config.yml` auf der Webseite den Repo-Namen findet. Ein öffentliches Repo bleibt auf GitHub lesbar (Profil, Suchmaschinen, bekannter Link), auch ohne Link von der Webseite. Nur „privat“ schützt Verlauf, E-Mail-Adresse und diese Liste. Was dann trotzdem öffentlich bleibt, steht weiter unten bei „Was bedeutet ‚Repo privat‘ genau?“.
 
@@ -32,7 +36,7 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
   - Privat schützt Verlauf, E-Mail-Adressen und nicht ausgelieferte Dateien. **Die Dateien der Webseite selbst bleiben öffentlich** (alles, was veröffentlicht wird, kann jeder abrufen, auch `content/*.json` und `pflege/config.yml`).
 - [ ] Bei GitHub „Keep my email addresses private“ einschalten (Settings → Emails).
 - [ ] Optional: Kontoname auf GitHub neutral machen oder Repos in ein neutral benanntes Konto verschieben. Der Repo-Name steht in `pflege/config.yml` (`repo:`), und diese Datei ist öffentlich abrufbar. Danach `repo:` in `config.yml`, die Cloudflare-Verbindung und die OAuth-App anpassen.
-- [ ] Optional: `/pflege` mit Cloudflare Access zusätzlich schützen. Das blendet die CMS-Seite und `pflege/config.yml` (mit dem Repo-Namen) für Fremde aus. Es macht das Repo **nicht** privat. Nicht getestet; zu klären, wie es zusammen mit dem GitHub-Login im Popup funktioniert.
+- [ ] `/pflege` mit Cloudflare Access schützen: siehe Abschnitt 0 (Unterpunkt beim Privatstellen).
 - [ ] Alte Netlify-Seite abschalten oder löschen, alte GitHub-OAuth-App (für Netlify) löschen.
 - [ ] Client ID und Client Secret der OAuth-App in einem Passwort-Manager sichern (das Secret wird bei GitHub nur einmal angezeigt; im Zweifel ein neues erzeugen und in Cloudflare eintragen).
 
