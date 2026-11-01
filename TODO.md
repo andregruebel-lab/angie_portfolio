@@ -17,6 +17,10 @@ Stand: 01.11.2026. Diese Datei wird **nicht** auf der Webseite veröffentlicht (
 
 ## 3. GitHub und Zugänge
 - [ ] Repos `angie_portfolio` und `sveltia-cms-auth` auf **privat** stellen (danach Cloudflare-Build und CMS-Login prüfen).
+  - Danach in GitHub unter Settings → Applications → Installed GitHub Apps → **Cloudflare Workers and Pages** → Configure prüfen, dass beide Repos als erlaubt eingetragen sind. Sonst findet Cloudflare sie nicht mehr.
+  - Es müssen keine Passwörter bei Cloudflare hinterlegt werden. Der Zugriff läuft über die GitHub-App. Das CMS meldet sich bei jedem Login über GitHub an (das Token liegt nur im Browser der Person, die sich anmeldet).
+  - Wer das CMS nutzt, muss weiterhin Mitarbeiter (Collaborator) des Repos sein.
+  - Privat schützt Verlauf, E-Mail-Adressen und nicht ausgelieferte Dateien. **Die Dateien der Webseite selbst bleiben öffentlich** (alles, was veröffentlicht wird, kann jeder abrufen, auch `content/*.json` und `pflege/config.yml`).
 - [ ] Bei GitHub „Keep my email addresses private“ einschalten (Settings → Emails).
 - [ ] Optional: Kontoname auf GitHub neutral machen oder Repos in ein neutral benanntes Konto verschieben. Der Repo-Name steht in `pflege/config.yml` (`repo:`), und diese Datei ist öffentlich abrufbar. Danach `repo:` in `config.yml`, die Cloudflare-Verbindung und die OAuth-App anpassen.
 - [ ] Optional: `/pflege` mit Cloudflare Access zusätzlich schützen.
@@ -24,11 +28,15 @@ Stand: 01.11.2026. Diese Datei wird **nicht** auf der Webseite veröffentlicht (
 - [ ] Client ID und Client Secret der OAuth-App in einem Passwort-Manager sichern (das Secret wird bei GitHub nur einmal angezeigt; im Zweifel ein neues erzeugen und in Cloudflare eintragen).
 
 ## 4. Sicherung (Backup)
-Der Code liegt bisher **nur auf GitHub**. Ein Fehler dort (versehentlich gelöscht, Konto gesperrt) wäre sonst das Ende der Seite.
-- [ ] **Lokale Kopie** auf dem eigenen Rechner anlegen: Git oder GitHub Desktop installieren, das Repo mit „Clone“ holen. Danach regelmäßig „Pull“, weil das CMS Änderungen direkt auf GitHub macht. Bei einem privaten Repo ist dafür eine Anmeldung bei GitHub nötig.
+Der Code und alle Fotos liegen bisher **nur auf GitHub**. Ein Fehler dort (versehentlich gelöscht, Konto gesperrt, Zugang verloren) wäre sonst das Ende der Seite. Faustregel: **mindestens drei Kopien, auf zwei verschiedenen Arten von Speicher, eine davon an einem anderen Ort.**
+- [ ] **Kopie 1: lokal auf dem eigenen Rechner.** GitHub Desktop (oder Git) installieren, das Repo mit „Clone“ holen. Danach regelmäßig **Pull**, weil das CMS Änderungen direkt auf GitHub macht. Bei einem privaten Repo ist dafür die Anmeldung bei GitHub nötig.
 - [ ] Dasselbe für das Repo `sveltia-cms-auth` (klein, aber nötig für die CMS-Anmeldung).
-- [ ] Optional: zweite Kopie (zum Beispiel automatisch auf einem anderen Git-Anbieter spiegeln oder ein Archiv `ZIP` der Fotos in `images/uploads/` an einem anderen Ort).
-- [ ] Die Zugangsdaten zu Cloudflare, GitHub und der Domain sichern (Passwort-Manager, zweiter Faktor).
+- [ ] **Kopie 2: außerhalb des Rechners**, zum Beispiel ein Archiv (ZIP) des ganzen Ordners auf einer externen Festplatte oder in einem Cloud-Speicher. Mindestens nach größeren Änderungen und vor Umbauten wiederholen.
+- [ ] **Kopie 3 (optional): Spiegelung auf einen zweiten Git-Anbieter** (zum Beispiel GitLab oder Codeberg), damit ein Ausfall oder eine Sperre bei GitHub nicht alles trifft.
+- [ ] **Originalfotos getrennt aufbewahren.** Im Repo liegen nur die verkleinerten Fassungen (`images/uploads/`). Die Originale und das Originalvideo (höhere Auflösung) sollten zusätzlich auf einer eigenen Festplatte oder einem Cloud-Speicher liegen.
+- [ ] **Einstellungen sichern, die nicht im Repo stehen:** Cloudflare (welche Worker, welche Variablen: `GITHUB_CLIENT_ID`, `ALLOWED_DOMAINS`; das Secret nur im Passwort-Manager), GitHub-OAuth-App (Name, Callback-URL), Domain-Einstellungen. Am besten als Notiz oder Screenshots im Passwort-Manager.
+- [ ] **Zugangsdaten sichern:** Cloudflare, GitHub, Domain-Anbieter, E-Mail-Konto (Passwort-Manager, zweiter Faktor, Wiederherstellungscodes an einem zweiten Ort).
+- [ ] **Wiederherstellung einmal üben:** Aus der lokalen Kopie ein neues Repo erzeugen und prüfen, dass die Seite daraus gebaut werden kann.
 
 ## 5. Inhalte und Feinschliff
 - [ ] **Platzhalter der Vorlage ersetzen:** Die fünf Serien („Die lange Flut“ usw.) ohne Bilder, Instagram-/Are.na-/Shop-Links (`#`), Porträtfoto, Jahreszahlen bei den Fotos (aktuell Platzhalter 2024 bis 2026), Bildunterschrift und Jahr unter dem Titelvideo.
