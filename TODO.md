@@ -81,9 +81,9 @@ Der Code und alle Fotos liegen bisher **nur auf GitHub**. Ein Fehler dort (verse
 - [ ] **Platzhalter der Vorlage ersetzen:** Die fünf Serien („Die lange Flut“ usw.) ohne Bilder, Porträtfoto, Jahreszahlen bei den Fotos (aktuell Platzhalter 2024 bis 2026), Bildunterschrift und Jahr unter dem Titelvideo.
 - [ ] Russischen Text von einer Muttersprachlerin / einem Muttersprachler prüfen lassen.
 - [x] Deutscher Text „Über mich“: „setze … in Szene“ korrigiert (Commit folgt in der Historie). Offen: Titel „Anhelina Pylypiuk  — Fotografin“ hat ein doppeltes Leerzeichen (im CMS unter „1 · Allgemein & Menü“ ändern).
-- [ ] Englischer Text „Über mich“: „I stage my clients“ klingt nach „inszenieren“ und soll anders formuliert werden (Entscheidung offen, siehe Chat: zum Beispiel „I bring clothing and environment together around my clients“).
+- [x] Englischer Text „Über mich“: „I stage my clients“ ersetzt durch „I bring clothing and environment together around my clients in a perfect interplay …“.
 - [ ] **Am Schluss prüfen:** Zeilenumbrüche auf sehr schmalen Handys, zum Beispiel „Location-Scouting“ am Bindestrich bei 320 Pixeln Breite, und dass die E-Mail im Fußbereich auf dem eigenen Handy in einer Zeile steht. Das ist bewusst zurückgestellt.
-- [ ] Leistungen unter „Über mich“: Darstellung mit Trennzeichen (Punkt oder senkrechter Strich) statt drei Zeilen untereinander, Entscheidung offen.
+- [ ] Leistungen unter „Über mich“ (optional): Darstellung mit Trennzeichen (Punkt oder senkrechter Strich) statt drei Zeilen untereinander. Wortlaut ist entschieden und steht so auf der Seite; nur das Aussehen ist offen. Bleibt vorerst untereinander ohne Zeichen.
 - [ ] Titelvideo in höherer Auflösung (jetzt 832 × 464).
 - [ ] Optional: Menü auf dem Handy linksbündig, Fotos der Galerie auch per Tastatur öffnen.
 
