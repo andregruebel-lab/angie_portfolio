@@ -20,13 +20,17 @@ body{margin:0;background:#efebe4;color:#191816;-webkit-font-smoothing:antialiase
 a{color:#191816;text-decoration:none}
 a:hover{color:#9a4a2c}
 ::selection{background:#191816;color:#efebe4}
+/* E-Mail im Fußbereich: Grundgröße hier (nicht inline), damit das Verkleinern per Script wieder zurückgesetzt werden kann */
+.mail-link{font-size:clamp(40px,8vw,128px)}
 /* Schmale Bildschirme: Einleitungstext und "Seit ..."-Zeile über die volle Breite statt in 5 von 12 Spalten gedrängt */
 @media (max-width:720px){
   /* Überschrift: in allen Sprachen gleich groß und nicht ausbalanciert. 20vw ist die größte Größe, bei der auch das längste Wort (russisch "пойманный") nicht umbricht. */
   .hero-h1{font-size:clamp(56px,20vw,120px) !important;text-wrap:wrap !important;overflow-wrap:anywhere}
   .hero-intro{grid-column:1 / -1 !important;max-width:none !important}
   .hero-meta{grid-column:1 / -1 !important;justify-content:flex-start !important;flex-wrap:wrap}
-  /* "Über mich": Leistungen und Wohnort untereinander statt in zwei schmalen Spalten */
+}
+/* "Über mich": Leistungen und Wohnort untereinander statt in zwei schmalen Spalten (Handy und Tablet) */
+@media (max-width:900px){
   .about-meta{grid-template-columns:1fr !important}
 }
 </style>
@@ -139,7 +143,7 @@ a:hover{color:#9a4a2c}
 
 <footer id="contact" style="margin-top:clamp(80px,12vw,160px);background:#191816;color:#efebe4;padding:clamp(56px,8vw,112px) clamp(20px,4vw,56px) 28px">
   <span style="text-transform:uppercase;color:#a8a29a">{{ t.enquiries }}</span>
-  <a href="{{ mailto }}" style="display:block;margin:20px 0 clamp(56px,8vw,112px);font-family:'Instrument Serif','Cormorant',serif;font-size:clamp(40px,8vw,128px);line-height:1;letter-spacing:-0.02em;color:#efebe4;overflow-wrap:anywhere" style-hover="color:#d98a66">{{ site.email }}</a>
+  <a class="mail-link" href="{{ mailto }}" style="display:block;margin:20px 0 clamp(56px,8vw,112px);font-family:'Instrument Serif','Cormorant',serif;line-height:1;letter-spacing:-0.02em;color:#efebe4;overflow-wrap:anywhere" style-hover="color:#d98a66">{{ site.email }}</a>
   <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;text-transform:uppercase;border-top:1px solid #efebe433;padding-top:20px">
     <div style="display:flex;gap:28px;flex-wrap:wrap">
       <a href="{{ site.instagram }}" style="color:#efebe4">Instagram</a>
@@ -208,6 +212,7 @@ class Component extends DCLogic {
     if (Math.abs(dx) > 50) this.stepLightbox(dx < 0 ? 1 : -1);
   };
   componentWillUnmount() {
+    window.removeEventListener('resize', this.fitMail);
     document.removeEventListener('keydown', this.onKey);
     document.removeEventListener('touchstart', this.onTouchStart);
     document.removeEventListener('touchend', this.onTouchEnd);
@@ -223,6 +228,8 @@ class Component extends DCLogic {
     if (n > 0) this.setState({ open: (this.state.open + d + n) % n });
   }
   async componentDidMount() {
+    window.addEventListener('resize', this.fitMail);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.fitMail);
     document.addEventListener('keydown', this.onKey);
     document.addEventListener('touchstart', this.onTouchStart, { passive: true });
     document.addEventListener('touchend', this.onTouchEnd, { passive: true });
@@ -235,7 +242,21 @@ class Component extends DCLogic {
       this.setState({ site, lang, cats: byName.arbeiten.categories || [], photos: byName.arbeiten.photos || [], series: byName.serien.series || [] });
     } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
   }
-  componentDidUpdate() { this.applyMeta(); this.playHeroVideo(); document.body.style.overflow = this.state.open >= 0 ? 'hidden' : ''; }
+  componentDidUpdate() { this.applyMeta(); this.playHeroVideo(); this.fitMail(); document.body.style.overflow = this.state.open >= 0 ? 'hidden' : ''; }
+  // E-Mail-Adresse im Fußbereich: immer in einer Zeile. Wird sie für den Bildschirm zu breit (schmales Handy, längere Adresse),
+  // verkleinert sich die Schrift entsprechend, statt mitten im Wort umzubrechen.
+  fitMail = () => {
+    const a = document.querySelector('.mail-link');
+    if (!a) return;
+    a.style.whiteSpace = 'nowrap';
+    a.style.fontSize = '';
+    const avail = a.clientWidth;
+    const need = a.scrollWidth;
+    if (avail > 0 && need > avail) {
+      const fs = parseFloat(getComputedStyle(a).fontSize);
+      a.style.fontSize = Math.max(14, Math.floor((fs * avail) / need * 0.97)) + 'px';
+    }
+  };
   // Das Framework übernimmt "muted" und "loop" nicht als Attribut. Ohne stumm blockieren Browser den Autoplay,
   // ohne loop bliebe das Video am Ende stehen. Deshalb hier als Eigenschaft setzen und starten.
   playHeroVideo() {
