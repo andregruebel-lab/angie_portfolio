@@ -282,3 +282,28 @@ collections:
             fields:
               - {label: "Überschrift über der E-Mail („Aufträge & Anfragen“)", name: "enquiries", widget: string}
               - {label: "Beschriftung des Shop-Links („Print-Shop“)", name: "shop", widget: string}
+      - label: "7 · Rechtliches (Impressum, Datenschutz)"
+        name: "rechtliches"
+        file: "content/rechtliches.json"
+        fields:
+          - label: "Texte Deutsch"
+            name: "de"
+            widget: object
+            collapsed: false
+            fields:
+              - {label: "Impressum", name: "imprint", widget: text, required: false, hint: "Absätze mit einer Leerzeile trennen. Eine Zeile, die mit ## beginnt, wird eine Überschrift."}
+              - {label: "Datenschutzerklärung", name: "privacy", widget: text, required: false, hint: "Absätze mit einer Leerzeile trennen. Eine Zeile, die mit ## beginnt, wird eine Überschrift."}
+          - label: "Texte English (nur wenn ausgefüllt, sonst Deutsch)"
+            name: "en"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Impressum", name: "imprint", widget: text, required: false, hint: "Absätze mit einer Leerzeile trennen. Eine Zeile, die mit ## beginnt, wird eine Überschrift. Leer lassen: Es wird der deutsche Text angezeigt."}
+              - {label: "Datenschutzerklärung", name: "privacy", widget: text, required: false, hint: "Absätze mit einer Leerzeile trennen. Eine Zeile, die mit ## beginnt, wird eine Überschrift. Leer lassen: Es wird der deutsche Text angezeigt."}
+          - label: "Тексты Русский (nur wenn ausgefüllt, sonst Deutsch)"
+            name: "ru"
+            widget: object
+            collapsed: true
+            fields:
+              - {label: "Impressum", name: "imprint", widget: text, required: false, hint: "Absätze mit einer Leerzeile trennen. Eine Zeile, die mit ## beginnt, wird eine Überschrift. Leer lassen: Es wird der deutsche Text angezeigt."}
+              - {label: "Datenschutzerklärung", name: "privacy", widget: text, required: false, hint: "Absätze mit einer Leerzeile trennen. Eine Zeile, die mit ## beginnt, wird eine Überschrift. Leer lassen: Es wird der deutsche Text angezeigt."}

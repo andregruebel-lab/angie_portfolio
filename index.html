@@ -21,12 +21,16 @@ a{color:#191816;text-decoration:none}
 a:hover{color:#9a4a2c}
 ::selection{background:#191816;color:#efebe4}
 /* E-Mail im Fußbereich: Grundgröße hier (nicht inline), damit das Verkleinern per Script wieder zurückgesetzt werden kann */
-.mail-link{font-size:clamp(40px,8vw,128px)}
+.mail-link{font-size:clamp(40px,8vw,128px);white-space:nowrap}
+/* Sprung zu Menüpunkten (#work, #series, #about, #contact): Platz für die feste Kopfzeile lassen, damit nichts darunter verschwindet. --header-h setzt ein Script. */
+html{scroll-padding-top:var(--header-h,72px)}
 /* Schmale Bildschirme: Einleitungstext und "Seit ..."-Zeile über die volle Breite statt in 5 von 12 Spalten gedrängt */
 @media (max-width:720px){
   /* Überschrift: in allen Sprachen gleich groß und nicht ausbalanciert. 20vw ist die größte Größe, bei der auch das längste Wort (russisch "пойманный") nicht umbricht. */
   .hero-h1{font-size:clamp(56px,20vw,120px) !important;text-wrap:wrap !important;overflow-wrap:anywhere}
   .hero-intro{grid-column:1 / -1 !important;max-width:none !important}
+  /* E-Mail: auf dem Handy von Haus aus kleiner (mit Reserve), passt sich zusätzlich per Script an längere Adressen an */
+  .mail-link{font-size:clamp(24px,8.6vw,40px)}
   .hero-meta{grid-column:1 / -1 !important;justify-content:flex-start !important;flex-wrap:wrap}
 }
 /* "Über mich": Leistungen und Wohnort untereinander statt in zwei schmalen Spalten (Handy und Tablet) */
@@ -143,12 +147,22 @@ a:hover{color:#9a4a2c}
 
 <footer id="contact" style="margin-top:clamp(80px,12vw,160px);background:#191816;color:#efebe4;padding:clamp(56px,8vw,112px) clamp(20px,4vw,56px) 28px">
   <span style="text-transform:uppercase;color:#a8a29a">{{ t.enquiries }}</span>
-  <a class="mail-link" href="{{ mailto }}" style="display:block;margin:20px 0 clamp(56px,8vw,112px);font-family:'Instrument Serif','Cormorant',serif;line-height:1;letter-spacing:-0.02em;color:#efebe4;overflow-wrap:anywhere" style-hover="color:#d98a66">{{ site.email }}</a>
-  <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;text-transform:uppercase;border-top:1px solid #efebe433;padding-top:20px">
-    <div style="display:flex;gap:28px;flex-wrap:wrap">
-      <a href="{{ site.instagram }}" style="color:#efebe4">Instagram</a>
-      <a href="{{ site.arena }}" style="color:#efebe4">Are.na</a>
-      <a href="{{ site.shop_url }}" style="color:#efebe4">{{ t.shop }}</a>
+  <div class="contact-row" style="display:flex;align-items:baseline;flex-wrap:wrap;gap:12px 48px;margin:20px 0 clamp(56px,8vw,112px)">
+    <a class="mail-link" href="{{ mailto }}" style="font-family:'Instrument Serif','Cormorant',serif;line-height:1;letter-spacing:-0.02em;color:#efebe4" style-hover="color:#d98a66">{{ site.email }}</a>
+    <sc-if value="{{ insta.has }}" hint-placeholder-val="{{ true }}">
+      <a href="{{ insta.href }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:baseline;gap:10px;text-transform:uppercase;color:#efebe4" style-hover="color:#d98a66"><span style="color:#a8a29a">Instagram</span><span>{{ insta.handle }} ↗</span></a>
+    </sc-if>
+  </div>
+  <div style="display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;text-transform:uppercase;border-top:1px solid #efebe433;padding-top:20px">
+    <div style="display:flex;gap:12px 28px;flex-wrap:wrap">
+      <sc-if value="{{ arena.has }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ arena.href }}" target="_blank" rel="noopener" style="color:#efebe4">Are.na</a>
+      </sc-if>
+      <sc-if value="{{ shop.has }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ shop.href }}" target="_blank" rel="noopener" style="color:#efebe4">{{ t.shop }}</a>
+      </sc-if>
+      <a href="{{ legal.imprintHref }}" style="color:#efebe4">{{ legal.imprint }}</a>
+      <a href="{{ legal.privacyHref }}" style="color:#efebe4">{{ legal.privacy }}</a>
     </div>
     <span style="color:#a8a29a">© {{ year }} {{ site.name }}</span>
   </div>
@@ -170,11 +184,11 @@ a:hover{color:#9a4a2c}
 <script type="text/x-dc" data-dc-script data-props="{&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Editorial&quot;,&quot;Uniform&quot;],&quot;default&quot;:&quot;Editorial&quot;,&quot;tsType&quot;:&quot;'Editorial'|'Uniform'&quot;},&quot;showCaptions&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   static LANGS = ['de', 'en', 'ru'];
-  // Bedien-Texte der Vergrößerung (Schließen, Blättern) je Sprache.
+  // Bedien-Texte (Vergrößerung, Fußzeile) je Sprache.
   static UI = {
-    de: { close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto' },
-    en: { close: 'Close', prev: 'Previous photo', next: 'Next photo' },
-    ru: { close: 'Закрыть', prev: 'Предыдущее фото', next: 'Следующее фото' },
+    de: { close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto', imprint: 'Impressum', privacy: 'Datenschutz' },
+    en: { close: 'Close', prev: 'Previous photo', next: 'Next photo', imprint: 'Legal notice', privacy: 'Privacy policy' },
+    ru: { close: 'Закрыть', prev: 'Предыдущее фото', next: 'Следующее фото', imprint: 'Выходные данные', privacy: 'Конфиденциальность' },
   };
   // Inhalte liegen in einer Datei je Abschnitt (content/*.json) und werden hier zu einem Objekt zusammengesetzt.
   static CONTENT = ['general', 'start', 'arbeiten', 'serien', 'ueber', 'kontakt'];
@@ -212,7 +226,9 @@ class Component extends DCLogic {
     if (Math.abs(dx) > 50) this.stepLightbox(dx < 0 ? 1 : -1);
   };
   componentWillUnmount() {
-    window.removeEventListener('resize', this.fitMail);
+    window.removeEventListener('resize', this.layoutTweaks);
+    if (document.fonts && document.fonts.removeEventListener) document.fonts.removeEventListener('loadingdone', this.layoutTweaks);
+    if (this.ro) this.ro.disconnect();
     document.removeEventListener('keydown', this.onKey);
     document.removeEventListener('touchstart', this.onTouchStart);
     document.removeEventListener('touchend', this.onTouchEnd);
@@ -228,8 +244,12 @@ class Component extends DCLogic {
     if (n > 0) this.setState({ open: (this.state.open + d + n) % n });
   }
   async componentDidMount() {
-    window.addEventListener('resize', this.fitMail);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.fitMail);
+    window.addEventListener('resize', this.layoutTweaks);
+    if (document.fonts) {
+      if (document.fonts.ready) document.fonts.ready.then(this.layoutTweaks);
+      if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', this.layoutTweaks);
+    }
+    if (window.ResizeObserver) { this.ro = new ResizeObserver(this.layoutTweaks); this.ro.observe(document.body); }
     document.addEventListener('keydown', this.onKey);
     document.addEventListener('touchstart', this.onTouchStart, { passive: true });
     document.addEventListener('touchend', this.onTouchEnd, { passive: true });
@@ -242,21 +262,26 @@ class Component extends DCLogic {
       this.setState({ site, lang, cats: byName.arbeiten.categories || [], photos: byName.arbeiten.photos || [], series: byName.serien.series || [] });
     } catch (e) { console.error('Inhalte konnten nicht geladen werden', e); }
   }
-  componentDidUpdate() { this.applyMeta(); this.playHeroVideo(); this.fitMail(); document.body.style.overflow = this.state.open >= 0 ? 'hidden' : ''; }
-  // E-Mail-Adresse im Fußbereich: immer in einer Zeile. Wird sie für den Bildschirm zu breit (schmales Handy, längere Adresse),
-  // verkleinert sich die Schrift entsprechend, statt mitten im Wort umzubrechen.
+  componentDidUpdate() { this.applyMeta(); this.playHeroVideo(); this.layoutTweaks(); document.body.style.overflow = this.state.open >= 0 ? 'hidden' : ''; }
+  // E-Mail-Adresse im Fußbereich: immer in einer Zeile. Passt sie nicht in die Breite (schmales Handy, längere Adresse),
+  // verkleinert sich die Schrift, statt mitten im Wort umzubrechen.
   fitMail = () => {
     const a = document.querySelector('.mail-link');
-    if (!a) return;
-    a.style.whiteSpace = 'nowrap';
+    if (!a || !a.parentElement) return;
     a.style.fontSize = '';
-    const avail = a.clientWidth;
-    const need = a.scrollWidth;
+    const avail = a.parentElement.clientWidth;
+    const need = a.getBoundingClientRect().width;
     if (avail > 0 && need > avail) {
       const fs = parseFloat(getComputedStyle(a).fontSize);
       a.style.fontSize = Math.max(14, Math.floor((fs * avail) / need * 0.97)) + 'px';
     }
   };
+  // Höhe der festen Kopfzeile merken, damit Sprünge zu Menüpunkten (#contact usw.) nicht darunter landen (siehe scroll-padding-top im CSS).
+  setHeaderOffset = () => {
+    const h = document.querySelector('header');
+    if (h) document.documentElement.style.setProperty('--header-h', h.offsetHeight + 'px');
+  };
+  layoutTweaks = () => { this.setHeaderOffset(); this.fitMail(); };
   // Das Framework übernimmt "muted" und "loop" nicht als Attribut. Ohne stumm blockieren Browser den Autoplay,
   // ohne loop bliebe das Video am Ende stehen. Deshalb hier als Eigenschaft setzen und starten.
   playHeroVideo() {
@@ -290,6 +315,12 @@ class Component extends DCLogic {
     // "Alle": Spalten, jedes Foto in seinem eigenen Format. Einzelne Kategorien (oder Uniform): gleichmäßiges Raster, 4/5 zugeschnitten.
     const masonry = filter === 'all' && !uniform;
     const ui = Component.UI[lang] || Component.UI.de;
+    // Nur echte Adressen anzeigen (http/https). Platzhalter wie "#" oder leere Felder blenden den Link aus.
+    const link = (u) => (typeof u === 'string' && /^https?:\/\//i.test(u.trim()) ? u.trim() : '');
+    const handleOf = (u) => {
+      if (!u) return '';
+      try { const seg = new URL(u).pathname.split('/').filter(Boolean).pop(); return seg ? '@' + seg : u.replace(/^https?:\/\/(www\.)?/i, ''); } catch (e) { return u; }
+    };
     const pill = on => ({ bg: on ? '#191816' : 'transparent', fg: on ? '#efebe4' : '#191816' });
     const list = photos.map((p, i) => ({ p, i })).filter(({ p }) => filter === 'all' || p.category === filter);
     const withImg = list.filter(({ p }) => p.image);
@@ -302,6 +333,10 @@ class Component extends DCLogic {
       hero: { has: !!(site && site.hero_image), src: site && site.hero_image, alt: t.hero_caption || (site ? site.hero_caption : '') || '', hasVideo: !!(site && site.hero_video), video: site && site.hero_video },
       portrait: { has: !!(site && site.portrait_image), src: site && site.portrait_image },
       showCaptions: this.props.showCaptions ?? true,
+      insta: { has: !!link(site && site.instagram), href: link(site && site.instagram), handle: handleOf(link(site && site.instagram)) },
+      arena: { has: !!link(site && site.arena), href: link(site && site.arena) },
+      shop: { has: !!link(site && site.shop_url), href: link(site && site.shop_url) },
+      legal: { imprint: ui.imprint, privacy: ui.privacy, imprintHref: 'impressum.html?lang=' + lang, privacyHref: 'datenschutz.html?lang=' + lang },
       multiLang: this.activeLangs(site).length > 1,
       langs: this.activeLangs(site).map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
       filters: [{ id: 'all', label: t.all }, ...cats.map(c => ({ id: c.id, label: c[lang] }))].map(c => ({

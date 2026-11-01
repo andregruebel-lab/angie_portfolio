@@ -73,15 +73,25 @@ a:hover{color:#9a4a2c}
 </sc-if>
 </main>
 
-<footer style="margin-top:clamp(80px,10vw,140px);background:#191816;color:#efebe4;padding:28px clamp(20px,4vw,56px);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;text-transform:uppercase">
+<footer style="margin-top:clamp(80px,10vw,140px);background:#191816;color:#efebe4;padding:28px clamp(20px,4vw,56px);display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;text-transform:uppercase">
   <a href="{{ mailto }}" style="color:#efebe4" style-hover="color:#d98a66">{{ site.email }}</a>
-  <span style="color:#a8a29a">© {{ year }} {{ site.name }}</span>
+  <span style="display:flex;gap:12px 24px;flex-wrap:wrap">
+    <a href="{{ legal.imprintHref }}" style="color:#efebe4">{{ legal.imprint }}</a>
+    <a href="{{ legal.privacyHref }}" style="color:#efebe4">{{ legal.privacy }}</a>
+    <span style="color:#a8a29a">© {{ year }} {{ site.name }}</span>
+  </span>
 </footer>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   static LANGS = ['de', 'en', 'ru'];
+  // Fußzeile: Beschriftungen der rechtlichen Seiten je Sprache.
+  static UI = {
+    de: { imprint: 'Impressum', privacy: 'Datenschutz' },
+    en: { imprint: 'Legal notice', privacy: 'Privacy policy' },
+    ru: { imprint: 'Выходные данные', privacy: 'Конфиденциальность' },
+  };
   // Inhalte liegen in einer Datei je Abschnitt (content/*.json) und werden hier zu einem Objekt zusammengesetzt.
   static CONTENT = ['general', 'start', 'arbeiten', 'serien', 'ueber', 'kontakt'];
   static LISTS = ['categories', 'photos', 'series'];
@@ -151,6 +161,7 @@ class Component extends DCLogic {
       year: new Date().getFullYear(),
       mailto: site ? 'mailto:' + site.email : '#',
       homeHref: './?lang=' + lang,
+      legal: { imprint: (Component.UI[lang] || Component.UI.de).imprint, privacy: (Component.UI[lang] || Component.UI.de).privacy, imprintHref: 'impressum.html?lang=' + lang, privacyHref: 'datenschutz.html?lang=' + lang },
       indexHref: './?lang=' + lang + '#series',
       multiLang: this.activeLangs(site).length > 1,
       langs: this.activeLangs(site).map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),

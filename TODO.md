@@ -16,8 +16,12 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
 - **Wichtig:** Ein Schutz des Pfades `/pflege` (Cloudflare Access) ersetzt das Privatstellen **nicht**. Er verhindert nur, dass jemand über `pflege/config.yml` auf der Webseite den Repo-Namen findet. Ein öffentliches Repo bleibt auf GitHub lesbar (Profil, Suchmaschinen, bekannter Link), auch ohne Link von der Webseite. Nur „privat“ schützt Verlauf, E-Mail-Adresse und diese Liste. Was dann trotzdem öffentlich bleibt, steht weiter unten bei „Was bedeutet ‚Repo privat‘ genau?“.
 
 ## 1. Vor dem öffentlichen Start (Pflicht bzw. dringend)
-- [ ] **Impressum** als eigene Seite anlegen und im Fußbereich verlinken. Angaben: Name, ladungsfähige Anschrift, Kontakt (E-Mail). Ob und was Pflicht ist, hängt von der Art der Seite ab; im Zweifel rechtlich klären lassen.
-- [ ] **Datenschutzerklärung** als eigene Seite anlegen und verlinken. Themen: Hosting bei Cloudflare (Server-Logfiles), E-Mail-Kontakt, Links zu Instagram/Are.na/Shop, Speicherung der gewählten Sprache im Browser (localStorage). Rechtlich klären lassen.
+- [ ] **Impressum und Datenschutzerklärung ausfüllen.** Die Seiten `impressum.html` und `datenschutz.html` gibt es schon, sie sind im Fußbereich verlinkt (auch auf den Serienseiten). Der Text steht als **Entwurf** im CMS unter **„7 · Rechtliches“** (Deutsch; Englisch und Russisch bleiben leer, dann wird der deutsche Text angezeigt). Zu tun:
+  - Alle Angaben in eckigen Klammern ersetzen (Name, Anschrift, ggf. Telefon und Umsatzsteuer-ID) und den Absatz „ENTWURF“ löschen.
+  - Beide Texte **rechtlich prüfen lassen**. Ich habe sie nach dem tatsächlichen Stand der Seite geschrieben (Cloudflare, keine Cookies, Sprache im Browser, Instagram-Link), aber ich kann keine Rechtsberatung geben. Zuständige Datenschutzbehörde und Hinweis zur Datenübermittlung in die USA prüfen.
+  - Nach dem Auslagern von Schriften und Bausteinen (nächster Punkt) den Abschnitt „Externe Inhalte“ in der Datenschutzerklärung löschen.
+  - Optional: Texte auf Englisch und Russisch übersetzen lassen (im CMS in den eingeklappten Blöcken).
+  - Auch diese Seiten laden noch Schriften von Google; sie sind bei der Umstellung mit zu berücksichtigen.
 - [ ] **Externe Verbindungen entfernen:** Google Fonts (`fonts.googleapis.com`) und React/Babel von `unpkg.com` auf eigene Dateien im Repo umstellen (Schriften als Dateien ablegen, Adressen in `support.js` und den beiden Seiten ändern). Babel ist 3 MB groß. Danach testen, dass beim Öffnen keine Verbindung zu Google/unpkg mehr entsteht.
 - [ ] **Link-Vorschau (WhatsApp, Instagram, Google)** reparieren: In `index.html` stehen im Seitenkopf noch Titel und Beschreibung der Vorlage („Mara Ellison, Lissabon“, og:title). Das lässt sich nur im Quelltext ändern, nicht im CMS. Außerdem `Series.dc.html` prüfen.
 
@@ -66,7 +70,9 @@ Der Code und alle Fotos liegen bisher **nur auf GitHub**. Ein Fehler dort (verse
 - [ ] **Wiederherstellung einmal üben:** Aus der lokalen Kopie ein neues Repo erzeugen und prüfen, dass die Seite daraus gebaut werden kann.
 
 ## 5. Inhalte und Feinschliff
-- [ ] **Platzhalter der Vorlage ersetzen:** Die fünf Serien („Die lange Flut“ usw.) ohne Bilder, Instagram-/Are.na-/Shop-Links (`#`), Porträtfoto, Jahreszahlen bei den Fotos (aktuell Platzhalter 2024 bis 2026), Bildunterschrift und Jahr unter dem Titelvideo.
+- [ ] **Instagram-Adresse prüfen:** Eingetragen ist `https://www.instagram.com/anhely_pyly` (erscheint als „@anhely_pyly“ neben der E-Mail im Fußbereich). Ob der Name stimmt, bitte kontrollieren.
+- [ ] Are.na- und Print-Shop-Link: Sie erscheinen im Fußbereich nur, wenn im CMS („6 · Kontakt“) eine echte Adresse (http/https) steht. Heute stehen dort Platzhalter (`#`), deshalb sind sie ausgeblendet.
+- [ ] **Platzhalter der Vorlage ersetzen:** Die fünf Serien („Die lange Flut“ usw.) ohne Bilder, Porträtfoto, Jahreszahlen bei den Fotos (aktuell Platzhalter 2024 bis 2026), Bildunterschrift und Jahr unter dem Titelvideo.
 - [ ] Russischen Text von einer Muttersprachlerin / einem Muttersprachler prüfen lassen.
 - [ ] Deutscher Text „Über mich“: „setzte“ → „setze“, und wohl „in Szene“ ergänzen. Titel: doppeltes Leerzeichen entfernen.
 - [ ] Titelvideo in höherer Auflösung (jetzt 832 × 464).
