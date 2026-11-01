@@ -1,5 +1,5 @@
 {
-  // Cloudflare: Die Seite wird aus dem Hauptordner veröffentlicht (nicht aus "admin").
+  // Cloudflare: Die Seite wird aus dem Hauptordner veröffentlicht (nicht aus dem CMS-Ordner "pflege").
   "name": "angie-portfolio",
   "compatibility_date": "2025-06-01",
   "assets": {

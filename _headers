@@ -1,0 +1,6 @@
+# CMS-Seite nicht in Suchmaschinen aufnehmen (zusätzlich zum noindex im HTML).
+# Der Pfad steht bewusst NICHT in der robots.txt, damit er dort nicht verraten wird.
+/pflege
+  X-Robots-Tag: noindex, nofollow
+/pflege/*
+  X-Robots-Tag: noindex, nofollow
