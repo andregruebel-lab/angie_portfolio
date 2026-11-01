@@ -2,6 +2,15 @@
 
 Stand: 01.11.2026. Diese Datei wird **nicht** auf der Webseite veröffentlicht (steht in `.assetsignore`).
 
+## 0. Als Erstes: Repos auf privat stellen
+Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt oder das GitHub-Profil ansieht, den **Verlauf** (mit E-Mail-Adresse aus den CMS-Änderungen) und diese **To-do-Liste** lesen. Die Webseite selbst zeigt das nicht, GitHub schon.
+- [ ] GitHub → Repo `angie_portfolio` → Settings → ganz unten **Danger Zone** → **Change visibility** → **Make private**. Dasselbe für `sveltia-cms-auth` (optional, dort steht nur der Programmcode).
+- [ ] GitHub → Settings → Applications → Installed GitHub Apps → **Cloudflare Workers and Pages** → Configure → beide Repos unter „Repository access“ eintragen.
+- [ ] In Cloudflare prüfen, dass der Build noch läuft (neuer Commit oder „Retry build“). Dann `…/pflege` öffnen, anmelden, eine Änderung probieren.
+- [ ] Bei GitHub „Keep my email addresses private“ einschalten (Settings → Emails).
+- Das Repo `trading_agent` ist davon unabhängig: Jedes Repo hat seine eigene Einstellung (Public/Private).
+- **Wichtig:** Ein Schutz des Pfades `/pflege` (Cloudflare Access) ersetzt das Privatstellen **nicht**. Er verhindert nur, dass jemand über `pflege/config.yml` auf der Webseite den Repo-Namen findet. Ein öffentliches Repo bleibt auf GitHub lesbar (Profil, Suchmaschinen, bekannter Link), auch ohne Link von der Webseite. Nur „privat“ schützt Verlauf, E-Mail-Adresse und diese Liste. Was dann trotzdem öffentlich bleibt, steht weiter unten bei „Was bedeutet ‚Repo privat‘ genau?“.
+
 ## 1. Vor dem öffentlichen Start (Pflicht bzw. dringend)
 - [ ] **Impressum** als eigene Seite anlegen und im Fußbereich verlinken. Angaben: Name, ladungsfähige Anschrift, Kontakt (E-Mail). Ob und was Pflicht ist, hängt von der Art der Seite ab; im Zweifel rechtlich klären lassen.
 - [ ] **Datenschutzerklärung** als eigene Seite anlegen und verlinken. Themen: Hosting bei Cloudflare (Server-Logfiles), E-Mail-Kontakt, Links zu Instagram/Are.na/Shop, Speicherung der gewählten Sprache im Browser (localStorage). Rechtlich klären lassen.
@@ -16,14 +25,14 @@ Stand: 01.11.2026. Diese Datei wird **nicht** auf der Webseite veröffentlicht (
 - [ ] E-Mail-Adresse im Fußbereich: später eine Adresse unter der eigenen Domain verwenden (die jetzige liegt bei Gmail).
 
 ## 3. GitHub und Zugänge
-- [ ] Repos `angie_portfolio` und `sveltia-cms-auth` auf **privat** stellen (danach Cloudflare-Build und CMS-Login prüfen).
+- [ ] Repos auf **privat** stellen: siehe Abschnitt 0 (das ist die erste Aufgabe).
   - Danach in GitHub unter Settings → Applications → Installed GitHub Apps → **Cloudflare Workers and Pages** → Configure prüfen, dass beide Repos als erlaubt eingetragen sind. Sonst findet Cloudflare sie nicht mehr.
   - Es müssen keine Passwörter bei Cloudflare hinterlegt werden. Der Zugriff läuft über die GitHub-App. Das CMS meldet sich bei jedem Login über GitHub an (das Token liegt nur im Browser der Person, die sich anmeldet).
   - Wer das CMS nutzt, muss weiterhin Mitarbeiter (Collaborator) des Repos sein.
   - Privat schützt Verlauf, E-Mail-Adressen und nicht ausgelieferte Dateien. **Die Dateien der Webseite selbst bleiben öffentlich** (alles, was veröffentlicht wird, kann jeder abrufen, auch `content/*.json` und `pflege/config.yml`).
 - [ ] Bei GitHub „Keep my email addresses private“ einschalten (Settings → Emails).
 - [ ] Optional: Kontoname auf GitHub neutral machen oder Repos in ein neutral benanntes Konto verschieben. Der Repo-Name steht in `pflege/config.yml` (`repo:`), und diese Datei ist öffentlich abrufbar. Danach `repo:` in `config.yml`, die Cloudflare-Verbindung und die OAuth-App anpassen.
-- [ ] Optional: `/pflege` mit Cloudflare Access zusätzlich schützen.
+- [ ] Optional: `/pflege` mit Cloudflare Access zusätzlich schützen. Das blendet die CMS-Seite und `pflege/config.yml` (mit dem Repo-Namen) für Fremde aus. Es macht das Repo **nicht** privat. Nicht getestet; zu klären, wie es zusammen mit dem GitHub-Login im Popup funktioniert.
 - [ ] Alte Netlify-Seite abschalten oder löschen, alte GitHub-OAuth-App (für Netlify) löschen.
 - [ ] Client ID und Client Secret der OAuth-App in einem Passwort-Manager sichern (das Secret wird bei GitHub nur einmal angezeigt; im Zweifel ein neues erzeugen und in Cloudflare eintragen).
 
