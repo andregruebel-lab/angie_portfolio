@@ -25,6 +25,32 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
 - [ ] **Externe Verbindungen entfernen:** Google Fonts (`fonts.googleapis.com`) und React/Babel von `unpkg.com` auf eigene Dateien im Repo umstellen (Schriften als Dateien ablegen, Adressen in `support.js` und den beiden Seiten ändern). Babel ist 3 MB groß. Danach testen, dass beim Öffnen keine Verbindung zu Google/unpkg mehr entsteht.
 - [ ] **Link-Vorschau (WhatsApp, Instagram, Google)** reparieren: In `index.html` stehen im Seitenkopf noch Titel und Beschreibung der Vorlage („Mara Ellison, Lissabon“, og:title). Das lässt sich nur im Quelltext ändern, nicht im CMS. Außerdem `Series.dc.html` prüfen.
 
+## 1b. Neu aufgenommen (Durchsicht der Seite, 02.11.2026)
+**Wichtig, vor dem öffentlichen Start**
+- [ ] **Porträtfoto bei „Über mich“ verkleinern und Standortdaten entfernen.** Die Datei `images/uploads/pxl_20260805_101520391.mp.jpg` ist **8,3 MB groß** (3072 × 4080 Pixel, Originalgröße vom Handy) und enthält Metadaten: **GPS-Standort** (Raum Bologna, etwa auf einen Kilometer genau), Gerät (Pixel 8 Pro) und Aufnahmezeit. Plan: auf etwa 1400 Pixel Breite verkleinern (unter 400 KB) und die Metadaten entfernen. Die alte Fassung bleibt im Verlauf auf GitHub, solange das Repo öffentlich ist (siehe Abschnitt 0). **Künftig:** Fotos vor dem Hochladen im CMS verkleinern und ohne Standortdaten exportieren, das CMS entfernt nichts selbst. Die übrigen Fotos und das Video habe ich geprüft: keine Standortdaten.
+- [ ] **Serien ausblenden, solange sie leer sind.** Alle fünf Serien sind Beispiele ohne Bilder. Besucher können sie anklicken und sehen leere Rahmen. Bis echte Serien da sind, Abschnitt „Serien“ und Menüpunkt ausblenden (kann ich einbauen).
+- [ ] **Einwilligungen der abgebildeten Personen schriftlich festhalten** (Model Release), besonders beim Kind, beim Badewannenbild und für die Veröffentlichung im Netz. Notieren, wer auf welchem Foto zu sehen ist.
+- [ ] **Zwei-Faktor-Anmeldung** bei GitHub, Cloudflare, Domain-Anbieter und E-Mail einschalten. Wer Zugang zu GitHub hat, kann die ganze Seite ändern.
+- [ ] **Auf echten Geräten testen:** iPhone (Safari), Android (Chrome) und Desktop (Chrome, Safari, Firefox). Besonders: Video startet, Vergrößerung der Fotos, Sprünge im Menü, Schriften, Anmeldung im CMS.
+- [ ] **Ladezeit auf dem Handy messen** (zum Beispiel mit PageSpeed Insights). Die Seite lädt zum Zusammenbauen 3 MB Programmcode (Babel) im Browser, dazu Video und Bilder. Gegebenenfalls Bilder verkleinern oder die Seite vorab fertig bauen (größerer Umbau).
+
+**Sichtbarkeit und Auffindbarkeit**
+- [ ] **Favicon** (Symbol im Browser-Tab) und Symbol für den Startbildschirm: fehlt bisher.
+- [ ] **Vorschaubild für Link-Vorschau** (`og:image`): fehlt, gehört zum Punkt „Link-Vorschau“ oben.
+- [ ] **`sitemap.xml`** anlegen, in der `robots.txt` eintragen, Seite bei der Google Search Console anmelden (nach der Domain).
+- [ ] **Eigene 404-Seite** im Stil der Seite.
+- [ ] Optional, Entscheidung: Browser-Sprache automatisch vorwählen (heute immer Deutsch, wenn nichts gemerkt ist); getrennte Adressen oder `hreflang` pro Sprache für Suchmaschinen.
+
+**Technik und Betrieb**
+- [ ] **Decap-Version festlegen:** `pflege/index.html` lädt `decap-cms@^3.0.0` (schwebend, nimmt künftig die jeweils neueste 3.x). Auf eine feste Version setzen oder mit den anderen Bausteinen auf eigene Dateien legen.
+- [ ] **Benachrichtigung bei fehlgeschlagenem Build** in Cloudflare einrichten, damit Fehler auffallen.
+- [ ] **Nicht verwendetes Foto** `whatsapp-image-…-11-.jpeg` (Porträt vor Seerosen): in die Galerie aufnehmen oder löschen.
+- [ ] **Zweite Person zur Pflege:** auf GitHub als Mitarbeiterin einladen (braucht ein GitHub-Konto) und eine Kurzanleitung schreiben (Foto hinzufügen, Text ändern, Veröffentlichen; Änderungen erscheinen nach etwa 1 bis 2 Minuten).
+- [ ] **E-Mail unter eigener Domain:** Absenden mit SPF/DKIM prüfen, damit Antworten nicht im Spam landen. Dazu `www`-Adresse auf die Hauptadresse weiterleiten.
+- [ ] **Bildrechte-Hinweis** (Urheberrecht für die Fotos) im Fußbereich oder Impressum ergänzen.
+- [ ] **Statistik:** bewusst keine eingebaut (kein Tracking). Wenn doch gewünscht, datenschutzfreundliche Lösung wählen und die Datenschutzerklärung anpassen.
+- [ ] **Offen, Rückfrage an Andre:** Der YouTube-Link vom 02.11. (`xfPTagIR60Q`) konnte nicht geöffnet werden. Was soll daraus in die Liste?
+
 ## 2. Domain
 - [ ] Domain registrieren oder anbinden: bei Cloudflare im Worker `angie-portfolio` unter Settings → Domains & Routes als Custom Domain hinzufügen (je nach Anbieter DNS-Eintrag oder DNS zu Cloudflare umziehen).
 - [ ] Im Login-Dienst (`sveltia-cms-auth`) die neue Domain bei `ALLOWED_DOMAINS` **zusätzlich** eintragen (in `wrangler.toml`, mit Komma getrennt).
