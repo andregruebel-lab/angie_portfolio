@@ -1,7 +1,7 @@
 {
   "portrait_image": "/images/uploads/pxl_20260805_101520391.mp.jpg",
   "de": {
-    "s3": "Konzeptionelles Styling & Location-Scouting",
+    "s3": "Styling, Make-up & Location-Scouting",
     "aboutLead": "Ich fotografiere Menschen und die Orte, die sie prägen — langsam, auch auf Film, oft über viele Besuche hinweg.",
     "city": "Ettlingen, DE",
     "aboutBody": "Dabei setzte ich meine Kundinnen im perfekten Zusammenspiel von Kleidung und Umwelt, sodass ausdrucksstarke, thematische Porträts entstehen. Diese ganzheitliche Gestaltung formt meine visuelle Handschrift und verleiht jedem Projekt einen unverwechselbaren Look.",
@@ -9,10 +9,10 @@
     "travels": "Weltweit unterwegs",
     "services": "Ich biete an: ",
     "s1": "Konzeptionelle Porträtfotografie",
-    "s2": "Fashion & Wardrobe Styling"
+    "s2": "Themenentwicklung & Moodboards"
   },
   "en": {
-    "s3": "Conceptual styling & location scouting",
+    "s3": "Styling, make-up & location scouting",
     "aboutLead": "I photograph people and the places that shape them — slowly, also on film, often over many visits.",
     "city": "Ettlingen, DE",
     "aboutBody": "In doing so, I stage my clients in a perfect interplay of clothing and environment, creating expressive, thematic portraits. This holistic approach shapes my visual signature and gives every project a distinctive look.",
@@ -20,10 +20,10 @@
     "travels": "Travels worldwide",
     "services": "I offer:",
     "s1": "Conceptual portrait photography",
-    "s2": "Fashion & wardrobe styling"
+    "s2": "Theme development & moodboards"
   },
   "ru": {
-    "s3": "Концептуальный стайлинг и поиск локаций",
+    "s3": "Стайлинг, макияж и поиск локаций",
     "aboutLead": "Я фотографирую людей и места, которые их формируют — неспешно, в том числе на плёнку, возвращаясь снова и снова.",
     "city": "Эттлинген, DE",
     "aboutBody": "При этом я выстраиваю образ клиенток в идеальном сочетании одежды и окружения, так рождаются выразительные тематические портреты. Такой целостный подход формирует мой визуальный почерк и придаёт каждому проекту неповторимый облик.",
@@ -31,6 +31,6 @@
     "travels": "Работаю по всему миру",
     "services": "Я предлагаю:",
     "s1": "Концептуальная портретная фотография",
-    "s2": "Fashion-стайлинг и работа с гардеробом"
+    "s2": "Разработка темы и мудборды"
   }
 }
