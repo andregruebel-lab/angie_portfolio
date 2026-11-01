@@ -24,6 +24,9 @@ a:hover{color:#9a4a2c}
 .mail-link{font-size:clamp(40px,8vw,128px);white-space:nowrap}
 /* Sprung zu Menüpunkten (#work, #series, #about, #contact): Platz für die feste Kopfzeile lassen, damit nichts darunter verschwindet. --header-h setzt ein Script. */
 html{scroll-padding-top:var(--header-h,72px)}
+/* Kontakt (Fußbereich) füllt den sichtbaren Rest unter der Kopfzeile. So beginnt er beim Sprung zu "Kontakt" sauber unter der Kopfzeile, ohne dass Text des Bereichs darüber angeschnitten wird. */
+#contact{display:flex;flex-direction:column;box-sizing:border-box;min-height:calc(100vh - var(--header-h,72px));min-height:calc(100svh - var(--header-h,72px))}
+#contact > div:last-child{margin-top:auto}
 /* Schmale Bildschirme: Einleitungstext und "Seit ..."-Zeile über die volle Breite statt in 5 von 12 Spalten gedrängt */
 @media (max-width:720px){
   /* Überschrift: in allen Sprachen gleich groß und nicht ausbalanciert. 20vw ist die größte Größe, bei der auch das längste Wort (russisch "пойманный") nicht umbricht. */

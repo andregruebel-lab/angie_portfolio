@@ -30,7 +30,13 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
 - [ ] Im Login-Dienst (`sveltia-cms-auth`) die neue Domain bei `ALLOWED_DOMAINS` **zusätzlich** eintragen (in `wrangler.toml`, mit Komma getrennt).
 - [ ] In der GitHub-OAuth-App die **Homepage URL** anpassen (die Callback-URL bleibt!).
 - [ ] Danach die `workers.dev`-Adresse des Portfolio-Workers abschalten, damit keine zweite Adresse im Umlauf ist.
-- [ ] E-Mail-Adresse im Fußbereich: später eine Adresse unter der eigenen Domain verwenden (die jetzige liegt bei Gmail).
+- [ ] **E-Mail auf die neue Domain umstellen.** Heute steht die Gmail-Adresse auf der Seite. Zu tun, sobald die Domain läuft:
+  1. Eine Adresse unter der Domain anlegen, zum Beispiel `kontakt@deinedomain.de`, und als **Weiterleitung an die Gmail-Adresse** einrichten. Die meisten Domain-Anbieter bieten das an; liegt die Domain bei Cloudflare, geht es mit **Cloudflare Email Routing** (kostenlos, nicht getestet).
+  2. Testen: eine Mail an die neue Adresse schicken und im Gmail-Posteingang (auch im Spam-Ordner) nachsehen.
+  3. Im CMS unter „6 · Kontakt“ die E-Mail-Adresse ändern.
+  4. Dieselbe Adresse im **Impressum** und in der **Datenschutzerklärung** ändern (CMS „7 · Rechtliches“).
+  5. Optional: In Gmail unter Einstellungen → Konten → „Senden als“ die neue Adresse einrichten, damit Antworten auch von der Domain-Adresse kommen. Ohne das sieht der Empfänger bei einer Antwort die Gmail-Adresse. Dafür braucht man meist die Zugangsdaten (SMTP) des Anbieters.
+  6. Die alte Gmail-Adresse bleibt weiter erreichbar; eine Weiterleitung ersetzt kein richtiges Postfach (keine Sicherung bei Ausfall des Anbieters).
 
 ## 3. GitHub und Zugänge
 - [ ] Repos auf **privat** stellen: siehe Abschnitt 0 (das ist die erste Aufgabe).
