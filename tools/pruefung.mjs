@@ -92,7 +92,10 @@ function videoHatOrt(buf) {
   return stuecke.some((s) => s.indexOf(Buffer.from([0xa9, 0x78, 0x79, 0x7a])) >= 0 || ORT.test(s.toString('latin1')));
 }
 const VERRAETERISCH = /^(img|pxl|dsc|dscf|dji|mvimg|whatsapp|screenshot|photo)[-_ ]?/i;
-const bilder = dateien.filter((p) => /^images\//.test(rel(p)) && /\.(jpe?g|png|webp|gif|mp4|mov|m4v)$/i.test(p));
+// Alle Fotos und Videos im ganzen Repo prüfen, nicht nur im Ordner images/ (zum Beispiel wenn jemand eine Datei direkt bei GitHub ablegt).
+const bilder = dateien.filter((p) => /\.(jpe?g|png|webp|gif|mp4|mov|m4v)$/i.test(p) && !rel(p).startsWith('tools/'));
+// Originalformate von Kameras und Handys gehören nicht ins Repo: Browser zeigen sie nicht an, und sie enthalten oft Standortdaten.
+for (const p of dateien) if (/\.(heic|heif|tiff?|dng|raw|cr2|cr3|nef|arw|orf|rw2)$/i.test(p)) err(`${rel(p)}: Originalformat (Kamera/Handy) darf nicht im Repo liegen; es wird nicht angezeigt und kann Standortdaten enthalten.`);
 let metadatenProbleme = 0;
 for (const p of bilder) {
   const r = rel(p); const buf = readFileSync(p); const kb = Math.round(buf.length / 1024); const name = basename(p);
