@@ -117,7 +117,7 @@ Vieles haben wir schon: Texte vor der Gestaltung, Impressum und Datenschutz (Ent
   - *Hintergrund:* Wenn ein Teil der Zielgruppe ukrainisch sucht, würde eine eigene Fassung die Auffindbarkeit und das Vertrauen erhöhen.
   - *Zu tun:* erst entscheiden; dann Sprache in `content/general.json` und `config.yml` anlegen, alle Texte übersetzen, als ungeprüft kennzeichnen.
   - *Du:* entscheiden und eine Muttersprachlerin lesen lassen.
-- [ ] **3. Logo/Wortmarke** (Entwurf A Wortmarke, B Wortmarke mit Zeile, C Monogramm „AP“ liegt vor)
+- [ ] **3. Logo/Wortmarke** (gewählt: **B** Wortmarke mit Zeile und **C** Monogramm „AP“; Dateien liegen in `images/logo/`, **noch nicht in die Seite eingebaut**: Favicon-Tags und `og:image` im Kopf von `index.html` und `Series.dc.html` fehlen, Link-Vorschau-Test mit echter Domain steht aus; Profilbild bei Instagram selbst hochladen)
   - *Hintergrund:* Ein Logo wird an vier Stellen sichtbar: **Favicon** (Symbol im Browser-Tab und in der Google-Suche auf dem Handy), **Link-Vorschau** (Bild, wenn der Link in WhatsApp, Instagram-Nachricht, Messenger geteilt wird; heute fehlt es), **Instagram-Profilbild** und optional **E-Mail-Signatur/Visitenkarte**. Der Seitenkopf zeigt deinen Namen bereits in derselben Schrift, dort braucht es kein Logo. Kein Logo auf den Fotos (ruhige Seite, Fotos im Mittelpunkt).
   - *Zu tun:* gewählten Entwurf als SVG anlegen und daraus Favicon, Link-Vorschaubild und Profilbild ableiten.
   - *Du:* Entwurf wählen (oder „brauchen wir nicht“).
