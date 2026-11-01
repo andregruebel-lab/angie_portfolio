@@ -55,7 +55,7 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
   - Optional: Texte auf Englisch und Russisch übersetzen lassen (im CMS in den eingeklappten Blöcken).
   - Auch diese Seiten laden noch Schriften von Google; sie sind bei der Umstellung mit zu berücksichtigen.
 - [ ] **Externe Verbindungen entfernen:** Google Fonts (`fonts.googleapis.com`) und React/Babel von `unpkg.com` auf eigene Dateien im Repo umstellen (Schriften als Dateien ablegen, Adressen in `support.js` und den beiden Seiten ändern). Babel ist 3 MB groß. Danach testen, dass beim Öffnen keine Verbindung zu Google/unpkg mehr entsteht.
-- [x] **Link-Vorschau (WhatsApp, Instagram, Google)** repariert: Platzhalter „Mara Ellison“ ist aus `index.html` und `Series.dc.html` entfernt (fester Kopf mit Anhelina Pylypiuk). WhatsApp-Test bestanden (Bild erscheint, 02.11.2026). Offen: Titel-Abweichung zwischen festem Kopf und CMS (siehe 1d, Punkt 3). In `content/serien.json` erwähnen zwei Beispielserien noch „Lissabon“ (Vorlagentext, Serien sind versteckt/ohne Bilder).
+- [x] **Link-Vorschau (WhatsApp, Instagram, Google)** repariert: Platzhalter „Mara Ellison“ ist aus `index.html` und `Series.dc.html` entfernt (fester Kopf mit Anhelina Pylypiuk). WhatsApp-Test bestanden (Bild erscheint, 02.11.2026). Offen: Titel-Abweichung zwischen festem Kopf und CMS (siehe 1d, Punkt 3). Die Beispielserien in `content/serien.json` (eine nennt „Lissabon“) bleiben vorerst bewusst als Platzhalter stehen (Entscheidung 02.11.2026); die Prüfung warnt deshalb weiter vor „Lissabon“. Vor dem öffentlichen Start ersetzen oder entfernen.
 
 ## 1b. Neu aufgenommen (Durchsicht der Seite, 02.11.2026)
 **Wichtig, vor dem öffentlichen Start**
