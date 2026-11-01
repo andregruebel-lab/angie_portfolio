@@ -1,0 +1,17 @@
+# Prüfung der Seite bei jeder Änderung auf GitHub (auch bei Änderungen aus dem CMS).
+# Schlägt sie fehl, sendet GitHub eine E-Mail und zeigt ein rotes Kreuz am Commit.
+name: Prüfung der Seite
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fotos, Videos, Zugangsdaten und Schutz des CMS prüfen
+        run: node tools/pruefung.mjs
