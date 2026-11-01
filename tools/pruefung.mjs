@@ -156,7 +156,7 @@ if (cmsPfad) {
 }
 const ai = join(ROOT, '.assetsignore');
 const ausgenommen = existsSync(ai) ? lies(ai).split('\n').map((x) => x.trim()).filter((x) => x && !x.startsWith('#')) : [];
-for (const muss of ['wrangler.jsonc', 'TODO.md', 'tools']) {
+for (const muss of ['wrangler.jsonc', 'TODO.md', 'README.md', 'CLAUDE.md', 'AGENTS.md', 'tools']) {
   if (existsSync(join(ROOT, muss)) && !ausgenommen.includes(muss)) warn(`.assetsignore: "${muss}" ist nicht ausgenommen und würde auf der Webseite veröffentlicht.`);
 }
 

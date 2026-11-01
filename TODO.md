@@ -160,6 +160,7 @@ Der Code und alle Fotos liegen bisher **nur auf GitHub**. Ein Fehler dort (verse
 - **Anmeldung:** Cloudflare-Worker `sveltia-cms-auth` (Kopie des öffentlichen Programms `sveltia/sveltia-cms-auth`, `src/index.js` unverändert), Repo `sveltia-cms-auth`. Einstellungen im Cloudflare-Dashboard: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (Secret), `ALLOWED_DOMAINS` (steht auch in `wrangler.toml`).
 - **GitHub-OAuth-App:** Callback-URL = `<Adresse des Login-Dienstes>/callback`.
 - **Account-Subdomain bei Cloudflare:** `agwebsites` (also `angie-portfolio.agwebsites.workers.dev`).
+- **Hinweise für KI-Assistenten:** `CLAUDE.md` (Regeln: Fotos bereinigen, Prüfung vor jedem Push, keine Zugangsdaten, Texte nicht ungefragt ändern) und `AGENTS.md` (Verweis darauf), `README.md` für Menschen. Alle drei werden nicht auf der Webseite veröffentlicht.
 - **Prüfung:** `tools/pruefung.mjs` (Fotos, Zugangsdaten, CMS-Schutz), ausgelöst über GitHub Action und optional beim Cloudflare-Build.
 - **Bildbereinigung im CMS:** `pflege/bilder-bereinigen.js` (verkleinern, Metadaten entfernen), geladen in `pflege/index.html` vor Decap.
 - **Sprachen:** Deutsch immer, Englisch/Russisch im CMS unter „1 · Allgemein & Menü“ freischaltbar.
