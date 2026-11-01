@@ -107,18 +107,49 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
 - [ ] Das Video erwähnt ein kostenloses „Skill“ (Vorlage für KI-Assistenten). Ich kann es nicht ansehen. Wenn du Link oder Datei dazu hast, vergleiche ich es mit unserer Seite.
 
 ## 1d. Aus dem Video „Websites mit KI bauen, die gut aussehen UND performen (Gratis Skill)“ (Julian Ivanov): was wir übernehmen (abgestimmt 02.11.2026)
-Vieles haben wir schon: Texte vor der Gestaltung, Impressum und Datenschutz (Entwurf), `robots.txt`, Prüfung, Status in Dateien, Hosting, Wettbewerbsansicht (erledigt, gestrichen). Übernommen:
-- [ ] **Suchbegriffe-Optimierung (Texte, nicht nur Metadaten):** Google wertet vor allem den **sichtbaren Text** aus (Überschriften, Fließtext, Bildbeschreibungen), dazu Titel und Beschreibung (die Beschreibung erscheint als Ausschnitt in der Suche). Das alte „Keywords“-Metafeld ignoriert Google. Also: Begriffe, die Kundinnen wirklich tippen (auch russisch und ukrainisch, zum Beispiel Fotosession/Фотосессия + Ort), müssen **im sichtbaren Text** vorkommen, natürlich formuliert. Schritte: (1) du nennst 5–10 Begriffe je Sprache, (2) ich prüfe, was dazu erscheint, (3) Vorschlag als Tabelle DE/EN/RU, (4) du entscheidest. **Technisch offen:** Jede Sprache braucht eine eigene Adresse (heute `?lang=` auf derselben Seite) und `hreflang`, sonst wird Russisch/Ukrainisch kaum eigenständig gefunden. Außerdem wird der Text erst im Browser per Script eingesetzt; manche Suchroboter (vor allem KI-Roboter) führen kein Script aus. Lösung: Text schon im HTML ausliefern (Vorab-Erzeugung).
-- [ ] **Ukrainisch als vierte Sprache?** Entscheiden (Zielgruppe). Nur mit Muttersprachlerin prüfen lassen.
-- [ ] **Logo/Wortmarke:** Entwurf A/B/C liegt vor (Wortmarke, Wortmarke mit Zeile, Monogramm „AP“). Du entscheidest, ob wir eins brauchen. Wenn ja: SVG anlegen, Favicon, Link-Vorschau (`og:image`) und Instagram-Profilbild ableiten.
-- [ ] **Domainname:** Verfügbarkeit (.de und .com) prüfen, mit dem Instagram-Namen abgleichen.
-- [ ] **Ansichtstest automatisieren:** Bisher habe ich die Ansicht nur von Hand in Testläufen geprüft, ein wiederholbares Skript liegt **nicht** im Repo. Neu: Skript, das die Seite in mehreren Handy-Breiten und allen Sprachen lädt und Überlauf, Umbrüche mitten im Wort und Menü-Sprünge prüft; zusätzlich zur Prüfung in GitHub.
-- [ ] **Unabhängige Prüfung nach größeren Änderungen:** zweite Person oder zweite KI sieht die Seite durch, nicht der, der sie gebaut hat.
-- [ ] **Search Console und Bing Webmaster Tools** anmelden (nach der Domain), Sitemap einreichen, beobachten.
-- [ ] **Sichtbarkeit in KI-Antworten („GEO“):** klare, sachliche Aussagen auf der Seite (wer, wo, was, für wen), eventuell Fragen-und-Antworten-Abschnitt. Nach dem Start testen, was ChatGPT, Perplexity und die Google-KI auf „Konzeptfotografin in Ettlingen“ antworten.
-- [ ] **Rechtliche Prüfung, zweiter Teil:** (a) **Einwilligungsbanner:** entfällt, wenn wir keine Cookies/Tracking setzen und alles selbst ausliefern (Schriften, React/Babel auslagern, siehe 1c); Datenschutzerklärung bleibt trotzdem nötig. (b) **AGB/Widerrufsbelehrung:** hängt nicht an Shop oder Warenkorb, sondern daran, ob Verträge mit Privatpersonen **ausschließlich per Fernkommunikation** (E-Mail, Formular) geschlossen werden. Das kann auch bei Shootings per E-Mail gelten; bei Terminleistungen gibt es Ausnahmen. Das ist unsicher, bitte bei einer Rechtsquelle (zum Beispiel IT-Recht-Kanzlei, Verbraucherzentrale) oder Anwalt klären lassen. (c) Nutzungsrechte der Fotos (Lizenzhinweis) festlegen.
-- [ ] **Google Unternehmensprofil (optional):** nur, wenn lokal gefunden werden soll. Ohne Ladengeschäft kann die Adresse als „Dienstleistungsgebiet“ ausgeblendet werden, die Bestätigung kann aber trotzdem eine Adresse verlangen. Mit Impressum und Privatsphäre abstimmen.
-- **Nicht übernommen:** Hostinger, DataForSEO (kostenpflichtig), Reglerpanel für Abstände, Markenrecherche bei reinem Personennamen. Das Design-Plugin aus dem Video könnte man später für eine Überarbeitung des Aussehens prüfen.
+Vieles haben wir schon: Texte vor der Gestaltung, Impressum und Datenschutz (Entwurf), `robots.txt`, Prüfung, Status in Dateien, Hosting. „Wettbewerber ansehen“ ist erledigt und gestrichen. Jeder Punkt unten hat: **Hintergrund** (warum), **Zu tun** (was konkret), **Du** (was du entscheidest oder selbst machst).
+
+- [ ] **1. Suchbegriffe-Optimierung (Texte, nicht nur Metadaten)**
+  - *Hintergrund:* Wer dich noch nicht kennt, findet dich nur über Wörter, die er in Google tippt (zum Beispiel „Fotoshooting Karlsruhe“, „Фотосессия Карлсруэ“). Google wertet vor allem den **sichtbaren Text** aus: Überschriften, Fließtext, Bildbeschreibungen. Titel und Beschreibung zählen auch (die Beschreibung ist der Ausschnitt in der Suche). Das alte „Keywords“-Metafeld ignoriert Google seit Jahren. Zwei Stolpersteine bei uns: (a) Alle Sprachen liegen auf derselben Adresse (`?lang=`); für ein eigenständiges Finden auf Russisch/Ukrainisch braucht jede Sprache eine eigene Adresse und `hreflang`. (b) Der Text wird erst im Browser per Script eingesetzt; manche Suchroboter, vor allem KI-Roboter, führen kein Script aus und sähen eine leere Seite. Abhilfe: Text schon fertig im HTML ausliefern.
+  - *Zu tun:* Begriffe sammeln und prüfen, was dazu erscheint; Vorschlag als Tabelle DE/EN/RU; nach deiner Freigabe Titel, Beschreibung, Überschriften, Texte und Bildbeschreibungen anpassen; dann Sprach-Adressen und vorab erzeugtes HTML (eigener Aufwand, mittel bis groß).
+  - *Du:* 5 bis 10 Begriffe je Sprache nennen, die Kundinnen vermutlich tippen; Wortlaut freigeben (bestehende Texte ändere ich nicht ungefragt).
+- [ ] **2. Ukrainisch als vierte Sprache?**
+  - *Hintergrund:* Wenn ein Teil der Zielgruppe ukrainisch sucht, würde eine eigene Fassung die Auffindbarkeit und das Vertrauen erhöhen.
+  - *Zu tun:* erst entscheiden; dann Sprache in `content/general.json` und `config.yml` anlegen, alle Texte übersetzen, als ungeprüft kennzeichnen.
+  - *Du:* entscheiden und eine Muttersprachlerin lesen lassen.
+- [ ] **3. Logo/Wortmarke** (Entwurf A Wortmarke, B Wortmarke mit Zeile, C Monogramm „AP“ liegt vor)
+  - *Hintergrund:* Ein Logo wird an vier Stellen sichtbar: **Favicon** (Symbol im Browser-Tab und in der Google-Suche auf dem Handy), **Link-Vorschau** (Bild, wenn der Link in WhatsApp, Instagram-Nachricht, Messenger geteilt wird; heute fehlt es), **Instagram-Profilbild** und optional **E-Mail-Signatur/Visitenkarte**. Der Seitenkopf zeigt deinen Namen bereits in derselben Schrift, dort braucht es kein Logo. Kein Logo auf den Fotos (ruhige Seite, Fotos im Mittelpunkt).
+  - *Zu tun:* gewählten Entwurf als SVG anlegen und daraus Favicon, Link-Vorschaubild und Profilbild ableiten.
+  - *Du:* Entwurf wählen (oder „brauchen wir nicht“).
+- [ ] **4. Domainname prüfen**
+  - *Hintergrund:* Der Name sollte vor dem Kauf frei sein (.de und .com) und zum Instagram-Namen passen, sonst entstehen Verwechslungen.
+  - *Zu tun:* Verfügbarkeit prüfen, Vorschläge machen.
+  - *Du:* Name wählen und registrieren (siehe Punkt 2 der Liste).
+- [ ] **5. Ansichtstest automatisieren**
+  - *Hintergrund:* Ich habe die Ansicht bisher nur von Hand in Testläufen geprüft; ein wiederholbares Skript liegt nicht im Repo. Wenn später jemand im CMS einen langen russischen Satz einträgt, könnte er das Layout verschieben, ohne dass es jemand merkt.
+  - *Zu tun:* Skript (Browser-Test), das die Seite in mehreren Handy-Breiten und allen Sprachen lädt und Überlauf, Umbrüche mitten im Wort und Menü-Sprünge prüft; läuft zusätzlich zur Prüfung in GitHub.
+  - *Du:* nichts, nur freigeben.
+- [ ] **6. Unabhängige Prüfung nach größeren Änderungen**
+  - *Hintergrund:* Das Video nennt das „Prüfagent“: Wer baut, prüft nicht selbst, weil man eigene Fehler übersieht.
+  - *Zu tun:* nach größeren Änderungen eine zweite Person oder eine zweite KI die Seite durchsehen lassen (Handy, Typografie, Umbrüche, Texte).
+  - *Du:* jemanden benennen.
+- [ ] **7. Search Console und Bing Webmaster Tools**
+  - *Hintergrund:* Kostenlose Dienste von Google und Microsoft. Sie zeigen, ob die Seite gefunden wird, mit welchen Suchwörtern, und melden Fehler. Das ist auch der beste kostenlose Weg zur Suchbegriff-Recherche.
+  - *Zu tun:* nach der Domain anmelden, Besitz bestätigen, Sitemap einreichen (`sitemap.xml` fehlt noch, siehe 1b).
+  - *Du:* Anmeldung mit deinem Konto.
+- [ ] **8. Sichtbarkeit in KI-Antworten („GEO“)**
+  - *Hintergrund:* Immer mehr Menschen fragen ChatGPT, Perplexity oder die Google-KI statt zu suchen. Diese Systeme zitieren Seiten mit klaren, sachlichen Aussagen (wer, wo, was, für wen).
+  - *Zu tun:* sachliche Kernaussagen im Text, eventuell Fragen-und-Antworten-Abschnitt; nach dem Start testen, was die KIs auf „Konzeptfotografin in Ettlingen“ antworten.
+  - *Du:* Inhalte der Antworten freigeben.
+- [ ] **9. Rechtliche Prüfung, zweiter Teil**
+  - *Hintergrund:* (a) **Einwilligungsbanner** ist nur nötig, wenn Cookies, Tracking oder externe Dienste (Google Schriften, YouTube, Karten) Daten übertragen. Liefern wir alles selbst aus (Schriften, React, Babel, siehe 1c), entfällt er; die Datenschutzerklärung bleibt trotzdem Pflicht. (b) **AGB/Widerrufsbelehrung** hängen nicht an Shop oder Warenkorb, sondern daran, ob Verträge mit Privatpersonen ausschließlich per Fernkommunikation (E-Mail, Formular) geschlossen werden. Das kann auch bei Shootings gelten; bei Terminleistungen gibt es Ausnahmen. Das ist unsicher und kein Rechtsrat. (c) **Nutzungsrechte:** Wofür dürfen Kundinnen die Fotos verwenden?
+  - *Zu tun:* nach dem Auslagern prüfen, ob wirklich keine externe Verbindung bleibt.
+  - *Du:* (b) bei einer Rechtsquelle (IT-Recht-Kanzlei, Verbraucherzentrale) oder einer Anwältin klären; (c) Lizenzhinweis festlegen.
+- [ ] **10. Google Unternehmensprofil (optional)**
+  - *Hintergrund:* Eintrag in Google Maps und der lokalen Suche („Fotografin in der Nähe“). Ohne Ladengeschäft kann die Adresse als „Dienstleistungsgebiet“ ausgeblendet werden; die Bestätigung kann trotzdem eine Adresse verlangen (Brief oder Anruf).
+  - *Zu tun:* nur bei Bedarf einrichten, mit Impressum und Privatsphäre abstimmen.
+  - *Du:* entscheiden, ob du lokal gefunden werden willst.
+- **Nicht übernommen:** Hostinger (wir nutzen Cloudflare), DataForSEO (kostenpflichtig), Reglerpanel für Abstände (das CMS genügt), Markenrecherche bei reinem Personennamen. Das Design-Plugin aus dem Video könnte man später für eine Überarbeitung des Aussehens prüfen.
 
 ## 2. Domain
 - [ ] Domain registrieren oder anbinden: bei Cloudflare im Worker `angie-portfolio` unter Settings → Domains & Routes als Custom Domain hinzufügen (je nach Anbieter DNS-Eintrag oder DNS zu Cloudflare umziehen).
