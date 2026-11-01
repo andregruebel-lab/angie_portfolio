@@ -150,8 +150,8 @@ class Component extends DCLogic {
       t, site: site || {},
       year: new Date().getFullYear(),
       mailto: site ? 'mailto:' + site.email : '#',
-      homeHref: 'Portfolio.dc.html?lang=' + lang,
-      indexHref: 'Portfolio.dc.html?lang=' + lang + '#series',
+      homeHref: './?lang=' + lang,
+      indexHref: './?lang=' + lang + '#series',
       multiLang: this.activeLangs(site).length > 1,
       langs: this.activeLangs(site).map(code => ({ code, ...pill(code === lang), select: () => this.setLang(code) })),
       s: cur ? {
