@@ -2,7 +2,15 @@
 
 Stand: 01.11.2026. Diese Datei wird **nicht** auf der Webseite veröffentlicht (steht in `.assetsignore`).
 
-## 0. Als Erstes: Repos auf privat stellen
+## 0a. Als Allererstes: Bilder anonymisieren und verkleinern
+Fotos aus dem Handy enthalten versteckte Daten (Standort, Gerät, Zeitpunkt) und sind sehr groß. Beides muss weg, bevor die Seite öffentlich ist.
+- [x] **Porträtfoto bei „Über mich“ erledigt.** Vorher: 8,3 MB, 3072 × 4080 Pixel, mit GPS-Standort (Raum Bologna), Gerät (Pixel 8 Pro), Aufnahmezeit und einem Dateinamen mit Datum. Jetzt: `portrait-ueber-mich.jpg`, 1100 × 1461 Pixel, etwa 330 KB, ohne Metadaten. Die anderen Fotos und das Video habe ich geprüft: keine Standortdaten.
+- [ ] **Alte Fassung mit Standort:** Sie bleibt im Verlauf auf GitHub, solange das Repo öffentlich ist (siehe 0b). Auch danach können Mitarbeiter des Repos sie sehen. Ganz entfernen ginge nur mit Umschreiben des Verlaufs (aufwendig, nicht empfohlen).
+- [ ] **Jedes künftige Foto vor dem Hochladen anonymisieren und verkleinern:** Lange Seite höchstens etwa 1600 Pixel, unter 400 KB, Metadaten (Standort, Gerät) entfernen, neutraler Dateiname ohne Datum. Das CMS macht das nicht selbst. Möglichkeiten: beim Export im Foto-Programm „Metadaten entfernen“ wählen, oder mir die Datei nach dem Hochladen zur Bereinigung geben (kann ich jederzeit), oder später automatisch bei jedem Hochladen prüfen lassen (GitHub Action, aufwendiger).
+- [ ] Nicht verwendetes Foto `whatsapp-image-2026-10-31-at-14.27.04-11-.jpeg` (Porträt vor Seerosen, Datum im Dateinamen): aufnehmen (dann vorher umbenennen) oder löschen.
+- [ ] Fotos in mehreren Größen und als WebP anbieten (siehe 1c).
+
+## 0b. Danach: Repos auf privat stellen
 Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt oder das GitHub-Profil ansieht, den **Verlauf** (mit E-Mail-Adresse aus den CMS-Änderungen) und diese **To-do-Liste** lesen. Die Webseite selbst zeigt das nicht, GitHub schon.
 - [ ] GitHub → Repo `angie_portfolio` → Settings → ganz unten **Danger Zone** → **Change visibility** → **Make private**. Dasselbe für `sveltia-cms-auth` (optional, dort steht nur der Programmcode).
 - [ ] GitHub → Settings → Applications → Installed GitHub Apps → **Cloudflare Workers and Pages** → Configure → beide Repos unter „Repository access“ eintragen.
@@ -27,7 +35,7 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
 
 ## 1b. Neu aufgenommen (Durchsicht der Seite, 02.11.2026)
 **Wichtig, vor dem öffentlichen Start**
-- [ ] **Porträtfoto bei „Über mich“ verkleinern und Standortdaten entfernen.** Die Datei `images/uploads/pxl_20260805_101520391.mp.jpg` ist **8,3 MB groß** (3072 × 4080 Pixel, Originalgröße vom Handy) und enthält Metadaten: **GPS-Standort** (Raum Bologna, etwa auf einen Kilometer genau), Gerät (Pixel 8 Pro) und Aufnahmezeit. Plan: auf etwa 1400 Pixel Breite verkleinern (unter 400 KB) und die Metadaten entfernen. Die alte Fassung bleibt im Verlauf auf GitHub, solange das Repo öffentlich ist (siehe Abschnitt 0). **Künftig:** Fotos vor dem Hochladen im CMS verkleinern und ohne Standortdaten exportieren, das CMS entfernt nichts selbst. Die übrigen Fotos und das Video habe ich geprüft: keine Standortdaten.
+- [x] Porträtfoto bei „Über mich“ verkleinert und anonymisiert: siehe Abschnitt 0a (erledigt).
 - [ ] **Serien ausblenden, solange sie leer sind.** Alle fünf Serien sind Beispiele ohne Bilder. Besucher können sie anklicken und sehen leere Rahmen. Bis echte Serien da sind, Abschnitt „Serien“ und Menüpunkt ausblenden (kann ich einbauen).
 - [ ] **Einwilligungen der abgebildeten Personen schriftlich festhalten** (Model Release), besonders beim Kind, beim Badewannenbild und für die Veröffentlichung im Netz. Notieren, wer auf welchem Foto zu sehen ist.
 - [ ] **Zwei-Faktor-Anmeldung** bei GitHub, Cloudflare, Domain-Anbieter und E-Mail einschalten. Wer Zugang zu GitHub hat, kann die ganze Seite ändern.
@@ -51,6 +59,29 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
 - [ ] **Statistik:** bewusst keine eingebaut (kein Tracking). Wenn doch gewünscht, datenschutzfreundliche Lösung wählen und die Datenschutzerklärung anpassen.
 - [ ] **Offen, Rückfrage an Andre:** Der YouTube-Link vom 02.11. (`xfPTagIR60Q`) konnte nicht geöffnet werden. Was soll daraus in die Liste?
 
+## 1c. Qualität: Aussehen und Geschwindigkeit (Durchsicht nach dem Video „Website mit KI bauen, die gut aussehen und performen, gratis Skill“)
+**Geschwindigkeit**
+- [ ] **Bilder in mehreren Größen** (kleinere für Handys) und als WebP; Breite und Höhe angeben, damit die Seite beim Laden nicht springt.
+- [ ] **Video:** kürzere oder kleinere Fassung oder erst die Eckdaten laden (`preload="metadata"`); das Ersatzbild bleibt.
+- [ ] **Zwischenspeicher:** in `_headers` festlegen, dass Bilder und Video lange gespeichert werden (Dateien bekommen bei Änderung einen neuen Namen) und Texte kurz.
+- [ ] **Die sechs Inhaltsdateien** beim Start zusammenfassen (heute sechs Anfragen nacheinander).
+- [ ] **Zielwerte nach der Messung festlegen:** schnelle Anzeige (LCP unter 2,5 s) und keine Layoutsprünge (CLS unter 0,1).
+- [ ] **Seite ohne JavaScript ist leer.** Die Inhalte erscheinen nur über das Programm im Browser. Mindestens ein `<noscript>`-Hinweis; langfristig die Seite vorab fertig bauen. Das würde auch Link-Vorschau und Suchmaschinen helfen und den 3-MB-Baustein (Babel) überflüssig machen.
+
+**Barrierefreiheit**
+- [ ] **Bewegung reduzieren respektieren** (`prefers-reduced-motion`): Video nicht automatisch abspielen, wenn die Person das am Gerät so eingestellt hat.
+- [ ] **Kontraste prüfen** (graue Texte auf beigem und schwarzem Grund), sichtbarer Fokusrahmen, Tastaturbedienung für Galerie und Vergrößerung (Fokus, Esc, Rückkehr), Link „Zum Inhalt springen“.
+- [ ] **Alt-Texte:** Im CMS ein Feld für eine kurze Bildbeschreibung ergänzen (heute dient der Titel als Alt-Text).
+
+**Auffindbarkeit**
+- [ ] **Strukturierte Daten** (schema.org: Person/Fotografin, Instagram als `sameAs`) und eine `canonical`-Adresse.
+
+**Design-Test**
+- [ ] Aussehen auf sehr großen Monitoren (ab 1920 Pixel), Tablets und im Querformat prüfen.
+
+**Das Video selbst**
+- [ ] Das Video erwähnt ein kostenloses „Skill“ (Vorlage für KI-Assistenten). Ich kann es nicht ansehen. Wenn du Link oder Datei dazu hast, vergleiche ich es mit unserer Seite.
+
 ## 2. Domain
 - [ ] Domain registrieren oder anbinden: bei Cloudflare im Worker `angie-portfolio` unter Settings → Domains & Routes als Custom Domain hinzufügen (je nach Anbieter DNS-Eintrag oder DNS zu Cloudflare umziehen).
 - [ ] Im Login-Dienst (`sveltia-cms-auth`) die neue Domain bei `ALLOWED_DOMAINS` **zusätzlich** eintragen (in `wrangler.toml`, mit Komma getrennt).
@@ -65,14 +96,14 @@ Solange `angie_portfolio` öffentlich ist, kann jeder, der den Repo-Link kennt o
   6. Die alte Gmail-Adresse bleibt weiter erreichbar; eine Weiterleitung ersetzt kein richtiges Postfach (keine Sicherung bei Ausfall des Anbieters).
 
 ## 3. GitHub und Zugänge
-- [ ] Repos auf **privat** stellen: siehe Abschnitt 0 (das ist die erste Aufgabe).
+- [ ] Repos auf **privat** stellen: siehe Abschnitt 0b.
   - Danach in GitHub unter Settings → Applications → Installed GitHub Apps → **Cloudflare Workers and Pages** → Configure prüfen, dass beide Repos als erlaubt eingetragen sind. Sonst findet Cloudflare sie nicht mehr.
   - Es müssen keine Passwörter bei Cloudflare hinterlegt werden. Der Zugriff läuft über die GitHub-App. Das CMS meldet sich bei jedem Login über GitHub an (das Token liegt nur im Browser der Person, die sich anmeldet).
   - Wer das CMS nutzt, muss weiterhin Mitarbeiter (Collaborator) des Repos sein.
   - Privat schützt Verlauf, E-Mail-Adressen und nicht ausgelieferte Dateien. **Die Dateien der Webseite selbst bleiben öffentlich** (alles, was veröffentlicht wird, kann jeder abrufen, auch `content/*.json` und `pflege/config.yml`).
 - [ ] Bei GitHub „Keep my email addresses private“ einschalten (Settings → Emails).
 - [ ] Optional: Kontoname auf GitHub neutral machen oder Repos in ein neutral benanntes Konto verschieben. Der Repo-Name steht in `pflege/config.yml` (`repo:`), und diese Datei ist öffentlich abrufbar. Danach `repo:` in `config.yml`, die Cloudflare-Verbindung und die OAuth-App anpassen.
-- [ ] `/pflege` mit Cloudflare Access schützen: siehe Abschnitt 0 (Unterpunkt beim Privatstellen).
+- [ ] `/pflege` mit Cloudflare Access schützen: siehe Abschnitt 0b (Unterpunkt beim Privatstellen).
 - [ ] Alte Netlify-Seite abschalten oder löschen, alte GitHub-OAuth-App (für Netlify) löschen.
 - [ ] Client ID und Client Secret der OAuth-App in einem Passwort-Manager sichern (das Secret wird bei GitHub nur einmal angezeigt; im Zweifel ein neues erzeugen und in Cloudflare eintragen).
 
