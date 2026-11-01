@@ -1,0 +1,8 @@
+{
+  // Cloudflare: Die Seite wird aus dem Hauptordner veröffentlicht (nicht aus "admin").
+  "name": "angie-portfolio",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "."
+  }
+}
