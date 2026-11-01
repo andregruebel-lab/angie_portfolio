@@ -27,6 +27,20 @@ Stand: 01.11.2026. Diese Datei wird **nicht** auf der Webseite veröffentlicht (
 - [ ] Alte Netlify-Seite abschalten oder löschen, alte GitHub-OAuth-App (für Netlify) löschen.
 - [ ] Client ID und Client Secret der OAuth-App in einem Passwort-Manager sichern (das Secret wird bei GitHub nur einmal angezeigt; im Zweifel ein neues erzeugen und in Cloudflare eintragen).
 
+### Was bedeutet „Repo privat“ genau? (Bitte vor dem Umstellen lesen)
+**Heute (Repo öffentlich):** Jeder, der den Repo-Link kennt oder auf dem GitHub-Profil nachsieht, kann **alles** im Repo lesen: Code, `TODO.md`, den gesamten Verlauf der Änderungen (mit E-Mail-Adresse aus den CMS-Änderungen). Das gilt für GitHub, **nicht** für die Webseite, dort steht `TODO.md` nicht.
+
+**Nach dem Umstellen auf privat:**
+- *Nicht mehr sichtbar für Fremde:* der Code im Repo, der Verlauf der Änderungen und die E-Mail-Adresse darin, `TODO.md`, `wrangler.jsonc`, `.assetsignore`, `README`-Dateien, der Repo-Name als abrufbarer Link.
+- *Weiterhin öffentlich, weil die Webseite sie ausliefert* (jeder mit der Webadresse kann sie abrufen):
+  - `index.html`, `Series.dc.html`, `support.js`, `image-slot.js`
+  - `content/*.json` (alle Texte und Listen der Seite)
+  - `images/` (alle Fotos und das Video)
+  - `pflege/index.html` und `pflege/config.yml` (dort steht der Repo-Name im Eintrag `repo:`)
+  - `robots.txt`
+- *Nicht ausgeliefert* (Webseite zeigt 404): `TODO.md`, `wrangler.jsonc`, `.assetsignore`, `_headers`, der Ordner `.git`.
+- Fazit: „Privat“ schützt den Verlauf und die internen Dateien. Es schützt nicht den Inhalt der Seite, das war auch nie das Ziel, denn der soll ja öffentlich sein.
+
 ## 4. Sicherung (Backup)
 Der Code und alle Fotos liegen bisher **nur auf GitHub**. Ein Fehler dort (versehentlich gelöscht, Konto gesperrt, Zugang verloren) wäre sonst das Ende der Seite. Faustregel: **mindestens drei Kopien, auf zwei verschiedenen Arten von Speicher, eine davon an einem anderen Ort.**
 - [ ] **Kopie 1: lokal auf dem eigenen Rechner.** GitHub Desktop (oder Git) installieren, das Repo mit „Clone“ holen. Danach regelmäßig **Pull**, weil das CMS Änderungen direkt auf GitHub macht. Bei einem privaten Repo ist dafür die Anmeldung bei GitHub nötig.

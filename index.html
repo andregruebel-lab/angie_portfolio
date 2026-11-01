@@ -22,10 +22,8 @@ a:hover{color:#9a4a2c}
 ::selection{background:#191816;color:#efebe4}
 /* Schmale Bildschirme: Einleitungstext und "Seit ..."-Zeile über die volle Breite statt in 5 von 12 Spalten gedrängt */
 @media (max-width:720px){
-  /* Überschrift: größer und nicht ausbalanciert, damit sie die ganze Breite nutzt statt links zu kleben */
-  .hero-h1{font-size:clamp(56px,17.5vw,120px) !important;text-wrap:wrap !important;overflow-wrap:anywhere}
-  /* Deutsch: kürzere Zeilen ("Licht, still" / "gehalten."), deshalb deutlich größer, damit die Breite genutzt wird */
-  html[lang="de"] .hero-h1{font-size:clamp(56px,25vw,150px) !important}
+  /* Überschrift: in allen Sprachen gleich groß und nicht ausbalanciert. 20vw ist die größte Größe, bei der auch das längste Wort (russisch "пойманный") nicht umbricht. */
+  .hero-h1{font-size:clamp(56px,20vw,120px) !important;text-wrap:wrap !important;overflow-wrap:anywhere}
   .hero-intro{grid-column:1 / -1 !important;max-width:none !important}
   .hero-meta{grid-column:1 / -1 !important;justify-content:flex-start !important;flex-wrap:wrap}
   /* "Über mich": Leistungen und Wohnort untereinander statt in zwei schmalen Spalten */
